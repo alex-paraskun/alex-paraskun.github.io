@@ -1,0 +1,7 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+h:
+  ru: Научное направление
+  en: Research focus
+text:
+  ru: 'Исследования сосредоточены на **импульсной рентгеновской технике** и **высоковольтной импульсной электрофизике**: моделирование и эксперимент по разрушению анодов рентгеновских трубок с взрывной эмиссией электронов, усиление электрического поля и износ электродов, спиральные и векторно-инверсионные генераторы высоковольтных импульсов с профилированными шинами. Отдельное направление — **численное моделирование волновых процессов методом сглаженных частиц (SPH)** и его экспериментальная проверка в волновом бассейне.'
+  en: 'Research centres on **pulsed X-ray technology** and **high-voltage pulsed electrophysics**: modelling and experiment on the destruction of anodes in X-ray tubes with explosive electron emission, electric-field intensification and electrode wear, and spiral and vector-inversion high-voltage pulse generators with profiled busbars. A separate line of work is **numerical modelling of wave processes with smoothed-particle hydrodynamics (SPH)** and its experimental validation in a wave tank.'

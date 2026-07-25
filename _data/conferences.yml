@@ -1,0 +1,163 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+- t:
+    ru: Рентгеновский комплекс для исследования поведения биологических организмов при импульсных и ударных нагрузках
+    en: X-ray complex for studying biological organisms under pulsed and shock loading
+  v:
+    ru: IV Школа молодых учёных по синхротронным методам, Новосибирск, 13–15 ноя. 2025
+    en: 4th School of Young Scientists on Synchrotron Methods, Novosibirsk, 13–15 Nov 2025
+- t:
+    ru: Исследование генерации волн в волновом бассейне и сравнение с решением методом SPH
+    en: Wave generation in a wave tank vs. an SPH numerical solution
+  v:
+    ru: X «Лаврентьевские чтения по математике, механике и физике», 25–29 авг. 2025
+    en: 10th Lavrentyev Readings in Mathematics, Mechanics and Physics, 25–29 Aug 2025
+- t:
+    ru: Анализ разрушения анодов импульсных рентгеновских трубок с взрывной эмиссией электронов
+    en: Anode destruction in pulsed X-ray tubes with explosive electron emission
+  v:
+    ru: X «Лаврентьевские чтения…», 25–29 авг. 2025
+    en: 10th Lavrentyev Readings, 25–29 Aug 2025
+- t:
+    ru: Анализ разрушения импульсных рентгеновских трубок с взрывной эмиссией электронов
+    en: Destruction of pulsed X-ray tubes with explosive electron emission
+  v:
+    ru: 63-я МНСК-2025, Новосибирск, 16–22 апр. 2025
+    en: 63rd Int. Student Conf. MNSK-2025, Novosibirsk, 16–22 Apr 2025
+- t:
+    ru: Анализ разрушения импульсных рентгеновских трубок с взрывной эмиссией электронов
+    en: Destruction of pulsed X-ray tubes with explosive electron emission
+  v:
+    ru: 63-я МНСК-2025, Новосибирск, 16–22 апр. 2025
+    en: 63rd Int. Student Conf. MNSK-2025, Novosibirsk, 16–22 Apr 2025
+- t:
+    ru: Design, modelling and fabrication of a flap-type wave maker
+    en: Design, modelling and fabrication of a flap-type wave maker
+  v:
+    ru: 63-я МНСК-2025, Новосибирск, 16–22 апр. 2025
+    en: 63rd Int. Student Conf. MNSK-2025, Novosibirsk, 16–22 Apr 2025
+- t:
+    ru: Разработка и экспериментальная проверка численного волнового бассейна методом сглаженных частиц
+    en: Development and experimental validation of an SPH numerical wave tank
+  v:
+    ru: ВНКСФ-29, 14–20 апр. 2025
+    en: All-Russian Conf. of Physics Students VNKSF-29, 14–20 Apr 2025
+- t:
+    ru: Анализ и моделирование разрушений анодов импульсных рентгеновских трубок с взрывной эмиссией электронов
+    en: Analysis and modelling of anode destruction in pulsed X-ray tubes with explosive electron emission
+  v:
+    ru: IV школа-конференция ГУ «Дубна» «Фундаментальная физика и прикладные технологии», Дубна, 07–10 апр. 2025
+    en: 4th Dubna School-Conf. “Fundamental Physics and Applied Technologies”, Dubna, 07–10 Apr 2025
+- t:
+    ru: Разработка и оптимизация численного волнового бассейна на основе метода SPH
+    en: Development and optimisation of an SPH-based numerical wave tank
+  v:
+    ru: XII школа-конференция «Современные проблемы физики и технологий», Москва, 03–05 апр. 2025
+    en: 12th School-Conf. “Modern Problems of Physics and Technology”, Moscow, 03–05 Apr 2025
+- t:
+    ru: Разработка и оптимизация численного волнового бассейна на основе метода SPH
+    en: Development and optimisation of an SPH-based numerical wave tank
+  v:
+    ru: XII школа-конференция «Современные проблемы физики и технологий», Москва, 03–05 апр. 2025
+    en: 12th School-Conf. “Modern Problems of Physics and Technology”, Moscow, 03–05 Apr 2025
+- t:
+    ru: A new mathematical model of electrodynamic processes in spiral high-voltage pulse generators
+    en: A new mathematical model of electrodynamic processes in spiral high-voltage pulse generators
+  v:
+    ru: AYSS-2024, Дубна, 27 окт. – 1 ноя. 2024
+    en: AYSS-2024, Dubna, 27 Oct – 1 Nov 2024
+- t:
+    ru: Численный волновой бассейн методом сглаженных частиц и его экспериментальная проверка
+    en: An SPH numerical wave tank and its experimental validation
+  v:
+    ru: 52-я школа-конференция «Актуальные проблемы механики» им. Н.Ф. Морозова, 19–21 июн. 2024
+    en: 52nd Morozov School-Conf. “Topical Problems of Mechanics”, 19–21 Jun 2024
+- t:
+    ru: Моделирование распределения магнитного поля в спиральных генераторах высоковольтных импульсов
+    en: Modelling of magnetic field distribution in spiral high-voltage pulse generators
+  v:
+    ru: II Всероссийская школа НЦФМ по сильным и сверхсильным магнитным полям, Саров, 21–24 мая 2024
+    en: 2nd NCPM School on Strong and Superstrong Magnetic Fields, Sarov, 21–24 May 2024
+- t:
+    ru: Исследование и моделирование электродинамических процессов в векторно-инверсионных генераторах
+    en: Study and modelling of electrodynamic processes in vector-inversion generators
+  v:
+    ru: Гидродинамика высоких плотностей энергии, Новосибирск, 24–26 апр. 2024
+    en: High Energy Density Hydrodynamics, Novosibirsk, 24–26 Apr 2024
+- t:
+    ru: Исследование и моделирование электродинамических процессов в векторно-инверсионных генераторах
+    en: Study and modelling of electrodynamic processes in vector-inversion generators
+  v:
+    ru: Гидродинамика высоких плотностей энергии, Новосибирск, 24–26 апр. 2024
+    en: High Energy Density Hydrodynamics, Novosibirsk, 24–26 Apr 2024
+- t:
+    ru: Исследование электродинамических процессов и распределения магнитного поля в векторно-инверсионных генераторах
+    en: Electrodynamic processes and magnetic field distribution in vector-inversion generators
+  v:
+    ru: III школа-конференция ГУ «Дубна» «Фундаментальная физика…», Дубна, 22–25 апр. 2024
+    en: 3rd Dubna School-Conf. “Fundamental Physics…”, Dubna, 22–25 Apr 2024
+- t:
+    ru: Модели электрофизических процессов в спиральных генераторах с разделёнными индуктивной и ёмкостной частями
+    en: Models of electrophysical processes in spiral generators with separated inductive and capacitive parts
+  v:
+    ru: 62-я МНСК-2024, Новосибирск, 17–23 апр. 2024
+    en: 62nd Int. Student Conf. MNSK-2024, Novosibirsk, 17–23 Apr 2024
+- t:
+    ru: Спиральный генератор с разделёнными в пространстве индуктивной и ёмкостной частями для импульсного рентгеновского аппарата
+    en: Spiral generator with spatially separated inductive and capacitive parts for a pulsed X-ray device
+  v:
+    ru: Всероссийская научная конференция студентов-физиков, Бердск, 01–06 апр. 2024
+    en: All-Russian Conf. of Physics Students, Berdsk, 01–06 Apr 2024
+- t:
+    ru: Spiral high-voltage pulse generator with meander-shaped busbars
+    en: Spiral high-voltage pulse generator with meander-shaped busbars
+  v:
+    ru: XXVII Int. Scientific Conf. of Young Scientists (AYSS), Дубна, 29 окт. – 3 ноя. 2023
+    en: 27th Int. Scientific Conf. of Young Scientists (AYSS), Dubna, 29 Oct – 3 Nov 2023
+- t:
+    ru: Спиральный генератор высоковольтных импульсов с разнесёнными в пространстве индуктивной и ёмкостной частями
+    en: Spiral high-voltage pulse generator with spatially separated inductive and capacitive parts
+  v:
+    ru: '«Физика взрыва: теория, эксперимент, приложения», Новосибирск, 18–21 сен. 2023'
+    en: “Physics of Explosion”, Novosibirsk, 18–21 Sep 2023
+  au:
+    ru: Пальчиков Е.И., Рябчун А.М., Параскун А.Г.
+    en: Palchikov E.I., Ryabchun A.M., Paraskun A.G.
+- t:
+    ru: Портативный баллистический стенд с многоракурсной рентгеновской и оптической регистрацией
+    en: Portable ballistic stand with multi-view X-ray and optical registration
+  v:
+    ru: VI конференция «Материалы и технологии XXI века», Бийск, 06–08 сен. 2023
+    en: 6th Conf. “Materials and Technologies of the 21st Century”, Biysk, 06–08 Sep 2023
+- t:
+    ru: Портативный баллистический стенд с многоракурсной рентгеновской и оптической регистрацией
+    en: Portable ballistic stand with multi-view X-ray and optical registration
+  v:
+    ru: VI конференция «Материалы и технологии XXI века», Бийск, 06–08 сен. 2023
+    en: 6th Conf. “Materials and Technologies of the 21st Century”, Biysk, 06–08 Sep 2023
+  au:
+    ru: Пальчиков Е.И., Параскун А.Г., Долгих А.В., Самойленко М.С.
+    en: Palchikov E.I., Paraskun A.G., Dolgikh A.V., Samoylenko M.S.
+- t:
+    ru: Спиральный генератор высоковольтных импульсов с профилированными в виде меандра шинами
+    en: Spiral high-voltage pulse generator with meander-shaped busbars
+  v:
+    ru: МНСК-2023, Новосибирск, 17–26 апр. 2023
+    en: Int. Student Conf. MNSK-2023, Novosibirsk, 17–26 Apr 2023
+- t:
+    ru: Разработка импульсного ксенонового осветителя сверхвысокого давления и измерение его параметров
+    en: Development of an ultra-high-pressure pulsed xenon illuminator and measurement of its parameters
+  v:
+    ru: МНСК-2023, Новосибирск, 17–26 апр. 2023
+    en: Int. Student Conf. MNSK-2023, Novosibirsk, 17–26 Apr 2023
+- t:
+    ru: Изготовление трансформатора Тесла на основе фундаментальных законов и уравнений Кирхгофа
+    en: Construction of a Tesla transformer based on fundamental laws and Kirchhoff’s equations
+  v:
+    ru: Всероссийская конференция студентов-физиков, Екатеринбург, 03–06 апр. 2023
+    en: All-Russian Conf. of Physics Students, Yekaterinburg, 03–06 Apr 2023
+- t:
+    ru: Расчёт характеристик первичного контура трансформатора Тесла по характеристикам вторичного контура
+    en: Calculation of Tesla-transformer primary-circuit characteristics from secondary-circuit data
+  v:
+    ru: 60-я МНСК-2022, Новосибирск, 10–20 апр. 2022
+    en: 60th Int. Student Conf. MNSK-2022, Novosibirsk, 10–20 Apr 2022

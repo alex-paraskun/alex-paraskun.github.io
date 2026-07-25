@@ -1,0 +1,17 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+- deg:
+    ru: Магистр
+    en: Master
+  year: '2026'
+  t:
+    ru: Исследование разрушения электродов при высоковольтном импульсном пробое в вакуумном промежутке рентгеновских трубок
+    en: Study of electrode destruction under high-voltage pulsed breakdown in the vacuum gap of X-ray tubes
+  sup: Пальчиков Е.И. / E.I. Palchikov
+- deg:
+    ru: Бакалавр
+    en: Bachelor
+  year: '2024'
+  t:
+    ru: Исследование электродинамических процессов в спиральных генераторах с профилированными шинами для импульсных рентгеновских излучателей
+    en: Study of electrodynamic processes in spiral generators with profiled busbars for pulsed X-ray emitters
+  sup: Пальчиков Е.И. / E.I. Palchikov

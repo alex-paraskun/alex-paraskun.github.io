@@ -1,0 +1,13 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+- t:
+    ru: Анализ разрушений анодов импульсных рентгеновских трубок с взрывной эмиссией электронов
+    en: Analysis of anode destruction in pulsed X-ray tubes with explosive electron emission
+  v:
+    ru: Препринт, 2026.
+    en: Preprint, 2026.
+  au:
+    ru: Пальчиков Е.И., Параскун А.Г., Лукьянов Я.Л.
+    en: Palchikov E.I., Paraskun A.G., Lukyanov Ya.L.
+  doi: 10.15372/PMTF202515747
+  db:
+  - Preprint

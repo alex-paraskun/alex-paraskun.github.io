@@ -1,0 +1,57 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+- j: Applied Physics Letters
+  t:
+    ru: Эволюция длительности рентгеновского импульса из-за эрозии электродов в наносекундных импульсных рентгеновских трубках
+    en: Evolution of X-ray pulse duration due to electrode erosion in nanosecond pulsed X-ray tubes
+- j: X-Ray Spectrometry
+  t:
+    ru: Влияние звездообразных канавок на поверхности анодов в импульсных рентгеновских источниках
+    en: Effect of starlike grooves on anode surfaces in pulsed X-ray sources
+- j: IMEC2026, Белград / Belgrade
+  t:
+    ru: Анализ и моделирование разрушения анодов при высоковольтном импульсном воздействии
+    en: Analysis and simulation of anode destruction under high-voltage pulse impact
+- j: ПМТФ / PMTF
+  t:
+    ru: Анализ разрушений анодов импульсных рентгеновских трубок с взрывной эмиссией электронов
+    en: Analysis of anode destruction in pulsed X-ray tubes with explosive electron emission
+- j: «Лаврентьевские чтения» / Lavrentyev Readings
+  t:
+    ru: Анализ разрушения анодов импульсных рентгеновских трубок (постер)
+    en: Anode destruction in pulsed X-ray tubes (poster)
+- j: ВНКСФ-29 / VNKSF-29
+  t:
+    ru: Разработка и экспериментальная проверка численного волнового бассейна методом сглаженных частиц
+    en: Development and validation of an SPH numerical wave tank
+- j: «Лаврентьевские чтения» / Lavrentyev Readings
+  t:
+    ru: Анализ разрушений анодов импульсных рентгеновских трубок с взрывной эмиссией электронов
+    en: Anode destruction in pulsed X-ray tubes with explosive electron emission
+- j: Школа-семинар им. А.П. Сухорукова / Sukhorukov School-Seminar
+  t:
+    ru: Численный волновой бассейн методом сглаженных частиц и его экспериментальная проверка
+    en: An SPH numerical wave tank and its experimental validation
+- j: «Лаврентьевские чтения» / Lavrentyev Readings
+  t:
+    ru: Исследование генерации волн в экспериментальном волновом бассейне и сравнение с решением методом SPH
+    en: Wave generation in a wave tank vs. an SPH solution
+- j: «Гидродинамика высоких плотностей энергии» / High Energy Density Hydrodynamics
+  t:
+    ru: Исследование и моделирование электродинамических процессов в векторно-инверсионных генераторах
+    en: Study and modelling of electrodynamic processes in vector-inversion generators
+- j: ПМТФ / PMTF
+  t:
+    ru: Спиральный генератор высоковольтных импульсов с разделённой индуктивной и ёмкостной частью
+    en: Spiral high-voltage pulse generator with separated inductive and capacitive parts
+- j: «Материалы и технологии XXI века» / Materials & Technologies of the 21st Century
+  t:
+    ru: Портативный баллистический стенд с многоракурсной рентгеновской и оптической регистрацией (тезисы)
+    en: Portable ballistic stand with multi-view X-ray and optical registration (abstract)
+- j: «Материалы и технологии XXI века» / Materials & Technologies of the 21st Century
+  t:
+    ru: Портативный баллистический стенд с многоракурсной регистрацией (постер)
+    en: Portable ballistic stand with multi-view registration (poster)
+- j: «Материалы и технологии XXI века» / Materials & Technologies of the 21st Century
+  t:
+    ru: Портативный баллистический стенд с многоракурсной рентгеновской и оптической регистрацией (статья)
+    en: Portable ballistic stand with multi-view X-ray and optical registration (article)

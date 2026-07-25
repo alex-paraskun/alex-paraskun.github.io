@@ -1,0 +1,18 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+photo: profile.jpg
+name:
+  ru: Параскун Александр Григорьевич
+  en: Alexandr G. Paraskun
+eyebrow:
+  ru: Младший научный сотрудник · Физика высоких плотностей энергии
+  en: Junior Researcher · High Energy Density Physics
+role:
+  ru: Импульсные рентгеновские источники, высоковольтные спиральные и векторно-инверсионные генераторы, SPH-моделирование волновых процессов.
+  en: Pulsed X-ray sources, high-voltage spiral and vector-inversion generators, and SPH modelling of wave processes.
+ids:
+  Email: paraskun.a.g@hydro.nsc.ru
+  ORCID: 0009-0008-0160-2819
+  Scopus: '59567330200'
+  ResearcherID: LUZ-9652-2024
+  РИНЦ: '1238078'
+citations: 3

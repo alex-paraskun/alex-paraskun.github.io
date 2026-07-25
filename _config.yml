@@ -1,0 +1,17 @@
+# Настройки сайта Jekyll (GitHub Pages)
+title: Параскун Александр Григорьевич
+lang: ru
+
+# ВАЖНО про baseurl:
+#  • Пользовательский сайт (репозиторий  ИМЯ.github.io)      → baseurl: ""
+#  • Проектный сайт     (репозиторий  любое-имя, адрес
+#    ИМЯ.github.io/любое-имя)                                → baseurl: "/любое-имя"
+baseurl: ""
+url: ""
+
+# Не включать в сайт служебные файлы
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

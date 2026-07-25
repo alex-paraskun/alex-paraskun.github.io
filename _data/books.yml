@@ -1,0 +1,22 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+- t:
+    ru: Основные законы магнетизма, электромагнитная индукция
+    en: Fundamental laws of magnetism and electromagnetic induction
+  v:
+    ru: Учебно-методическое пособие. ИПЦ НГУ, 2026. 30 с. ISBN 978-5-4437-1942-9.
+    en: Study guide. NSU Press, 2026. 30 p. ISBN 978-5-4437-1942-9.
+  au:
+    ru: Параскун А.Г., Котельникова М.С., Чигарёв М.П.
+    en: Paraskun A.G., Kotelnikova M.S., Chigarev M.P.
+- t:
+    ru: Материалы 61-й Международной научной студенческой конференции
+    en: Proceedings of the 61st International Scientific Student Conference
+  v:
+    ru: Сборник. ИПЦ НГУ, 2023. 320 с. ISBN 978-5-4437-1442-4.
+    en: Collected volume. NSU Press, 2023. 320 p. ISBN 978-5-4437-1442-4.
+  au:
+    ru: Параскун А.Г. (сост.)
+    en: Paraskun A.G. (ed.)
+  doi: 10.25205/978-5-4437-1442-4
+  db:
+  - РИНЦ

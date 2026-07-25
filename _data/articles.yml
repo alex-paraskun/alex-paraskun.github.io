@@ -1,0 +1,102 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+- t:
+    ru: Влияние звездообразных канавок на поверхности анодов в импульсных рентгеновских источниках
+    en: Effect of Starlike Grooves on Anode Surfaces in Pulsed X-Ray Sources
+  v:
+    ru: X-Ray Spectrometry. 2026. P. 1–6.
+    en: X-Ray Spectrometry. 2026. P. 1–6.
+  au:
+    ru: Параскун А., Пальчиков Е.
+    en: Alexandr Paraskun, Evgeny Palchikov
+  doi: 10.1002/xrs.70125
+  db:
+  - WOS
+  - Scopus
+  - OpenAlex
+  abs:
+    text:
+      ru: Исследовано влияние звездообразных канавок на поверхности анода на распределение электрического поля и ресурс импульсных рентгеновских источников. (Это пример аннотации — впишите свой текст. Фото в поле «Фото» появятся здесь каруселью.)
+      en: The effect of starlike grooves on the anode surface on electric-field distribution and lifetime of pulsed X-ray sources is studied. (This is an example abstract — put your own text here. Photos listed in "Фото" will appear here as a carousel.)
+    photos:
+    - profile.jpg
+- t:
+    ru: Моделирование усиления электрического поля и износа анода в высоковольтных импульсных рентгеновских источниках
+    en: Simulation of electric field intensification and anode wear in high-voltage pulsed X-ray sources
+  v:
+    ru: Journal of Applied Physics. 2025. V. 138, N 4.
+    en: Journal of Applied Physics. 2025. V. 138, N 4.
+  au:
+    ru: Параскун А.
+    en: Paraskun A.
+  doi: 10.1063/5.0276981
+  db:
+  - WOS
+  - Scopus
+  - OpenAlex
+- t:
+    ru: Исследование распределения магнитного поля в векторно-инверсионных генераторах
+    en: Study of Magnetic Field Distribution in Vector-Inversion Generators
+  v:
+    ru: Physics of Particles and Nuclei Letters. 2025. V. 22, N 5. P. 1082–1085.
+    en: Physics of Particles and Nuclei Letters. 2025. V. 22, N 5. P. 1082–1085.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+  doi: 10.1134/S154747712570116X
+  db:
+  - WOS
+  - Scopus
+  - OpenAlex
+- t:
+    ru: Анализ разрушений анодов импульсных рентгеновских трубок с взрывной эмиссией электронов
+    en: Analysis of anode destruction in pulsed X-ray tubes with explosive electron emission
+  v:
+    ru: Прикладная механика и техническая физика. 2025.
+    en: Journal of Applied Mechanics and Technical Physics (PMTF). 2025.
+  au:
+    ru: Пальчиков Е.И., Параскун А.Г., Лукьянов Я.Л.
+    en: Palchikov E.I., Paraskun A.G., Lukyanov Ya.L.
+  doi: 10.15372/pmtf202515747
+  db:
+  - OpenAlex
+- t:
+    ru: Спиральный генератор высоковольтных импульсов с разделённой в пространстве индуктивной и ёмкостной частью
+    en: Spiral high-voltage pulse generator with spatially separated inductive and capacitive parts
+  v:
+    ru: Прикладная механика и техническая физика. 2024. Т. 65, № 4. С. 11–18.
+    en: Journal of Applied Mechanics and Technical Physics (PMTF). 2024. V. 65, N 4. P. 11–18.
+  au:
+    ru: Пальчиков Е.И., Рябчун А.М., Параскун А.Г.
+    en: Palchikov E.I., Ryabchun A.M., Paraskun A.G.
+  doi: 10.15372/PMTF202315409
+  db:
+  - РИНЦ
+  - OpenAlex
+- t:
+    ru: Spiral high-voltage pulse generator with spatially separated inductive and capacitive parts
+    en: Spiral high-voltage pulse generator with spatially separated inductive and capacitive parts
+  v:
+    ru: Journal of Applied Mechanics and Technical Physics. 2024. V. 65, N 4. P. 602–608.
+    en: Journal of Applied Mechanics and Technical Physics. 2024. V. 65, N 4. P. 602–608.
+  au:
+    ru: Пальчиков Е.И., Рябчун А.М., Параскун А.Г.
+    en: Palchikov E.I., Ryabchun A.M., Paraskun A.G.
+  doi: 10.1134/S0021894424040023
+  db:
+  - WOS
+  - Scopus
+  - РИНЦ
+  - OpenAlex
+- t:
+    ru: Портативный баллистический стенд с многоракурсной рентгеновской и оптической регистрацией
+    en: Portable ballistic stand with multi-view X-ray and optical registration
+  v:
+    ru: Южно-Сибирский научный вестник. 2023. Т. 51, № 5. С. 128–132.
+    en: South-Siberian Scientific Bulletin. 2023. V. 51, N 5. P. 128–132.
+  au:
+    ru: Пальчиков Е.И., Долгих А.В., Самойленко М.С., Параскун А.Г.
+    en: Palchikov E.I., Dolgikh A.V., Samoylenko M.S., Paraskun A.G.
+  doi: 10.25699/SSSB.2023.51.5.017
+  db:
+  - РИНЦ
+  - OpenAlex

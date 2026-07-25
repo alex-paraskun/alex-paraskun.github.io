@@ -1,0 +1,36 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+items:
+- c:
+    ru: Математический анализ
+    en: Mathematical analysis
+  term:
+    ru: 2025, 1 семестр
+    en: 2025, semester 1
+  type: sem
+  h: 72
+- c:
+    ru: Физика
+    en: Physics
+  term:
+    ru: 2025, 1 семестр
+    en: 2025, semester 1
+  type: sem
+  h: 72
+- c:
+    ru: Лабораторный практикум кафедры физики СУНЦ НГУ
+    en: Physics lab practicum, SESC NSU
+  term:
+    ru: 2025, 2 семестр
+    en: 2025, semester 2
+  type: prac
+  h: 72
+- c:
+    ru: Лабораторный практикум кафедры физики СУНЦ НГУ
+    en: Physics lab practicum, SESC NSU
+  term:
+    ru: 2024, 1 семестр
+    en: 2024, semester 1
+  type: prac
+  h: 72
+photos:
+- profile.jpg

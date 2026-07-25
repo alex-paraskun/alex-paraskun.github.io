@@ -1,0 +1,17 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+- abbr: НГУ / NSU
+  org:
+    ru: Новосибирский государственный университет
+    en: Novosibirsk State University
+  period: 2022 – 2026
+  d:
+    ru: '49 работ: 6 в журналах, 1 в сборниках, 13 тезисов, 26 докладов, 1 книга, 2 диплома'
+    en: '49 works: 6 journal, 1 proceedings, 13 abstracts, 26 reports, 1 book, 2 theses'
+- abbr: ИГиЛ СО РАН / LIH SB RAS
+  org:
+    ru: Институт гидродинамики им. М. А. Лаврентьева СО РАН
+    en: Lavrentyev Institute of Hydrodynamics SB RAS
+  period: 2022 – 2026
+  d:
+    ru: '43 работы: 5 в журналах, 1 в сборниках, 12 тезисов, 23 доклада, 2 книги'
+    en: '43 works: 5 journal, 1 proceedings, 12 abstracts, 23 reports, 2 books'

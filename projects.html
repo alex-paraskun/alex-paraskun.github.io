@@ -1,0 +1,61 @@
+---
+# Страница проектов.
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+{% include head.html %}
+<title>Проекты — Параскун А.Г.</title>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="brand" href="{{ '/' | relative_url }}">← <span data-i18n="back">Профиль</span></a>
+  <nav class="topnav">
+    <a href="{{ '/' | relative_url }}#focus" data-i18n="nav_focus">Направление</a>
+    <a href="{{ '/' | relative_url }}#articles" data-i18n="nav_pubs">Публикации</a>
+  </nav>
+  <div class="langswitch">
+    <button data-lang="ru" class="active" onclick="setLang('ru')">RU</button>
+    <button data-lang="en" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+<header class="pagehead">
+  <svg class="wave" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+    <path d="" fill="none" stroke="#16b8d4" stroke-width="2">
+      <animate attributeName="opacity" values="0.4;0.9;0.4" dur="4s" repeatCount="indefinite"/>
+    </path>
+  </svg>
+  <div class="pagehead-wrap">
+    <div class="eyebrow" data-i18n="eyebrow">Исследовательские проекты</div>
+    <h1 data-i18n="title">Проекты</h1>
+    <p data-i18n="intro"></p>
+  </div>
+</header>
+
+<main style="padding-top:56px;padding-bottom:56px">
+  <div id="proj-list"></div>
+</main>
+
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="fname" id="foot-name"></div>
+      <div class="mono" style="font-size:13px;margin-top:8px;color:#8fa9b5" data-i18n="foot_org"></div>
+    </div>
+    <div class="flinks"><a href="{{ '/' | relative_url }}" data-i18n="back_full">← Вернуться к профилю</a></div>
+  </div>
+</footer>
+
+<script>
+var DATA = {
+  PROFILE:  {{ site.data.profile  | jsonify }},
+  PROJECTS: {{ site.data.projects | jsonify }},
+  IMG_BASE: {{ '/images/' | relative_url | jsonify }}
+};
+</script>
+<script src="{{ '/assets/js/common.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/projects.js' | relative_url }}"></script>
+</body>
+</html>

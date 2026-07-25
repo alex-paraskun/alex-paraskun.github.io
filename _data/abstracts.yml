@@ -1,0 +1,140 @@
+# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+- t:
+    ru: Анализ и моделирование разрушения анодов при высоковольтном импульсном воздействии
+    en: Analysis and simulation of anode destruction under high-voltage pulse impact
+  v:
+    ru: 3rd Int. Conf. on Innovative Materials in Extreme Conditions (IMEC2026), Белград, Сербия. С. 42. ISBN 978-86-7306-181-8.
+    en: 3rd Int. Conf. on Innovative Materials in Extreme Conditions (IMEC2026), Belgrade, Serbia. P. 42. ISBN 978-86-7306-181-8.
+  au:
+    ru: Параскун А.Г., Пальчиков Е.И.
+    en: Paraskun A.G., Palchikov E.I.
+- t:
+    ru: Исследование генерации волн в экспериментальном волновом бассейне и сравнение с численным решением методом SPH
+    en: Study of wave generation in an experimental wave tank and comparison with a numerical SPH solution
+  v:
+    ru: X Всероссийская конференция «Лаврентьевские чтения по математике, механике и физике», Новосибирск, 2025. С. 218.
+    en: 10th All-Russian Lavrentyev Readings in Mathematics, Mechanics and Physics, Novosibirsk, 2025. P. 218.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+- t:
+    ru: Анализ разрушения анодов импульсных рентгеновских трубок с взрывной эмиссией электронов
+    en: Analysis of anode destruction in pulsed X-ray tubes with explosive electron emission
+  v:
+    ru: X Всероссийская конференция «Лаврентьевские чтения…», Новосибирск, 2025. С. 219.
+    en: 10th All-Russian Lavrentyev Readings, Novosibirsk, 2025. P. 219.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+- t:
+    ru: Рентгеновский комплекс для исследования поведения биологических организмов при импульсных и ударных нагрузках
+    en: X-ray complex for studying the behaviour of biological organisms under pulsed and shock loading
+  v:
+    ru: IV Школа молодых учёных по синхротронным методам исследования в материаловедении, Новосибирск, 2025. С. 62.
+    en: 4th School of Young Scientists on Synchrotron Methods in Materials Science, Novosibirsk, 2025. P. 62.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+- t:
+    ru: Спиральный генератор с разделёнными в пространстве индуктивной и ёмкостной частями для импульсного рентгеновского аппарата
+    en: Spiral generator with spatially separated inductive and capacitive parts for a pulsed X-ray device
+  v:
+    ru: XXVIII Всероссийская научная конференция студентов-физиков и молодых учёных, 2024. С. 113. ISBN 978-5-93667-204-0.
+    en: 28th All-Russian Scientific Conf. of Physics Students and Young Scientists, 2024. P. 113. ISBN 978-5-93667-204-0.
+  au:
+    ru: Параскун А.Г., Пальчиков Е.И.
+    en: Paraskun A.G., Palchikov E.I.
+  db:
+  - РИНЦ
+- t:
+    ru: Исследование и моделирование электродинамических процессов в векторно-инверсионных генераторах
+    en: Study and modelling of electrodynamic processes in vector-inversion generators
+  v:
+    ru: Гидродинамика высоких плотностей энергии. Тезисы докладов. ИГиЛ СО РАН, 2024. С. 40. ISBN 978-5-6049901-1-7.
+    en: High Energy Density Hydrodynamics. Book of abstracts. LIH SB RAS, 2024. P. 40. ISBN 978-5-6049901-1-7.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+  db:
+  - РИНЦ
+- t:
+    ru: Модели электрофизических процессов в спиральных генераторах с разделёнными в пространстве индуктивной и ёмкостной частями
+    en: Models of electrophysical processes in spiral generators with spatially separated inductive and capacitive parts
+  v:
+    ru: 62-я Международная научная студенческая конференция. ИПЦ НГУ, 2024. С. 283. ISBN 978-5-4437-1620-6.
+    en: 62nd International Scientific Student Conference. NSU, 2024. P. 283. ISBN 978-5-4437-1620-6.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+  doi: 10.25205/978-5-4437-1620-6
+- t:
+    ru: Новая математическая модель электродинамических процессов в спиральных генераторах высоковольтных импульсов
+    en: A new mathematical model of electrodynamic processes in spiral high-voltage pulse generators
+  v:
+    ru: 28th International Scientific Conf. of Young Scientists and Specialists (AYSS-2024).
+    en: 28th International Scientific Conf. of Young Scientists and Specialists (AYSS-2024).
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+- t:
+    ru: Спиральный генератор высоковольтных импульсов с разделённой в пространстве индуктивной и ёмкостной частью
+    en: Spiral high-voltage pulse generator with spatially separated inductive and capacitive parts
+  v:
+    ru: 'Физика взрыва: теория, эксперимент, приложения, Новосибирск, 2023. С. 203–204.'
+    en: 'Physics of Explosion: Theory, Experiment, Applications, Novosibirsk, 2023. P. 203–204.'
+  au:
+    ru: Пальчиков Е.И., Рябчун А.М., Параскун А.Г.
+    en: Palchikov E.I., Ryabchun A.M., Paraskun A.G.
+  doi: 10.53954/9785604990025_203
+  db:
+  - РИНЦ
+  - OpenAlex
+- t:
+    ru: Спиральный генератор высоковольтных импульсов с профилированными в виде меандра шинами
+    en: Spiral high-voltage pulse generator with meander-shaped busbars
+  v:
+    ru: 61-я Международная научная студенческая конференция. ИПЦ НГУ, 2023. С. 271. ISBN 978-5-4437-1442-4.
+    en: 61st International Scientific Student Conference. NSU, 2023. P. 271. ISBN 978-5-4437-1442-4.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+  db:
+  - РИНЦ
+- t:
+    ru: Разработка импульсного ксенонового осветителя сверхвысокого давления и измерение его яркостных и временных параметров
+    en: Development of an ultra-high-pressure pulsed xenon illuminator and measurement of its brightness and timing parameters
+  v:
+    ru: 61-я Международная научная студенческая конференция. ИПЦ НГУ, 2023. С. 294. ISBN 978-5-4437-1442-4.
+    en: 61st International Scientific Student Conference. NSU, 2023. P. 294. ISBN 978-5-4437-1442-4.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+- t:
+    ru: Изготовление трансформатора Тесла на основе фундаментальных физических законов и уравнений Кирхгофа
+    en: Construction of a Tesla transformer based on fundamental physical laws and Kirchhoff’s equations
+  v:
+    ru: XXVII Всероссийская научная конференция студентов-физиков и молодых учёных (ВНКСФ-27), Екатеринбург, 2023. С. 89–90.
+    en: 27th All-Russian Scientific Conf. of Physics Students and Young Scientists, Yekaterinburg, 2023. P. 89–90.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+- t:
+    ru: Конфигурация магнитного поля спирального генератора высоковольтных импульсов с шинами в форме меандра
+    en: Magnetic field configuration of a spiral high-voltage pulse generator with meander-shaped busbars
+  v:
+    ru: XXVII Int. Scientific Conf. of Young Scientists and Specialists (AYSS-2023). С. 15.
+    en: 27th International Scientific Conf. of Young Scientists and Specialists (AYSS-2023). P. 15.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+- t:
+    ru: Расчёт характеристик первичного контура трансформатора Тесла по измеренным характеристикам вторичного контура
+    en: Calculation of the primary-circuit characteristics of a Tesla transformer from measured secondary-circuit characteristics
+  v:
+    ru: 60-я Международная научная студенческая конференция, ФИЗИКА. ИПЦ НГУ, 2022. С. 288. ISBN 978-5-4437-1296-3.
+    en: 60th International Scientific Student Conference, PHYSICS. NSU, 2022. P. 288. ISBN 978-5-4437-1296-3.
+  au:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+  db:
+  - РИНЦ
