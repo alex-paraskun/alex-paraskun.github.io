@@ -1,4 +1,5 @@
 # Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+photos: [photo_2026-07-25_13-52-29 (3).jpg, photo1.jpg]
 items:
 - c:
     ru: Математический анализ
@@ -32,6 +33,4 @@ items:
     en: 2024, semester 1
   type: prac
   h: 72
-photos:
-- photo_2026-07-25_13-52-29 (3).jpg
-- photo1.jpg
+
