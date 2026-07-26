@@ -15,6 +15,23 @@
     href: https://doi.org/10.1063/5.0276981
   - label: Анализ разрушений анодов… (ПМТФ, 2025)
     href: https://doi.org/10.15372/pmtf202515747
+    
+
+    
+- title:
+    ru: Численный волновой бассейн (метод SPH)
+    en: Numerical wave tank (SPH method)
+  desc:
+    ru: Разработка и оптимизация численного волнового бассейна на основе метода сглаженных частиц (SPH), проектирование и изготовление флап-волнопродуктора, экспериментальная проверка генерации волн и сравнение с численным решением.
+    en: Development and optimisation of a numerical wave tank based on smoothed-particle hydrodynamics (SPH), design and fabrication of a flap-type wave maker, and experimental validation of wave generation against the numerical solution.
+  photos:
+  - collage_wavetank.jpg
+  files:
+  - label: Design, modelling and fabrication of a flap-type wave maker (MNSK-2025)
+    href: '#'
+  - label: Исследование генерации волн и сравнение с SPH (Лаврентьевские чтения, 2025)
+    href: '#'
+
 - title:
     ru: Спиральные и векторно-инверсионные генераторы высоковольтных импульсов
     en: Spiral and vector-inversion high-voltage pulse generators
@@ -30,16 +47,3 @@
     href: https://doi.org/10.1134/S154747712570116X
   - label: Спиральный генератор… (ПМТФ, 2024)
     href: https://doi.org/10.15372/PMTF202315409
-- title:
-    ru: Численный волновой бассейн (метод SPH)
-    en: Numerical wave tank (SPH method)
-  desc:
-    ru: Разработка и оптимизация численного волнового бассейна на основе метода сглаженных частиц (SPH), проектирование и изготовление флап-волнопродуктора, экспериментальная проверка генерации волн и сравнение с численным решением.
-    en: Development and optimisation of a numerical wave tank based on smoothed-particle hydrodynamics (SPH), design and fabrication of a flap-type wave maker, and experimental validation of wave generation against the numerical solution.
-  photos:
-  - profile.jpg
-  files:
-  - label: Design, modelling and fabrication of a flap-type wave maker (MNSK-2025)
-    href: '#'
-  - label: Исследование генерации волн и сравнение с SPH (Лаврентьевские чтения, 2025)
-    href: '#'
