@@ -43,7 +43,7 @@
     ru: 'Разработка и моделирование компактных генераторов высоковольтных импульсов для импульсных рентгеновских аппаратов: спиральные генераторы с разделёнными в пространстве индуктивной и ёмкостной частями, профилированные в виде меандра шины, распределение магнитного поля в векторно-инверсионных генераторах.'
     en: 'Development and modelling of compact high-voltage pulse generators for pulsed X-ray devices: spiral generators with spatially separated inductive and capacitive parts, meander-shaped busbars, and magnetic-field distribution in vector-inversion generators.'
   photos:
-  - clusters.png
+  - collage6.jpg
   files:
   - label: Spiral high-voltage pulse generator with spatially separated parts (JAMTP, 2024)
     href: https://doi.org/10.1134/S0021894424040023
