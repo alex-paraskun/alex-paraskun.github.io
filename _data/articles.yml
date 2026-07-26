@@ -33,7 +33,7 @@
   - WOS
   - Scopus
   - OpenAlex
-abs:
+  abs:
     text:
       ru: Исследован электрогидродинамический эффект образования микрокапель расплава вольфрамового анода в двухэлектродной импульсной рентгеновской трубке, используемой в импульсных рентгеновских приборах для изучения быстропротекающих процессов. Предложена методика моделирования распределения напряженности электрического поля в трубке на различных этапах эксплуатации. Также предложены методы оценки скорости расширения плазмы разряда и скачка давления, вызванного напряженностью электрического поля.)
       en: The electrohydrodynamic effect of tungsten anode melt microdroplet formation in the two-electrode pulsed x-ray tube, used in pulsed x-ray devices for studying fast processes, has been investigated. A methodology for modeling the distribution of electric field intensity in the tube at various stages of operation has been proposed. Methods for estimating the expansion velocity of discharge plasma and the pressure surge caused by the electric field intensity have also been suggested.)
