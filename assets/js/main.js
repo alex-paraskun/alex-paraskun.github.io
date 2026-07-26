@@ -8,7 +8,7 @@ var I18N = {
     activity_h: 'Деятельность', rev_h: 'Экспертные заключения', abs_show: 'Аннотация', abs_hide: 'Свернуть',
     foot_org: 'Институт гидродинамики им. М. А. Лаврентьева СО РАН · НГУ',
     foot_note: 'Данные профиля по состоянию на 2026 г. Источник — научная информационная система SciAct (ИГиЛ СО РАН).',
-    more: 'Показать все', less: 'Свернуть', supervisor: 'Руководитель', hours: 'часов', sem: 'семинары', prac: 'практикум'
+    more: '⇕', less: '⇕', supervisor: 'Руководитель', hours: 'часов', sem: 'семинары', prac: 'практикум'
   },
   en: {
     brand: 'PARASKUN <b>A.G.</b>', nav_focus: 'Focus', nav_edu: 'Education', nav_pubs: 'Publications',
@@ -19,7 +19,7 @@ var I18N = {
     activity_h: 'Activity', rev_h: 'Peer reviews', abs_show: 'Abstract', abs_hide: 'Collapse',
     foot_org: 'Lavrentyev Institute of Hydrodynamics SB RAS · Novosibirsk State University',
     foot_note: 'Profile data as of 2026. Source — SciAct research information system (LIH SB RAS).',
-    more: 'Show all', less: 'Collapse', supervisor: 'Supervisor', hours: 'hours', sem: 'seminars', prac: 'lab practicum'
+    more: '⇕', less: '⇕', supervisor: 'Supervisor', hours: 'hours', sem: 'seminars', prac: 'lab practicum'
   }
 };
 
