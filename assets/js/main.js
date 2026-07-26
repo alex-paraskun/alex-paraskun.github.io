@@ -107,7 +107,18 @@ function render() {
   else { $('#teach-carousel').innerHTML = ''; $('#teach-wrap').classList.add('no-photos'); }
 
   // activity
-  $('#act-list').innerHTML = (DATA.ACTIVITY || []).map(function (a) { return '<div class="act">' + carouselHTML(a.photos) + '<div class="act-cap"><h3>' + a.title[LANG] + '</h3><p>' + a.caption[LANG] + '</p></div></div>'; }).join('');
+  $('#act-list').innerHTML = (DATA.ACTIVITY || []).map(function (a) {
+  var slides = a.slides || [];
+  var photos = slides.map(function (s) { return s.photo; });
+  var firstCap = (slides[0] && slides[0].caption) ? slides[0].caption[LANG] : '';
+  // подписи всех слайдов кладём в data-атрибут, чтобы карусель их читала
+  var caps = encodeURIComponent(JSON.stringify(slides.map(function (s) {
+    return (s.caption && s.caption[LANG]) || '';
+  })));
+  return '<div class="act" data-caps="' + caps + '">' + carouselHTML(photos) +
+    '<div class="act-cap"><h3>' + a.title[LANG] + '</h3>' +
+    '<p class="act-text">' + firstCap + '</p></div></div>';
+}).join('');
 
   $('#rev-list').innerHTML = (DATA.REVIEWS || []).map(function (r, i) { return '<li class="pub"><div class="pub-n">' + (i + 1) + '</div><div class="pub-body"><div class="pub-title" style="font-size:1rem">' + r.t[LANG] + '</div><div class="pub-venue" style="margin-top:6px">' + r.j + '</div></div></li>'; }).join('');
 
