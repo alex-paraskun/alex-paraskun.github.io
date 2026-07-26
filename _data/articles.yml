@@ -18,7 +18,7 @@
       ru: В данной работе, обусловленной необходимостью исследования процессов разрушения электродов для увеличения срока службы рентгеновских трубок, представлены экспериментальные данные о деградации поверхности анодов в импульсных вакуумных рентгеновских трубках. Были проведены измерения дозы излучения для трубок с различной степенью износа; путем решения обратной задачи были реконструированы спектры рентгеновского излучения этих трубок. Приведены результаты исследования поверхности анодов, полученные с помощью сканирующего электронного микроскопа. Оценено влияние данного вида разрушения на основные рабочие характеристики рентгеновской трубки. Предложено возможное описание механизма, лежащего в основе этого явления.)
       en: Driven by the necessity to investigate electrode destruction in order to increase the service life of X-ray tubes, this work presents experimental findings on the surface degradation of anodes in pulsed vacuum X-ray tubes. Radiation dose measurements were performed for tubes with varying degrees of wear; by solving the inverse problem, the X-ray emission spectra for these tubes were reconstructed. The results of the anode surface examination, obtained using a scanning electron microscope, are presented. The influence of this type of destruction on the characteristic operating parameters of the X-ray tube was assessed. A possible description of the underlying mechanism of this effect is proposed.)
     photos:
-    - tube.jpg
+    - 255012.tif
 - t:
     ru: Simulation of electric field intensification and anode wear in high-voltage pulsed X-ray sources
     en: Simulation of electric field intensification and anode wear in high-voltage pulsed X-ray sources
@@ -33,6 +33,12 @@
   - WOS
   - Scopus
   - OpenAlex
+abs:
+    text:
+      ru: Исследован электрогидродинамический эффект образования микрокапель расплава вольфрамового анода в двухэлектродной импульсной рентгеновской трубке, используемой в импульсных рентгеновских приборах для изучения быстропротекающих процессов. Предложена методика моделирования распределения напряженности электрического поля в трубке на различных этапах эксплуатации. Также предложены методы оценки скорости расширения плазмы разряда и скачка давления, вызванного напряженностью электрического поля.)
+      en: The electrohydrodynamic effect of tungsten anode melt microdroplet formation in the two-electrode pulsed x-ray tube, used in pulsed x-ray devices for studying fast processes, has been investigated. A methodology for modeling the distribution of electric field intensity in the tube at various stages of operation has been proposed. Methods for estimating the expansion velocity of discharge plasma and the pressure surge caused by the electric field intensity have also been suggested.)
+    photos:
+    - 2007.tif
 - t:
     ru: Study of Magnetic Field Distribution in Vector-Inversion Generators
     en: Study of Magnetic Field Distribution in Vector-Inversion Generators
