@@ -76,9 +76,7 @@ function render() {
     { n: A(DATA.ARTICLES), l: { ru: 'статьи в журналах', en: 'journal articles' } },
     { n: A(DATA.ABSTRACTS), l: { ru: 'тезисы докладов', en: 'abstracts' } },
     { n: A(DATA.CONF), l: { ru: 'доклады', en: 'conf. reports' } },
-    { n: A(DATA.BOOKS), l: { ru: 'книги', en: 'books' } },
-    { n: A(DATA.REVIEWS), l: { ru: 'рецензии', en: 'peer reviews' } },
-    { n: (P.citations || 0), l: { ru: 'цитирования OpenAlex', en: 'OpenAlex citations' } }
+    { n: A(DATA.BOOKS), l: { ru: 'книги', en: 'books' } }
   ];
   $('#readout').innerHTML = stats.map(function (s) { return '<div class="stat"><div class="n">' + s.n + '</div><div class="l">' + s.l[LANG] + '</div></div>'; }).join('');
 
