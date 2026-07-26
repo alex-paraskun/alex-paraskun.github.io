@@ -1,26 +1,10 @@
-# Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
-- title:
-    ru: Научно-популярная деятельность
-    en: Science outreach
-  caption:
-    ru: Кампус Новосибирского государственного университета. Популяризация физики высоких плотностей энергии среди школьников и студентов.
-    en: Novosibirsk State University campus. Popularising high energy density physics among school and university students.
-  photos:
-  - profile.jpg 
-  - 1.jpg
-- title:
-    ru: Спикер фестиваля «ТехноАрт 2024»
-    en: Speaker at TechnoArt 2024
-  caption:
-    ru: Выступление на фестивале науки и искусства «ТехноАрт 2024». (Добавьте фото фестиваля в папку images/ и перечислите их в поле «Фото».)
-    en: Talk at the TechnoArt 2024 science-and-art festival. (Add festival photos to images/ and list them in the "Фото" field.)
-  photos:
-  - 2.jpg
-  - 1.jpg
-  
-- title: {ru: "Спикер фестиваля «ТехноАрт 2024»", en: "Speaker at TechnoArt 2024"}
+- title: {ru: "Стажировка в Университете науки и технологий Китая, 2025", en: "Internship in USTC, 2025"}
   slides:
-    - photo: 1.jpg
+    - photo: china1.jpg
       caption: {ru: "Открытие фестиваля.", en: "Festival opening."}
-    - photo: 2.jpg
+    - photo: china2.jpg
+      caption: {ru: "Демонстрация установки.", en: "Setup demonstration."}
+    - photo: china3.jpg
+      caption: {ru: "Демонстрация установки.", en: "Setup demonstration."}
+    - photo: china4.jpg
       caption: {ru: "Демонстрация установки.", en: "Setup demonstration."}
