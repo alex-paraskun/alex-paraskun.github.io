@@ -23,8 +23,8 @@
     ru: Разработка и оптимизация численного волнового бассейна на основе метода сглаженных частиц (SPH), проектирование и изготовление флап-волнопродуктора, экспериментальная проверка генерации волн и сравнение с численным решением.
     en: Development and optimisation of a numerical wave tank based on smoothed-particle hydrodynamics (SPH), design and fabrication of a flap-type wave maker, and experimental validation of wave generation against the numerical solution.
   photos:
+  - collage5.jpg
   - photo_2026-07-25_13-52-32.jpg
-  - collage4.jpg
 
 - title:
     ru: Кластеризация в волновой турбулентности
@@ -33,7 +33,7 @@
     ru: Исследование механизмов формирования и дрейфа кластерных структур на поверхности и в толще жидкости при воздействии волновой турбулентности и других эффектов.
     en: Investigation of the mechanisms governing the formation and drift of cluster structures on the surface and within the bulk of a liquid under the influence of wave turbulence and other effects.
   photos:
-  - collage5.jpg
+  - collage4.jpg
 
 
 - title:
