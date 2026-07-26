@@ -16,8 +16,6 @@
   - label: Анализ разрушений анодов… (ПМТФ, 2025)
     href: https://doi.org/10.15372/pmtf202515747
     
-
-    
 - title:
     ru: Численный волновой бассейн (метод SPH)
     en: Numerical wave tank (SPH method)
@@ -26,11 +24,17 @@
     en: Development and optimisation of a numerical wave tank based on smoothed-particle hydrodynamics (SPH), design and fabrication of a flap-type wave maker, and experimental validation of wave generation against the numerical solution.
   photos:
   - photo_2026-07-25_13-52-32.jpg
-  files:
-  - label: Design, modelling and fabrication of a flap-type wave maker (MNSK-2025)
-    href: '#'
-  - label: Исследование генерации волн и сравнение с SPH (Лаврентьевские чтения, 2025)
-    href: '#'
+  - collage4.jpg
+
+- title:
+    ru: Кластеризация в волновой турбулентности
+    en: Wave turbulence clusterisation
+  desc:
+    ru: Исследование механизмов формирования и дрейфа кластерных структур на поверхности и в толще жидкости при воздействии волновой турбулентности и других эффектов.
+    en: Investigation of the mechanisms governing the formation and drift of cluster structures on the surface and within the bulk of a liquid under the influence of wave turbulence and other effects.
+  photos:
+  - collage5.jpg
+
 
 - title:
     ru: Спиральные и векторно-инверсионные генераторы высоковольтных импульсов
