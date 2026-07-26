@@ -6,9 +6,11 @@
     ru: 'Экспериментальное и численное исследование разрушения анодов рентгеновских трубок с взрывной эмиссией электронов: усиление электрического поля, износ электродов, влияние формы поверхности анода (звездообразные канавки) на ресурс и параметры импульса.'
     en: 'Experimental and numerical study of anode destruction in X-ray tubes with explosive electron emission: electric-field intensification, electrode wear, and the effect of anode surface shape (starlike grooves) on lifetime and pulse parameters.'
   photos:
-  - anode1.png
+  - anode11.jpg
   - anode2.jpg
   - anode3.png
+  - anode4.jpg
+  - anode5.jpg
   files:
   - label: Effect of Starlike Grooves on Anode Surfaces (X-Ray Spectrometry, 2026)
     href: https://doi.org/10.1002/xrs.70125
