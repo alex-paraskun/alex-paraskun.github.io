@@ -4,7 +4,7 @@ var I18N = {
     nav_teach: 'Преподавание', nav_activity: 'Деятельность', nav_projects: 'Проекты →', nav_calculator: 'Калькулятор →',
     edu_h: 'Образование', qual_h: 'Квалификационные работы', aff_h: 'Аффилиации',
     art_h: 'Статьи в журналах', proc_h: 'Статьи в сборниках', abs_h: 'Тезисы докладов', book_h: 'Книги',
-    conf_h: 'Доклады на конференциях', misc_h: 'Препринты и выступления в СМИ', teach_h: 'Преподавание курсов',
+    conf_h: 'Доклады на конференциях', misc_h: 'Выступления в СМИ', teach_h: 'Преподавание курсов',
     activity_h: 'Деятельность', rev_h: 'Экспертные заключения', abs_show: 'Аннотация', abs_hide: 'Свернуть',
     foot_org: 'Институт гидродинамики им. М. А. Лаврентьева СО РАН · НГУ',
     foot_note: 'Данные профиля по состоянию на 2026 г.',
@@ -15,7 +15,7 @@ var I18N = {
     nav_teach: 'Teaching', nav_activity: 'Activity', nav_projects: 'Projects →', nav_calculator: 'Calculator →',
     edu_h: 'Education', qual_h: 'Qualification works', aff_h: 'Affiliations',
     art_h: 'Journal articles', proc_h: 'Proceedings papers', abs_h: 'Conference abstracts', book_h: 'Books',
-    conf_h: 'Conference reports', misc_h: 'Preprints & media appearances', teach_h: 'Teaching',
+    conf_h: 'Conference reports', misc_h: 'Media appearances', teach_h: 'Teaching',
     activity_h: 'Activity', rev_h: 'Peer reviews', abs_show: 'Abstract', abs_hide: 'Collapse',
     foot_org: 'Lavrentyev Institute of Hydrodynamics SB RAS · Novosibirsk State University',
     foot_note: 'Profile data as of 2026.',
@@ -96,8 +96,14 @@ function render() {
   $('#abs-list').innerHTML = (DATA.ABSTRACTS || []).map(pubHTML).join('');
   $('#book-list').innerHTML = (DATA.BOOKS || []).map(pubHTML).join('');
   $('#conf-list').innerHTML = (DATA.CONF || []).map(function (c, i) { var au = c.au ? ('<div class="pub-authors">' + markMe(c.au[LANG]) + '</div>') : ''; return '<div class="pub"><div class="pub-n">' + (i + 1) + '</div><div class="pub-body"><div class="pub-title">' + c.t[LANG] + '</div>' + au + '<div class="pub-venue">' + c.v[LANG] + '</div></div></div>'; }).join('');
-  $('#preprint-list').innerHTML = (DATA.PREPRINT || []).map(pubHTML).join('');
-  $('#media-list').innerHTML = (DATA.MEDIA || []).map(function (m, i) { return '<li><span class="idx">' + String(i + 1).padStart(2, '0') + '</span><div><div class="t">' + m.t[LANG] + '</div><div class="m">' + m.m[LANG] + '</div></div></li>'; }).join('');
+  
+  $('#media-list').innerHTML = (DATA.MEDIA || []).map(function (m, i) {
+  var title = m.href
+    ? '<a class="t" href="' + m.href + '" target="_blank" rel="noopener">' + m.t[LANG] + '</a>'
+    : '<div class="t">' + m.t[LANG] + '</div>';
+  return '<li><span class="idx">' + String(i + 1).padStart(2, '0') + '</span><div>' +
+    title + '<div class="m">' + m.m[LANG] + '</div></div></li>';
+}).join('');
 
   // teaching
   var TE = DATA.TEACHING || { items: [], photos: [] };
