@@ -2,7 +2,7 @@ var I18N = {
   ru: {
     brand: 'ПАРАСКУН <b>А.Г.</b>', nav_focus: 'Направление', nav_edu: 'Образование', nav_pubs: 'Публикации',
     nav_teach: 'Преподавание', nav_activity: 'Деятельность', nav_projects: 'Проекты →', nav_calculator: 'Калькулятор →',
-    edu_h: 'Образование и должность', qual_h: 'Квалификационные работы', aff_h: 'Аффилиации',
+    edu_h: 'Образование', qual_h: 'Квалификационные работы', aff_h: 'Аффилиации',
     art_h: 'Статьи в журналах', proc_h: 'Статьи в сборниках', abs_h: 'Тезисы докладов', book_h: 'Книги',
     conf_h: 'Доклады на конференциях', misc_h: 'Препринты и выступления в СМИ', teach_h: 'Преподавание курсов',
     activity_h: 'Деятельность', rev_h: 'Экспертные заключения', abs_show: 'Аннотация', abs_hide: 'Свернуть',
@@ -13,7 +13,7 @@ var I18N = {
   en: {
     brand: 'PARASKUN <b>A.G.</b>', nav_focus: 'Focus', nav_edu: 'Education', nav_pubs: 'Publications',
     nav_teach: 'Teaching', nav_activity: 'Activity', nav_projects: 'Projects →', nav_calculator: 'Calculator →',
-    edu_h: 'Education & position', qual_h: 'Qualification works', aff_h: 'Affiliations',
+    edu_h: 'Education', qual_h: 'Qualification works', aff_h: 'Affiliations',
     art_h: 'Journal articles', proc_h: 'Proceedings papers', abs_h: 'Conference abstracts', book_h: 'Books',
     conf_h: 'Conference reports', misc_h: 'Preprints & media appearances', teach_h: 'Teaching',
     activity_h: 'Activity', rev_h: 'Peer reviews', abs_show: 'Abstract', abs_hide: 'Collapse',
