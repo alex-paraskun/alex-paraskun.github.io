@@ -1,6 +1,6 @@
 # Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
 - t:
-    ru: Влияние звездообразных канавок на поверхности анодов в импульсных рентгеновских источниках
+    ru: Effect of Starlike Grooves on Anode Surfaces in Pulsed X-Ray Sources
     en: Effect of Starlike Grooves on Anode Surfaces in Pulsed X-Ray Sources
   v:
     ru: X-Ray Spectrometry. 2026. P. 1–6.
@@ -15,12 +15,12 @@
   - OpenAlex
   abs:
     text:
-      ru: Исследовано влияние звездообразных канавок на поверхности анода на распределение электрического поля и ресурс импульсных рентгеновских источников. (Это пример аннотации — впишите свой текст. Фото в поле «Фото» появятся здесь каруселью.)
-      en: The effect of starlike grooves on the anode surface on electric-field distribution and lifetime of pulsed X-ray sources is studied. (This is an example abstract — put your own text here. Photos listed in "Фото" will appear here as a carousel.)
+      ru: В данной работе, обусловленной необходимостью исследования процессов разрушения электродов для увеличения срока службы рентгеновских трубок, представлены экспериментальные данные о деградации поверхности анодов в импульсных вакуумных рентгеновских трубках. Были проведены измерения дозы излучения для трубок с различной степенью износа; путем решения обратной задачи были реконструированы спектры рентгеновского излучения этих трубок. Приведены результаты исследования поверхности анодов, полученные с помощью сканирующего электронного микроскопа. Оценено влияние данного вида разрушения на основные рабочие характеристики рентгеновской трубки. Предложено возможное описание механизма, лежащего в основе этого явления.)
+      en: Driven by the necessity to investigate electrode destruction in order to increase the service life of X-ray tubes, this work presents experimental findings on the surface degradation of anodes in pulsed vacuum X-ray tubes. Radiation dose measurements were performed for tubes with varying degrees of wear; by solving the inverse problem, the X-ray emission spectra for these tubes were reconstructed. The results of the anode surface examination, obtained using a scanning electron microscope, are presented. The influence of this type of destruction on the characteristic operating parameters of the X-ray tube was assessed. A possible description of the underlying mechanism of this effect is proposed.)
     photos:
-    - profile.jpg
+    - tube.jpg
 - t:
-    ru: Моделирование усиления электрического поля и износа анода в высоковольтных импульсных рентгеновских источниках
+    ru: Simulation of electric field intensification and anode wear in high-voltage pulsed X-ray sources
     en: Simulation of electric field intensification and anode wear in high-voltage pulsed X-ray sources
   v:
     ru: Journal of Applied Physics. 2025. V. 138, N 4.
@@ -34,7 +34,7 @@
   - Scopus
   - OpenAlex
 - t:
-    ru: Исследование распределения магнитного поля в векторно-инверсионных генераторах
+    ru: Study of Magnetic Field Distribution in Vector-Inversion Generators
     en: Study of Magnetic Field Distribution in Vector-Inversion Generators
   v:
     ru: Physics of Particles and Nuclei Letters. 2025. V. 22, N 5. P. 1082–1085.
@@ -87,16 +87,4 @@
   - Scopus
   - РИНЦ
   - OpenAlex
-- t:
-    ru: Портативный баллистический стенд с многоракурсной рентгеновской и оптической регистрацией
-    en: Portable ballistic stand with multi-view X-ray and optical registration
-  v:
-    ru: Южно-Сибирский научный вестник. 2023. Т. 51, № 5. С. 128–132.
-    en: South-Siberian Scientific Bulletin. 2023. V. 51, N 5. P. 128–132.
-  au:
-    ru: Пальчиков Е.И., Долгих А.В., Самойленко М.С., Параскун А.Г.
-    en: Palchikov E.I., Dolgikh A.V., Samoylenko M.S., Paraskun A.G.
-  doi: 10.25699/SSSB.2023.51.5.017
-  db:
-  - РИНЦ
-  - OpenAlex
+
