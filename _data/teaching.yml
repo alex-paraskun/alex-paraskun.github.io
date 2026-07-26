@@ -2,35 +2,36 @@
 photos: [photo1.jpg, photo_2026-07-25_13-52-29 (3)]
 items:
 - c:
-    ru: Математический анализ
-    en: Mathematical analysis
+    ru: Математический анализ, НГУ
+    en: Mathematical Analysis, NSU
   term:
-    ru: 2025, 1 семестр
-    en: 2025, semester 1
+    ru: 2025-2026, 1-2 семестры
+    en: 2025-2026, Semester I and II
   type: sem
-  h: 72
+
 - c:
-    ru: Физика
-    en: Physics
+    ru: Физика (Электричество и магнетизм), СУНЦ НГУ
+    en: Physics (Electricity and Magnetism), SESC NSU
   term:
-    ru: 2025, 1 семестр
-    en: 2025, semester 1
+    ru: 2025-2026, 1-2 семестры
+    en: 2025-2026, Semester I and II
   type: sem
-  h: 72
+
 - c:
-    ru: Лабораторный практикум кафедры физики СУНЦ НГУ
-    en: Physics lab practicum, SESC NSU
+    ru: Лабораторный практикум, кафедра физики СУНЦ НГУ
+    en: Physics lab (Electromagnetism and Optics, Thermodynamics), SESC NSU
   term:
-    ru: 2025, 2 семестр
-    en: 2025, semester 2
+    ru: 2025-2026, 1-2 семестры
+    en: 2025-2026, Semester I and II
   type: prac
-  h: 72
+
 - c:
-    ru: Лабораторный практикум кафедры физики СУНЦ НГУ
-    en: Physics lab practicum, SESC NSU
+    ru: Лабораторный практикум, кафедра физики СУНЦ НГУ
+    en: Physics lab (Mechanics), SESC NSU
   term:
-    ru: 2024, 1 семестр
-    en: 2024, semester 1
+  term:
+    ru: 2024-2025, 1-2 семестры
+    en: 2024-2025, Semester I and II
   type: prac
-  h: 72
+
 
