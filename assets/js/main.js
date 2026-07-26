@@ -7,7 +7,7 @@ var I18N = {
     conf_h: 'Доклады на конференциях', misc_h: 'Препринты и выступления в СМИ', teach_h: 'Преподавание курсов',
     activity_h: 'Деятельность', rev_h: 'Экспертные заключения', abs_show: 'Аннотация', abs_hide: 'Свернуть',
     foot_org: 'Институт гидродинамики им. М. А. Лаврентьева СО РАН · НГУ',
-    foot_note: 'Данные профиля по состоянию на 2026 г. Источник — научная информационная система SciAct (ИГиЛ СО РАН).',
+    foot_note: 'Данные профиля по состоянию на 2026 г.',
     more: 'Show more', less: 'Less', supervisor: 'Руководитель', hours: 'часов', sem: 'семинары', prac: 'практикум'
   },
   en: {
@@ -18,7 +18,7 @@ var I18N = {
     conf_h: 'Conference reports', misc_h: 'Preprints & media appearances', teach_h: 'Teaching',
     activity_h: 'Activity', rev_h: 'Peer reviews', abs_show: 'Abstract', abs_hide: 'Collapse',
     foot_org: 'Lavrentyev Institute of Hydrodynamics SB RAS · Novosibirsk State University',
-    foot_note: 'Profile data as of 2026. Source — SciAct research information system (LIH SB RAS).',
+    foot_note: 'Profile data as of 2026.',
     more: 'Show more', less: 'Less', supervisor: 'Supervisor', hours: 'hours', sem: 'seminars', prac: 'lab practicum'
   }
 };
