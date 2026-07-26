@@ -5,21 +5,37 @@
     en: Novosibirsk State University
   period: 2024 – now
   d:
-    ru: 'инженер-исследователь → ассистент КВМ ММФ'
-    en: 'engineer-researcher → university assistant'
+    ru: 'Инженер-исследователь → Ассистент КфВМ ММФ'
+    en: 'Engineer-researcher → University assistant'
 - abbr: ИГиЛ СО РАН / LIH SB RAS
   org:
     ru: Институт гидродинамики им. М. А. Лаврентьева СО РАН
     en: Lavrentyev Institute of Hydrodynamics SB RAS
-  period: 2022 – 2026
+  period: 2022 – now
   d:
-    ru: '43 работы: 5 в журналах, 1 в сборниках, 12 тезисов, 23 доклада, 2 книги'
-    en: '43 works: 5 journal, 1 proceedings, 12 abstracts, 23 reports, 2 books'
-- abbr: ИГиЛ СО РАН / LIH SB RAS
+    ru: 'Лаборант исследователь → Младший научный сотрудник'
+    en: 'Research assistant → Junior Researcher'
+- abbr: СУНЦ НГУ / SESC NSU
   org:
-    ru: Институт гидродинамики им. М. А. Лаврентьева СО РАН
-    en: Lavrentyev Institute of Hydrodynamics SB RAS
-  period: 2022 – 2026
+    ru: Специализированный учебно-научный центр НГУ
+    en: Special Educational-Scientific Centre of NSU
+  period: 2024 – now
   d:
-    ru: '43 работы: 5 в журналах, 1 в сборниках, 12 тезисов, 23 доклада, 2 книги'
-    en: '43 works: 5 journal, 1 proceedings, 12 abstracts, 23 reports, 2 books'
+    ru: 'Преподаватель кафедры физики'
+    en: 'Lecturer on Physics Department'
+- abbr: OIST
+  org:
+    ru: Институт науки и технологий Окинавы
+    en: Okinawa Institute of Science and Technology
+  period: Sep.2025 - Dec.2025
+  d:
+    ru: 'Приглашенный исследователь'
+    en: 'Research Intern'
+- abbr: USTC
+  org:
+    ru: Университет науки и технологий Китая, Хэфей
+    en: University of Science and Technology of China
+  period: June.2025-Aug.2025
+  d:
+    ru: 'Приглашенный исследователь'
+    en: 'Research Intern'
