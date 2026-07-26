@@ -8,7 +8,7 @@ items:
     ru: 2025-2026, 1-2 семестры
     en: 2025-2026, Semester I and II
   type: sem
-  h: 72
+  h: 144
 - c:
     ru: Физика (Электричество и магнетизм), СУНЦ НГУ
     en: Physics (Electricity and Magnetism), SESC NSU
@@ -16,6 +16,7 @@ items:
     ru: 2025-2026, 1-2 семестры
     en: 2025-2026, Semester I and II
   type: sem
+  h: 144
 
 - c:
     ru: Лабораторный практикум, кафедра физики СУНЦ НГУ
@@ -24,6 +25,7 @@ items:
     ru: 2025-2026, 1-2 семестры
     en: 2025-2026, Semester I and II
   type: prac
+  h: 72
 
 - c:
     ru: Лабораторный практикум, кафедра физики СУНЦ НГУ
@@ -33,5 +35,6 @@ items:
     ru: 2024-2025, 1-2 семестры
     en: 2024-2025, Semester I and II
   type: prac
+  h: 72
 
 
