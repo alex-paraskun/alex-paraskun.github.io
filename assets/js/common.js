@@ -37,6 +37,14 @@ function slide(car, dir){
   track.style.transform = 'translateX(-' + (cur * 100) + '%)';
   var dots = car.querySelector('.c-dots');
   if(dots) Array.prototype.forEach.call(dots.children, function(d, k){ d.classList.toggle('on', k === cur); });
+
+  // обновляем подпись под названием активности на подпись текущего фото
+  var act = car.closest('.act');
+  if(act && act.dataset.caps){
+    var caps = JSON.parse(decodeURIComponent(act.dataset.caps));
+    var p = act.querySelector('.act-text');
+    if(p && caps[cur] !== undefined) p.textContent = caps[cur];
+  }
 }
 function initCarousels(){
   $$('.carousel').forEach(function(car){
