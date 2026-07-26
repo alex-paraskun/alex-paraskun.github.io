@@ -28,24 +28,35 @@ function toggleAbs(btn) {
 }
 
 /* carousels: rebuilt after every render */
-function initCarousels() {
-  $$('.carousel').forEach(function (car) {
-    var track = car.querySelector('.c-track');
-    var imgs = track.children.length;
-    if (imgs <= 1) { car.classList.add('single'); return; }
-    var i = 0;
+function slide(car, dir){
+  var track = car.querySelector('.c-track');
+  var n = track.children.length;
+  if(n <= 1) return;
+  var cur = (parseInt(car.dataset.idx || '0', 10) + dir + n) % n;
+  car.dataset.idx = cur;
+  track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+  var dots = car.querySelector('.c-dots');
+  if(dots) Array.prototype.forEach.call(dots.children, function(d, k){ d.classList.toggle('on', k === cur); });
+}
+function initCarousels(){
+  $$('.carousel').forEach(function(car){
+    var n = car.querySelector('.c-track').children.length;
+    if(n <= 1){ car.classList.add('single'); return; }
+    car.dataset.idx = '0';
     var dots = car.querySelector('.c-dots');
-    var go = function (n) {
-      i = (n + imgs) % imgs;
-      track.style.transform = 'translateX(-' + (i * 100) + '%)';
-      if (dots) dots.querySelectorAll('span').forEach(function (d, k) { d.classList.toggle('on', k === i); });
-    };
-    car.querySelector('.prev').onclick = function () { go(i - 1); };
-    car.querySelector('.next').onclick = function () { go(i + 1); };
-    if (dots) dots.querySelectorAll('span').forEach(function (d, k) { d.onclick = function () { go(k); }; });
-    go(0);
+    if(dots && dots.firstChild) dots.firstChild.classList.add('on');
   });
 }
+document.addEventListener('click', function(e){
+  var nav = e.target.closest('.c-nav');
+  if(nav){ slide(nav.closest('.carousel'), nav.classList.contains('next') ? 1 : -1); return; }
+  var dot = e.target.closest('.c-dots span');
+  if(dot){
+    var car = dot.closest('.carousel');
+    var idx = Array.prototype.indexOf.call(dot.parentNode.children, dot);
+    slide(car, idx - parseInt(car.dataset.idx || '0', 10));
+  }
+});
 function carouselHTML(photos) {
   photos = photos || [];
   var imgs = photos.map(function (src) { return '<img src="' + IMG(src) + '" alt="" loading="lazy">'; }).join('');
