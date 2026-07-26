@@ -1,11 +1,11 @@
 - title: {ru: "Стажировка в Университете науки и технологий Окинавы, 2025", en: "Internship in OIST, 2025"}
   slides:
     - photo: japan1.jpg
-      caption: {ru: "Открытие фестиваля.", en: "Festival opening."}
+      caption: {ru: "Созданный экспериментальный волновой бассейн.", en: "Experimental wave basin."}
     - photo: japan2.jpg
-      caption: {ru: "Демонстрация установки.", en: "Setup demonstration."}
+      caption: {ru: "Природа Окинавы.", en: "Okinawa nature."}
     - photo: japan3.jpg
-      caption: {ru: "Демонстрация установки.", en: "Setup demonstration."}
+      caption: {ru: "Природа Окинавы.", en: "Okinawa nature."}
     - photo: japan4.jpg
       caption: {ru: "Демонстрация установки.", en: "Setup demonstration."}
       
@@ -23,10 +23,10 @@
 - title: {ru: "Зимняя исследовательская программа в Университете науки и технологий Китая, 2025", en: "Scientific Winter Camp in USTC, 2025"}
   slides:
     - photo: winter1.jpg
-      caption: {ru: "Открытие фестиваля.", en: "Festival opening."}
+      caption: {ru: "Обсуждение доклада Профессора Gaopeng Lu.", en: "Discussion of Professor Gaopeng Lu's presentation."}
     - photo: winter2.jpg
-      caption: {ru: "Демонстрация установки.", en: "Setup demonstration."}
+      caption: {ru: "Посещение музея науки и технологий Китая.", en: "Visit to the China Science and Technology Museum."}
     - photo: winter3.jpg
-      caption: {ru: "Демонстрация установки.", en: "Setup demonstration."}
+      caption: {ru: "Церемония закрытия программы.", en: "Program closing ceremony."}
     - photo: winter4.jpg
-      caption: {ru: "Демонстрация установки.", en: "Setup demonstration."}
+      caption: {ru: "Посещение выставочного комплекса Университета.", en: "Visit to the University's exhibition complex."}
