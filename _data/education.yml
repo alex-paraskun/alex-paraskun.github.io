@@ -1,25 +1,15 @@
 # Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
-- position: true
-  title:
-    ru: Младший научный сотрудник
-    en: Junior Researcher
-  lab:
-    ru: Лаборатория физики высоких плотностей энергии
-    en: Laboratory of High Energy Density Physics
-  org:
-    ru: Институт гидродинамики им. М. А. Лаврентьева СО РАН
-    en: Lavrentyev Institute of Hydrodynamics SB RAS
 - year: '2026'
   deg:
     ru: Магистр
-    en: Master
+    en: Master of Science
   org:
     ru: Новосибирский государственный университет
     en: Novosibirsk State University
 - year: '2024'
   deg:
     ru: Бакалавр
-    en: Bachelor
+    en: Bachelor of Science
   org:
     ru: Новосибирский государственный университет
     en: Novosibirsk State University
