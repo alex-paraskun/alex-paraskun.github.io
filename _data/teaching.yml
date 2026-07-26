@@ -1,5 +1,5 @@
 # Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
-photos: [photo1.jpg, photo_2026-07-25_13-52-29 (3)]
+photos: [photo1.jpg, photo_2026-07-25_13-52-29 (3).jpg]
 items:
 - c:
     ru: Математический анализ, НГУ
@@ -8,7 +8,7 @@ items:
     ru: 2025-2026, 1-2 семестры
     en: 2025-2026, Semester I and II
   type: sem
-
+h:72
 - c:
     ru: Физика (Электричество и магнетизм), СУНЦ НГУ
     en: Physics (Electricity and Magnetism), SESC NSU
