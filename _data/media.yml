@@ -12,6 +12,6 @@
     ru: Телеканал ОТС
     en: OTS TV channel
     
-- t: {ru: "Интервью НГУ", en: "NSU webpage"}
-  m: {ru: "Interview for NSU", en: "NSU webpage"}
+- t: {ru: "Интервью НГУ", en: "Interview for NSU"}
+  m: {ru: "Страница НГУ в ВКонтакте", en: "NSU webpage"}
   href: "https://vk.ru/wall-37080997_39363"
