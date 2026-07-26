@@ -6,8 +6,8 @@
     ru: 'Экспериментальное и численное исследование разрушения анодов рентгеновских трубок с взрывной эмиссией электронов: усиление электрического поля, износ электродов, влияние формы поверхности анода (звездообразные канавки) на ресурс и параметры импульса.'
     en: 'Experimental and numerical study of anode destruction in X-ray tubes with explosive electron emission: electric-field intensification, electrode wear, and the effect of anode surface shape (starlike grooves) on lifetime and pulse parameters.'
   photos:
-  - collage1.jpg
-  - collage2.jpg
+  - anode6.jpg
+
   files:
   - label: Effect of Starlike Grooves on Anode Surfaces (X-Ray Spectrometry, 2026)
     href: https://doi.org/10.1002/xrs.70125
@@ -25,7 +25,7 @@
     ru: Разработка и оптимизация численного волнового бассейна на основе метода сглаженных частиц (SPH), проектирование и изготовление флап-волнопродуктора, экспериментальная проверка генерации волн и сравнение с численным решением.
     en: Development and optimisation of a numerical wave tank based on smoothed-particle hydrodynamics (SPH), design and fabrication of a flap-type wave maker, and experimental validation of wave generation against the numerical solution.
   photos:
-  - collage_wavetank.jpg
+  - photo_2026-07-25_13-52-32.jpg
   files:
   - label: Design, modelling and fabrication of a flap-type wave maker (MNSK-2025)
     href: '#'
@@ -39,7 +39,7 @@
     ru: 'Разработка и моделирование компактных генераторов высоковольтных импульсов для импульсных рентгеновских аппаратов: спиральные генераторы с разделёнными в пространстве индуктивной и ёмкостной частями, профилированные в виде меандра шины, распределение магнитного поля в векторно-инверсионных генераторах.'
     en: 'Development and modelling of compact high-voltage pulse generators for pulsed X-ray devices: spiral generators with spatially separated inductive and capacitive parts, meander-shaped busbars, and magnetic-field distribution in vector-inversion generators.'
   photos:
-  - profile.jpg
+  - clusters.png
   files:
   - label: Spiral high-voltage pulse generator with spatially separated parts (JAMTP, 2024)
     href: https://doi.org/10.1134/S0021894424040023
