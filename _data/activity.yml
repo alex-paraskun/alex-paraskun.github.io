@@ -17,3 +17,10 @@
   photos:
   - 2.jpg
   - 1.jpg
+  
+- title: {ru: "Спикер фестиваля «ТехноАрт 2024»", en: "Speaker at TechnoArt 2024"}
+  slides:
+    - photo: 1.jpg
+      caption: {ru: "Открытие фестиваля.", en: "Festival opening."}
+    - photo: 2.jpg
+      caption: {ru: "Демонстрация установки.", en: "Setup demonstration."}
