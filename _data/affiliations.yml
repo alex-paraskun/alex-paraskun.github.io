@@ -4,8 +4,19 @@
     ru: Новосибирский государственный университет
     en: Novosibirsk State University
   period: 2024 – now
+  positions:
+    - ru: Инженер-исследователь
+      en: Engineer-researcher
+    - ru: Преподаватель КафВМ ММФ
+      en: Lecturer
+      current: true
+- abbr: НГУ / NSU
+  org:
+    ru: Новосибирский государственный университет
+    en: Novosibirsk State University
+  period: 2024 – now
   d:
-    ru: 'Инженер-исследователь → Преподаватель КфВМ ММФ'
+    ru: 'Инженер-исследователь → Преподаватель КафВМ ММФ'
     en: 'Engineer-researcher → Lecturer'
 - abbr: ИГиЛ СО РАН / LIH SB RAS
   org:
