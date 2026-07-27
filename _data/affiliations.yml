@@ -5,28 +5,27 @@
     en: Novosibirsk State University
   period: 2024 – now
   positions:
+    - ru: Лаборант-исследователь
+      en: Research assistant
     - ru: Инженер-исследователь
       en: Engineer-researcher
     - ru: Преподаватель КафВМ ММФ
       en: Lecturer
       current: true
 
-- abbr: НГУ / NSU
-  org:
-    ru: Новосибирский государственный университет
-    en: Novosibirsk State University
-  period: 2024 – now
-  d:
-    ru: 'Инженер-исследователь → Преподаватель КафВМ ММФ'
-    en: 'Engineer-researcher → Lecturer'
+
 - abbr: ИГиЛ СО РАН / LIH SB RAS
   org:
     ru: Институт гидродинамики им. М. А. Лаврентьева СО РАН
     en: Lavrentyev Institute of Hydrodynamics SB RAS
   period: 2022 – now
-  d:
-    ru: 'Лаборант исследователь → Младший научный сотрудник'
-    en: 'Research assistant → Junior Researcher'
+  positions:
+    - ru: Лаборант исследователь
+      en: Research assistant
+    - ru: Младший научный сотрудник (с 2024)
+      en: Junior Researcher (since 2024)
+      current: true
+
 - abbr: СУНЦ НГУ / SESC NSU
   org:
     ru: Специализированный учебно-научный центр НГУ
@@ -35,6 +34,7 @@
   d:
     ru: 'Преподаватель кафедры физики'
     en: 'Lecturer in the Physics Department'
+    
 - abbr: OIST
   org:
     ru: Институт науки и технологий Окинавы, Япония
