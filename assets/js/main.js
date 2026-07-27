@@ -74,6 +74,7 @@ function render() {
   if (ids.ResearcherID) chips += '<span class="chip"><span class="k">ResearcherID</span> ' + ids.ResearcherID + '</span>';
   if (ids['РИНЦ']) chips += '<span class="chip"><span class="k">РИНЦ</span> ' + ids['РИНЦ'] + '</span>';
   if (ids.Email) chips += '<a class="chip" href="mailto:' + ids.Email + '"><span class="k">@</span> ' + ids.Email + '</a>';
+  if (ids.Email2) chips += '<a class="chip" href="mailto:' + ids.Email2 + '"><span class="k">@</span> ' + ids.Email2 + '</a>';
   $('#hero-meta').innerHTML = chips;
   $('#foot-links').innerHTML =
     (ids.Email ? '<a href="mailto:' + ids.Email + '">' + ids.Email + '</a>' : '') +
