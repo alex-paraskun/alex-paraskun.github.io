@@ -89,7 +89,21 @@ function render() {
   $('#edu-grid').innerHTML = edu;
 
   $('#qual-list').innerHTML = (DATA.QUALS || []).map(function (q, i) { return '<li><span class="idx">' + String(i + 1).padStart(2, '0') + '</span><div><div class="t">' + q.t[LANG] + '</div><div class="m">' + q.deg[LANG] + ' · ' + q.year + ' · ' + T.supervisor + ': ' + q.sup + '</div></div></li>'; }).join('');
-  $('#aff-grid').innerHTML = (DATA.AFF || []).map(function (a) { return '<div class="card"><div class="sub">' + a.abbr + '</div><h3>' + a.org[LANG] + '</h3><div class="txt">' + a.d[LANG] + '</div><span class="tag">' + a.period + '</span></div>'; }).join('');
+  $('#aff-grid').innerHTML = (DATA.AFF || []).map(function (a) {
+  var body;
+  if (a.positions && a.positions.length) {
+    var noFlag = a.positions.every(function (q) { return q.current !== true; });
+    var last = a.positions.length - 1;
+    body = '<ul class="pos-list">' + a.positions.map(function (p, k) {
+      var cur = p.current === true || (noFlag && k === last);
+      return '<li class="' + (cur ? 'pos-current' : '') + '">' + p[LANG] + '</li>';
+    }).join('') + '</ul>';
+  } else {
+    body = '<div class="txt">' + (a.d ? a.d[LANG] : '') + '</div>';
+  }
+  return '<div class="card"><div class="sub">' + a.abbr + '</div><h3>' + a.org[LANG] +
+    '</h3>' + body + '<span class="tag">' + a.period + '</span></div>';
+}).join('');
 
   $('#articles-list').innerHTML = (DATA.ARTICLES || []).map(pubHTML).join('');
   $('#proc-list').innerHTML = (DATA.PROC || []).map(pubHTML).join('');
