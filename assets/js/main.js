@@ -25,6 +25,14 @@ var I18N = {
 
 function hl(s) { return (s || '').replace(/\*\*(.+?)\*\*/g, '<span class="hl">$1</span>'); }
 
+var FLAGS = {
+  ru: '<svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#fff"/><rect y="2" width="9" height="2" fill="#0039a6"/><rect y="4" width="9" height="2" fill="#d52b1e"/></svg>',
+
+  jp: '<svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#fff"/><circle cx="4.5" cy="3" r="1.8" fill="#bc002d"/></svg>',
+
+  cn: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><g fill="#ffde00"><path id="s" d="M5 2 6.18 5.63 3.09 3.39 6.91 3.39 3.82 5.63z"/><use href="#s" transform="translate(10,-0.2) scale(0.33)"/><use href="#s" transform="translate(12,1.8) scale(0.33)"/><use href="#s" transform="translate(12,4.3) scale(0.33)"/><use href="#s" transform="translate(10,6.3) scale(0.33)"/></g></svg>'
+};
+
 function pubHTML(p, i) {
   var T = I18N[LANG];
   var au = p.au ? ('<div class="pub-authors">' + markMe(p.au[LANG]) + '</div>') : '';
@@ -101,7 +109,7 @@ function render() {
   } else {
     body = '<div class="txt">' + (a.d ? a.d[LANG] : '') + '</div>';
   }
-  return '<div class="card"><div class="sub">' + a.abbr + '</div><h3>' + a.org[LANG] +
+  return '<div class="card card-aff">' + flagHTML(a.flag) + '<div class="sub">' + a.abbr + '</div><h3>' + a.org[LANG] +
     '</h3>' + body + '<span class="tag">' + a.period + '</span></div>';
 }).join('');
 
