@@ -22,8 +22,8 @@
   positions:
     - ru: Лаборант исследователь
       en: Research assistant
-    - ru: Младший научный сотрудник (с 2024)
-      en: Junior Researcher (since 2024)
+    - ru: Младший научный сотрудник
+      en: Junior Researcher
       current: true
 - abbr: СУНЦ НГУ / SESC NSU
   org:
