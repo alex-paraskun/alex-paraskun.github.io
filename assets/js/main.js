@@ -8,7 +8,7 @@ var I18N = {
     activity_h: 'Деятельность', rev_h: 'Экспертные заключения', abs_show: 'Аннотация', abs_hide: 'Свернуть',
     foot_org: 'Институт гидродинамики им. М. А. Лаврентьева СО РАН · НГУ',
     foot_note: 'Данные профиля по состоянию на 2026 г.',
-    more: 'Show more', less: 'Less', supervisor: 'Руководитель', hours: 'часов', sem: 'семинары', prac: 'практикум'
+    more: 'Показать все', less: 'Свернуть', supervisor: 'Руководитель', hours: 'часов', sem: 'семинары', prac: 'практикум'
   },
   en: {
     brand: 'PARASKUN <b>A.G.</b>', nav_focus: 'Focus', nav_edu: 'Education', nav_pubs: 'Publications',
@@ -27,15 +27,13 @@ function hl(s) { return (s || '').replace(/\*\*(.+?)\*\*/g, '<span class="hl">$1
 
 var FLAGS = {
   ru: '<svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#fff"/><rect y="2" width="9" height="2" fill="#0039a6"/><rect y="4" width="9" height="2" fill="#d52b1e"/></svg>',
-
   jp: '<svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#fff"/><circle cx="4.5" cy="3" r="1.8" fill="#bc002d"/></svg>',
-
-  cn: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><g fill="#ffde00"><path id="s" d="M5 2 6.18 5.63 3.09 3.39 6.91 3.39 3.82 5.63z"/><use href="#s" transform="translate(10,-0.2) scale(0.33)"/><use href="#s" transform="translate(12,1.8) scale(0.33)"/><use href="#s" transform="translate(12,4.3) scale(0.33)"/><use href="#s" transform="translate(10,6.3) scale(0.33)"/></g></svg>'
-function flagHTML(code){
-  if(!code || !FLAGS[code]) return '';
+  cn: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><g fill="#ffde00"><path id="cns" d="M5 2 6.18 5.63 3.09 3.39 6.91 3.39 3.82 5.63z"/><use href="#cns" transform="translate(10,-0.2) scale(0.33)"/><use href="#cns" transform="translate(12,1.8) scale(0.33)"/><use href="#cns" transform="translate(12,4.3) scale(0.33)"/><use href="#cns" transform="translate(10,6.3) scale(0.33)"/></g></svg>'
+};
+function flagHTML(code) {
+  if (!code || !FLAGS[code]) return '';
   return '<span class="aff-flag">' + FLAGS[code] + '</span>';
 }
-};
 
 function pubHTML(p, i) {
   var T = I18N[LANG];
@@ -82,7 +80,6 @@ function render() {
     (ids.ORCID ? '<a href="https://orcid.org/' + ids.ORCID + '" target="_blank" rel="noopener">ORCID ' + ids.ORCID + '</a>' : '') +
     (ids.Scopus ? '<a href="https://www.scopus.com/authid/detail.uri?authorId=' + ids.Scopus + '" target="_blank" rel="noopener">Scopus ' + ids.Scopus + '</a>' : '');
 
-  // stats
   var A = function (x) { return (x || []).length; };
   var stats = [
     { n: A(DATA.ARTICLES), l: { ru: 'статьи в журналах', en: 'journal articles' } },
@@ -92,7 +89,6 @@ function render() {
   ];
   $('#readout').innerHTML = stats.map(function (s) { return '<div class="stat"><div class="n">' + s.n + '</div><div class="l">' + s.l[LANG] + '</div></div>'; }).join('');
 
-  // education
   var edu = '';
   (DATA.EDU || []).forEach(function (e) {
     if (e.position) edu += '<div class="card"><div class="sub">' + e.title[LANG] + '</div><h3>' + e.lab[LANG] + '</h3><div class="txt">' + e.org[LANG] + '</div></div>';
@@ -101,56 +97,54 @@ function render() {
   $('#edu-grid').innerHTML = edu;
 
   $('#qual-list').innerHTML = (DATA.QUALS || []).map(function (q, i) { return '<li><span class="idx">' + String(i + 1).padStart(2, '0') + '</span><div><div class="t">' + q.t[LANG] + '</div><div class="m">' + q.deg[LANG] + ' · ' + q.year + ' · ' + T.supervisor + ': ' + q.sup + '</div></div></li>'; }).join('');
+
   $('#aff-grid').innerHTML = (DATA.AFF || []).map(function (a) {
-  var body;
-  if (a.positions && a.positions.length) {
-    var noFlag = a.positions.every(function (q) { return q.current !== true; });
-    var last = a.positions.length - 1;
-    body = '<ul class="pos-list">' + a.positions.map(function (p, k) {
-      var cur = p.current === true || (noFlag && k === last);
-      return '<li class="' + (cur ? 'pos-current' : '') + '">' + p[LANG] + '</li>';
-    }).join('') + '</ul>';
-  } else {
-    body = '<div class="txt">' + (a.d ? a.d[LANG] : '') + '</div>';
-  }
-  return '<div class="card card-aff">' + flagHTML(a.flag) + '<div class="sub">' + a.abbr + '</div><h3>' + a.org[LANG] +
-    '</h3>' + body + '<span class="tag">' + a.period + '</span></div>';
-}).join('');
+    var body;
+    if (a.positions && a.positions.length) {
+      var noFlag = a.positions.every(function (q) { return q.current !== true; });
+      var last = a.positions.length - 1;
+      body = '<ul class="pos-list">' + a.positions.map(function (p, k) {
+        var cur = p.current === true || (noFlag && k === last);
+        return '<li class="' + (cur ? 'pos-current' : '') + '">' + p[LANG] + '</li>';
+      }).join('') + '</ul>';
+    } else {
+      body = '<div class="txt">' + (a.d ? a.d[LANG] : '') + '</div>';
+    }
+    return '<div class="card card-aff">' + flagHTML(a.flag) + '<div class="sub">' + a.abbr + '</div><h3>' + a.org[LANG] +
+      '</h3>' + body + '<span class="tag">' + a.period + '</span></div>';
+  }).join('');
 
   $('#articles-list').innerHTML = (DATA.ARTICLES || []).map(pubHTML).join('');
   $('#proc-list').innerHTML = (DATA.PROC || []).map(pubHTML).join('');
   $('#abs-list').innerHTML = (DATA.ABSTRACTS || []).map(pubHTML).join('');
   $('#book-list').innerHTML = (DATA.BOOKS || []).map(pubHTML).join('');
   $('#conf-list').innerHTML = (DATA.CONF || []).map(function (c, i) { var au = c.au ? ('<div class="pub-authors">' + markMe(c.au[LANG]) + '</div>') : ''; return '<div class="pub"><div class="pub-n">' + (i + 1) + '</div><div class="pub-body"><div class="pub-title">' + c.t[LANG] + '</div>' + au + '<div class="pub-venue">' + c.v[LANG] + '</div></div></div>'; }).join('');
-  
-  $('#media-list').innerHTML = (DATA.MEDIA || []).map(function (m, i) {
-  var title = m.href
-    ? '<a class="t" href="' + m.href + '" target="_blank" rel="noopener">' + m.t[LANG] + '</a>'
-    : '<div class="t">' + m.t[LANG] + '</div>';
-  return '<li><span class="idx">' + String(i + 1).padStart(2, '0') + '</span><div>' +
-    title + '<div class="m">' + m.m[LANG] + '</div></div></li>';
-}).join('');
 
-  // teaching
+  $('#media-list').innerHTML = (DATA.MEDIA || []).map(function (m, i) {
+    var title = m.href
+      ? '<a class="t" href="' + m.href + '" target="_blank" rel="noopener">' + m.t[LANG] + '</a>'
+      : '<div class="t">' + m.t[LANG] + '</div>';
+    return '<li><span class="idx">' + String(i + 1).padStart(2, '0') + '</span><div>' +
+      title + '<div class="m">' + m.m[LANG] + '</div></div></li>';
+  }).join('');
+
   var TE = DATA.TEACHING || { items: [], photos: [] };
   $('#teach-list').innerHTML = (TE.items || []).map(function (t, i) { return '<li><span class="idx">' + String(i + 1).padStart(2, '0') + '</span><div><div class="t">' + t.c[LANG] + '</div><div class="m">' + t.term[LANG] + ' · ' + T[t.type] + ' · ' + t.h + ' ' + T.hours + '</div></div></li>'; }).join('');
   var tph = TE.photos || [];
   if (tph.length) { $('#teach-carousel').innerHTML = carouselHTML(tph); $('#teach-wrap').classList.remove('no-photos'); }
   else { $('#teach-carousel').innerHTML = ''; $('#teach-wrap').classList.add('no-photos'); }
 
-  // activity
   $('#act-list').innerHTML = (DATA.ACTIVITY || []).map(function (a) {
-  var slides = a.slides || [];
-  var photos = slides.map(function (s) { return s.photo; });
-  var firstCap = (slides[0] && slides[0].caption) ? slides[0].caption[LANG] : '';
-  // подписи всех слайдов кладём в data-атрибут, чтобы карусель их читала
-  var caps = encodeURIComponent(JSON.stringify(slides.map(function (s) {
-    return (s.caption && s.caption[LANG]) || '';
-  })));
-  return '<div class="act" data-caps="' + caps + '">' + carouselHTML(photos) +
-    '<div class="act-cap"><h3>' + a.title[LANG] + '</h3>' +
-    '<p class="act-text">' + firstCap + '</p></div></div>';
-}).join('');
+    var slides = a.slides || [];
+    var photos = slides.map(function (s) { return s.photo; });
+    var firstCap = (slides[0] && slides[0].caption) ? slides[0].caption[LANG] : '';
+    var caps = encodeURIComponent(JSON.stringify(slides.map(function (s) {
+      return (s.caption && s.caption[LANG]) || '';
+    })));
+    return '<div class="act" data-caps="' + caps + '">' + carouselHTML(photos) +
+      '<div class="act-cap"><h3>' + a.title[LANG] + '</h3>' +
+      '<p class="act-text">' + firstCap + '</p></div></div>';
+  }).join('');
 
   $('#rev-list').innerHTML = (DATA.REVIEWS || []).map(function (r, i) { return '<li class="pub"><div class="pub-n">' + (i + 1) + '</div><div class="pub-body"><div class="pub-title" style="font-size:1rem">' + r.t[LANG] + '</div><div class="pub-venue" style="margin-top:6px">' + r.j + '</div></div></li>'; }).join('');
 
