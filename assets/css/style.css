@@ -198,7 +198,9 @@ footer a{color:var(--arc);text-decoration:none;font-family:"IBM Plex Mono",monos
 .pos-list li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--line)}
 .pos-list li.pos-current{color:var(--arc-deep);font-weight:600}
 .pos-list li.pos-current::before{background:var(--arc)}
-
+.card-aff{position:relative}
+.aff-flag{position:absolute;top:16px;right:16px;width:30px;line-height:0}
+.aff-flag svg{width:100%;height:auto;display:block;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
 @media(max-width:760px){
   .teach-wrap{grid-template-columns:1fr}
   .teach-photos{position:static}
