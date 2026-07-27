@@ -31,6 +31,10 @@ var FLAGS = {
   jp: '<svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#fff"/><circle cx="4.5" cy="3" r="1.8" fill="#bc002d"/></svg>',
 
   cn: '<svg viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><g fill="#ffde00"><path id="s" d="M5 2 6.18 5.63 3.09 3.39 6.91 3.39 3.82 5.63z"/><use href="#s" transform="translate(10,-0.2) scale(0.33)"/><use href="#s" transform="translate(12,1.8) scale(0.33)"/><use href="#s" transform="translate(12,4.3) scale(0.33)"/><use href="#s" transform="translate(10,6.3) scale(0.33)"/></g></svg>'
+function flagHTML(code){
+  if(!code || !FLAGS[code]) return '';
+  return '<span class="aff-flag">' + FLAGS[code] + '</span>';
+}
 };
 
 function pubHTML(p, i) {
