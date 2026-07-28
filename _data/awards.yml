@@ -1,0 +1,9 @@
+- type: award
+  title: {ru: "Стипендия Правительства РФ", en: "RF Government Scholarship"}
+  org: {ru: "Министерство науки и высшего образования", en: "Ministry of Science and Higher Education"}
+  year: "2025"
+
+- type: membership
+  title: {ru: "Член Российского физического общества", en: "Member of the Russian Physical Society"}
+  org: {ru: "РФО", en: "Russian Physical Society"}
+  year: "2024 – now"
