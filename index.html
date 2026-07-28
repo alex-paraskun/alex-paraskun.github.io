@@ -99,14 +99,19 @@
     <div class="pubwrap collapsed" id="conf-list"></div>
     <button class="morebtn" data-target="conf-list" onclick="toggleMore(this)">Show more</button>
   </section>
-
+  
+  <section class="section" id="awards">
+    <div class="sec-head"><span class="sec-idx">10</span><h2 data-i18n="awards_h">Награды и членства</h2><span class="sec-count" id="awards-c"></span></div>
+    <ul class="slist" id="awards-list"></ul>
+  </section>
+  
   <section class="section" id="misc">
-    <div class="sec-head"><span class="sec-idx">10</span><h2 data-i18n="misc_h">Выступления в СМИ</h2></div>
+    <div class="sec-head"><span class="sec-idx">11</span><h2 data-i18n="misc_h">Выступления в СМИ</h2></div>
     <ul class="slist" id="media-list" style="margin-top:22px"></ul>
   </section>
 
   <section class="section" id="teaching">
-    <div class="sec-head"><span class="sec-idx">11</span><h2 data-i18n="teach_h">Преподавание курсов</h2><span class="sec-count" id="teach-c"></span></div>
+    <div class="sec-head"><span class="sec-idx">12</span><h2 data-i18n="teach_h">Преподавание курсов</h2><span class="sec-count" id="teach-c"></span></div>
     <div class="teach-wrap" id="teach-wrap">
       <ul class="slist" id="teach-list"></ul>
       <div class="teach-photos" id="teach-carousel"></div>
@@ -114,7 +119,7 @@
   </section>
 
   <section class="section" id="activity">
-    <div class="sec-head"><span class="sec-idx">12</span><h2 data-i18n="activity_h">Деятельность</h2></div>
+    <div class="sec-head"><span class="sec-idx"></span><h2 data-i18n="activity_h">Деятельность</h2></div>
     <div class="act-grid" id="act-list"></div>
   </section>
 
@@ -144,6 +149,7 @@ var DATA = {
   BOOKS:      {{ site.data.books        | jsonify }},
   PREPRINT:   {{ site.data.preprints    | jsonify }},
   CONF:       {{ site.data.conferences  | jsonify }},
+  AWARDS:     {{ site.data.awards       | jsonify }},
   MEDIA:      {{ site.data.media        | jsonify }},
   TEACHING:   {{ site.data.teaching     | jsonify }},
   REVIEWS:    {{ site.data.reviews      | jsonify }},
