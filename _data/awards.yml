@@ -15,7 +15,7 @@
 
 - type: award
   title: {ru: "Благодарственное письмо декана", en: "Dean’s List Award"}
-  org: {ru: "Физический факультет НГУ", en: "Faculty of Physics, Novosibirsk National Research State University"}
+  org: {ru: "Физический факультет НГУ", en: "Faculty of Physics, Novosibirsk State University"}
   year: "2026, 2024"
 
 - type: award
