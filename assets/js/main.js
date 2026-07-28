@@ -123,7 +123,12 @@ function render() {
   $('#abs-list').innerHTML = (DATA.ABSTRACTS || []).map(pubHTML).join('');
   $('#book-list').innerHTML = (DATA.BOOKS || []).map(pubHTML).join('');
   $('#conf-list').innerHTML = (DATA.CONF || []).map(function (c, i) { var au = c.au ? ('<div class="pub-authors">' + markMe(c.au[LANG]) + '</div>') : ''; return '<div class="pub"><div class="pub-n">' + (i + 1) + '</div><div class="pub-body"><div class="pub-title">' + c.t[LANG] + '</div>' + au + '<div class="pub-venue">' + c.v[LANG] + '</div></div></div>'; }).join('');
-
+  $('#awards-list').innerHTML = (DATA.AWARDS || []).map(function (a, i) {
+  var tag = a.type === 'membership' ? T.membership_label : T.award_label;
+  var meta = tag + (a.year ? ' · ' + a.year : '') + (a.org ? ' · ' + a.org[LANG] : '');
+  return '<li><span class="idx">' + String(i + 1).padStart(2, '0') + '</span>' +
+    '<div><div class="t">' + a.title[LANG] + '</div><div class="m">' + meta + '</div></div></li>';
+}).join('');
   $('#media-list').innerHTML = (DATA.MEDIA || []).map(function (m, i) {
     var title = m.href
       ? '<a class="t" href="' + m.href + '" target="_blank" rel="noopener">' + m.t[LANG] + '</a>'
