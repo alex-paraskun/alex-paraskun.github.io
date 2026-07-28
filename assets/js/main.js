@@ -5,10 +5,12 @@ var I18N = {
     edu_h: 'Образование', qual_h: 'Квалификационные работы', aff_h: 'Аффилиации',
     art_h: 'Статьи в журналах', proc_h: 'Статьи в сборниках', abs_h: 'Тезисы докладов', book_h: 'Книги',
     conf_h: 'Доклады на конференциях', misc_h: 'Выступления в СМИ', teach_h: 'Преподавание курсов',
+    awards_h: 'Награды и членства', award_label: 'Награда', membership_label: 'Членство',
     activity_h: 'Деятельность', rev_h: 'Экспертные заключения', abs_show: 'Аннотация', abs_hide: 'Свернуть',
     foot_org: 'Институт гидродинамики им. М. А. Лаврентьева СО РАН · НГУ',
     foot_note: 'Данные профиля по состоянию на 2026 г.',
     more: 'Показать все', less: 'Свернуть', supervisor: 'Руководитель', hours: 'часов', sem: 'семинары', prac: 'практикум'
+    
   },
   en: {
     brand: 'PARASKUN <b>A.G.</b>', nav_focus: 'Focus', nav_edu: 'Education', nav_pubs: 'Publications',
@@ -16,6 +18,7 @@ var I18N = {
     edu_h: 'Education', qual_h: 'Qualification works', aff_h: 'Affiliations',
     art_h: 'Journal articles', proc_h: 'Proceedings papers', abs_h: 'Conference abstracts', book_h: 'Books',
     conf_h: 'Conference reports', misc_h: 'Media appearances', teach_h: 'Teaching',
+    awards_h: 'Awards & memberships', award_label: 'Award', membership_label: 'Membership',
     activity_h: 'Activity', rev_h: 'Peer reviews', abs_show: 'Abstract', abs_hide: 'Collapse',
     foot_org: 'Lavrentyev Institute of Hydrodynamics SB RAS · Novosibirsk State University',
     foot_note: 'Profile data as of 2026.',
