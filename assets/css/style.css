@@ -22,8 +22,8 @@ h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:600;line-height:1.1;
 .topnav a:hover{color:var(--arc)}
 .topnav a.cta{color:var(--ink);background:var(--arc);padding:6px 12px;border-radius:6px;font-weight:600}
 .topnav a.cta:hover{background:#3ecbe4;color:var(--ink)}
-.langswitch{display:flex;flex-direction:row;border:0;border-radius:6px;overflow:hidden;gap:6px}
-.langswitch button{padding:0;border:0;width:44px;height:28px;display:block;overflow:hidden;border-radius:1px}
+.langswitch{display:flex;flex-direction:row;border:3;border-radius:6px;overflow:hidden;gap:6px}
+.langswitch button{padding:0;border:0;width:44px;height:28px;display:block;overflow:hidden;border-radius:5px}
 .langswitch button svg{display:block;width:100%;height:100%}
 .langswitch button:not(.active){opacity:.5}
 .langswitch button.active{opacity:1;outline:2px solid var(--arc)}
