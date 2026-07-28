@@ -1,9 +1,24 @@
-- type: award
-  title: {ru: "Стипендия Правительства РФ", en: "RF Government Scholarship"}
-  org: {ru: "Министерство науки и высшего образования", en: "Ministry of Science and Higher Education"}
-  year: "2025"
+  - type: membership
+  title: {ru: "Ассоциированный член союза НГУ", en: "Associate Member of Novosibirsk State University Alumni’s Union"}
+  org: {ru: "Союз НГУ", en: "Novosibirsk State University Alumni’s Union"}
+  year: "2026 – now"
 
-- type: membership
-  title: {ru: "Член Российского физического общества", en: "Member of the Russian Physical Society"}
-  org: {ru: "РФО", en: "Russian Physical Society"}
-  year: "2024 – now"
+  - type: membership
+  title: {ru: "Член Американского физического общества", en: "Member of the American Physical Society"}
+  org: {ru: "АФО", en: "American Physical Society (APS)"}
+  year: "2025 – now"
+
+  - type: award
+  title: {ru: "Грант Президента РФ", en: "Presidential Grant for Outstanding Master’s Student"}
+  org: {ru: "Президент Российской Федерации", en: "President of the Russian Federation"}
+  year: "2024-2026"
+
+  - type: award
+  title: {ru: "Благодарственное письмо декана", en: "Dean’s List Award"}
+  org: {ru: "Физический факультет НГУ", en: "Faculty of Physics, Novosibirsk National Research State University"}
+  year: "2026, 2024"
+
+  - type: award
+  title: {ru: "Благодарственное письмо ректора", en: "Letter of Appreciation"}
+  org: {ru: "Ректор НГУ", en: "President of the Novosibirsk State University"}
+  year: "2023"
