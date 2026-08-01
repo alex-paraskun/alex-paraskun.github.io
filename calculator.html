@@ -127,6 +127,68 @@
   html[data-theme="light"] .switch .seg.active{ color:#fbfcfb; }
   .flag{ font-size: 13px; line-height:1; }
 
+/* ---------- HEADER ACCORDIONS ---------- */
+  .header-accordions {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 560px; /* Соответствует ширине подзаголовка .h-sub */
+  }
+  
+  details.header-acc {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: background .2s ease;
+  }
+  
+  details.header-acc summary {
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 14px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--panel-raised);
+    transition: all .15s ease;
+  }
+  
+  details.header-acc summary:hover {
+    color: var(--text);
+    border-color: var(--text-faint);
+  }
+  
+  details.header-acc summary::after {
+    content: '▼';
+    color: var(--fresh-dim);
+    transition: transform .2s ease;
+    font-size: 9px;
+  }
+  
+  details.header-acc[open] summary::after {
+    transform: rotate(180deg);
+  }
+  
+  details.header-acc summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  details.header-acc .acc-body {
+    padding: 14px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    border-top: 1px solid var(--line);
+    background: var(--panel);
+  }
+  
   /* ---------- LAYOUT ---------- */
   .grid{
     display:grid;
@@ -316,6 +378,22 @@
           </a>
           
         </div>
+      </div>
+      <!-- Новые раскрывающиеся списки -->
+      <div class="header-accordions">
+        <details class="header-acc">
+          <summary data-i18n="aboutAuthorBtn">Об авторе</summary>
+          <div class="acc-body" data-i18n="aboutAuthorText">
+            Здесь будет размещена информация об авторе. (Замените этот текст на нужный).
+          </div>
+        </details>
+
+        <details class="header-acc">
+          <summary data-i18n="problemStatementBtn">Постановка задачи</summary>
+          <div class="acc-body" data-i18n="problemStatementText">
+            Здесь будет описание постановки задачи. (Замените этот текст на нужный).
+          </div>
+        </details>
       </div>
     </div>
     <div class="h-right">
