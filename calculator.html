@@ -126,68 +126,69 @@
   .switch .seg.active{ background: var(--fresh); color: #06110e; font-weight:600; }
   html[data-theme="light"] .switch .seg.active{ color:#fbfcfb; }
   .flag{ font-size: 13px; line-height:1; }
-
 /* ---------- HEADER ACCORDIONS ---------- */
-  .header-accordions {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-width: 560px; /* Соответствует ширине подзаголовка .h-sub */
-  }
-  
-  details.header-acc {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
-    transition: background .2s ease;
-  }
-  
-  details.header-acc summary {
-    cursor: pointer;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    padding: 10px 14px;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--panel-raised);
-    transition: all .15s ease;
-  }
-  
-  details.header-acc summary:hover {
-    color: var(--text);
-    border-color: var(--text-faint);
-  }
-  
-  details.header-acc summary::after {
-    content: '▼';
-    color: var(--fresh-dim);
-    transition: transform .2s ease;
-    font-size: 9px;
-  }
-  
-  details.header-acc[open] summary::after {
-    transform: rotate(180deg);
-  }
-  
-  details.header-acc summary::-webkit-details-marker {
-    display: none;
-  }
-  
-  details.header-acc .acc-body {
-    padding: 14px;
-    font-size: 12.5px;
-    color: var(--text-dim);
-    line-height: 1.6;
-    border-top: 1px solid var(--line);
-    background: var(--panel);
-  }
+.header-accordions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row; /* Выстраивает аккордеоны в ряд */
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 560px;
+}
+
+details.header-acc {
+  flex: 1; /* Позволяет окнам занимать равную ширину */
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: background .2s ease;
+}
+
+details.header-acc summary {
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px; /* Уменьшенный шрифт */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 6px 10px; /* Уменьшенные отступы для компактности */
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--panel-raised);
+  transition: all .15s ease;
+}
+
+details.header-acc summary:hover {
+  color: var(--text);
+  border-color: var(--text-faint);
+}
+
+details.header-acc summary::after {
+  content: '▼';
+  color: var(--fresh-dim);
+  transition: transform .2s ease;
+  font-size: 8px; /* Уменьшенная стрелочка */
+}
+
+details.header-acc[open] summary::after {
+  transform: rotate(180deg);
+}
+
+details.header-acc summary::-webkit-details-marker {
+  display: none;
+}
+
+details.header-acc .acc-body {
+  padding: 12px;
+  font-size: 11.5px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
   
   /* ---------- LAYOUT ---------- */
   .grid{
@@ -598,6 +599,10 @@
       mmShort: "мм",
       approxN: "~N=",
       modeTagPulses: "ЧИСЛО ИМПУЛЬСОВ",
+      aboutAuthorBtn: "Об авторе",
+      aboutAuthorText: "Здесь будет размещена информация об авторе. Этот блок отлично подходит для краткой биографии или ссылок на портфолио.",
+      problemStatementBtn: "Постановка задачи",
+      problemStatementText: "Здесь будет описание постановки задачи. Расскажите, какую именно проблему решает ваш проект и какие технологии были использованы.",
       modeTagGap: "ГЕОМЕТРИЯ D+d"
     },
     en: {
@@ -640,6 +645,10 @@
       mmShort: "mm",
       approxN: "~N=",
       modeTagPulses: "PULSE COUNT",
+      aboutAuthorBtn: "About the Author",
+      aboutAuthorText: "Information about the author goes here. This block is great for a brief biography or portfolio links.",
+      problemStatementBtn: "Problem Statement",
+      problemStatementText: "Description of the problem statement goes here. Explain what problem your project solves and what technologies were used.",
       modeTagGap: "GEOMETRY D+d"
     }
   };
