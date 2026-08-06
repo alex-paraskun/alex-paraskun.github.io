@@ -3,11 +3,6 @@
   org: {ru: "Союз НГУ", en: "Novosibirsk State University Alumni’s Union"}
   year: "2026 – now"
 
-- type: membership
-  title: {ru: "Член Американского физического общества", en: "Member of the American Physical Society"}
-  org: {ru: "АФО", en: "American Physical Society (APS)"}
-  year: "2025 – now"
-
 - type: award
   title: {ru: "Грант Президента РФ", en: "Presidential Grant for Outstanding Master’s Student"}
   org: {ru: "Президент Российской Федерации", en: "President of the Russian Federation"}
