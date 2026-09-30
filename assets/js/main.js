@@ -1,7 +1,7 @@
 var I18N = {
   ru: {
     brand: 'ПАРАСКУН <b>А.Г.</b>', nav_focus: 'Направление', nav_edu: 'Образование', nav_pubs: 'Публикации',
-    nav_teach: 'Преподавание', nav_activity: 'Деятельность', nav_projects: 'Проекты →', nav_calculator: 'Калькулятор →',
+    nav_teach: 'Преподавание', nav_activity: 'Деятельность', nav_projects: 'Проекты →', nav_calculator: 'Калькулятор →', nav_electrostatics: 'Электростатика →',
     edu_h: 'Образование', qual_h: 'Квалификационные работы', aff_h: 'Аффилиации',
     art_h: 'Статьи в журналах', proc_h: 'Статьи в сборниках', abs_h: 'Тезисы докладов', book_h: 'Книги',
     conf_h: 'Доклады на конференциях', misc_h: 'Выступления в СМИ', teach_h: 'Преподавание курсов',
@@ -14,7 +14,7 @@ var I18N = {
   },
   en: {
     brand: 'PARASKUN <b>A.G.</b>', nav_focus: 'Focus', nav_edu: 'Education', nav_pubs: 'Publications',
-    nav_teach: 'Teaching', nav_activity: 'Activity', nav_projects: 'Projects →', nav_calculator: 'Calculator →',
+    nav_teach: 'Teaching', nav_activity: 'Activity', nav_projects: 'Projects →', nav_calculator: 'Calculator →', nav_electrostatics: 'Electrostatics →',
     edu_h: 'Education', qual_h: 'Qualification works', aff_h: 'Affiliations',
     art_h: 'Journal articles', proc_h: 'Proceedings papers', abs_h: 'Conference abstracts', book_h: 'Books',
     conf_h: 'Conference reports', misc_h: 'Media appearances', teach_h: 'Teaching',
