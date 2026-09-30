@@ -625,6 +625,53 @@ function drawMap(cv, o) {
   return { tx, ty, sc, inv: (px, py) => [o.xmin + (px - ox) / sc, o.ymax - (py - oy) / sc] };
 }
 
+// ---- карты для задач с радиальной и одномерной симметрией, а также для суммы точечных зарядов ----
+function interp1(r, f, x) {
+  let lo = 0, hi = r.length - 1; if (x <= r[0]) return f[0]; if (x >= r[hi]) return f[hi];
+  while (hi - lo > 1) { const m = (lo + hi) >> 1; if (r[m] <= x) lo = m; else hi = m; }
+  return f[lo] + (f[hi] - f[lo]) * (x - r[lo]) / (r[hi] - r[lo]);
+}
+function radialSampler(r, U, E, o = {}) {      // сечение через центр: поле направлено вдоль радиуса
+  const k = o.k || 1;
+  return (x, y) => {
+    const rr = Math.hypot(x, y); if (rr > r[r.length - 1] || (o.rmin && rr < o.rmin)) return { U: 0, Ex: 0, Ey: 0, hide: true };
+    const e = interp1(r, E, rr) * k, u = interp1(r, U, rr) * k, c = rr > 1e-12 ? 1 / rr : 0;
+    return { U: u, Ex: e * x * c, Ey: e * y * c };
+  };
+}
+function slabSampler(r, U, E) { return (x, y) => ({ U: interp1(r, U, x), Ex: interp1(r, E, x), Ey: 0 }); }
+function lvlRange(vals) {                       // границы шкалы log10|E| по массиву значений
+  let lo = Infinity, hi = -Infinity;
+  for (const v of vals) { const a = Math.abs(v); if (a > 1e-12 && isFinite(a)) { lo = Math.min(lo, Math.log10(a)); hi = Math.max(hi, Math.log10(a)); } }
+  if (!isFinite(lo)) return [-1, 1];
+  lo = Math.max(lo, hi - 2.5); if (hi - lo < 0.6) { const m = (hi + lo) / 2; lo = m - 0.3; hi = m + 0.3; }
+  return [lo - 0.1, hi + 0.1];
+}
+function radialSeedsList(rs, n, off = 0) { const out = []; for (const r of rs) for (let k = 0; k < n; k++) { const a = 2 * PI * (k + 0.5 + off) / n; out.push([r * Math.cos(a), r * Math.sin(a), 0]); } return out; }
+function overlayCircles(list) {
+  return (ctx, tx, ty, sc) => {
+    const T = themeColors();
+    list.forEach(c => { ctx.beginPath(); ctx.arc(tx(0), ty(0), c.r * sc, 0, 2 * PI); ctx.strokeStyle = T[c.color || "fg"]; ctx.lineWidth = c.w || 1.4; ctx.setLineDash(c.dash ? [5, 4] : []); ctx.stroke(); ctx.setLineDash([]); });
+  };
+}
+function overlayLabel(ctx, text, x, y) { const T = themeColors(); ctx.fillStyle = T.fg; ctx.font = "12px system-ui, sans-serif"; ctx.textAlign = "center"; ctx.fillText(text, x, y); }
+function rodSampler(l, N) {
+  const xs = [], q = l / N; for (let i = 0; i < N; i++) xs.push((i + 0.5) * l / N);
+  return (x, y) => { let U = 0, Ex = 0, Ey = 0; for (let i = 0; i < N; i++) { const dx = x - xs[i], d2 = dx * dx + y * y + 1e-12, d = Math.sqrt(d2), f = q / (d2 * d); U += q / d; Ex += f * dx; Ey += f * y; } return { U, Ex, Ey }; };
+}
+function ringSampler(N) {                       // сечение плоскостью, проходящей через ось кольца (R = 1, Q = 1): (x, z)
+  const cs = [], sn = []; for (let i = 0; i < N; i++) { cs.push(Math.cos(2 * PI * i / N)); sn.push(Math.sin(2 * PI * i / N)); }
+  return (x, z) => { let U = 0, Ex = 0, Ez = 0; for (let i = 0; i < N; i++) { const dx = x - cs[i], dy = -sn[i], d2 = dx * dx + dy * dy + z * z + 1e-12, d = Math.sqrt(d2), f = 1 / (N * d2 * d); U += 1 / (N * d); Ex += f * dx; Ez += f * z; } return { U, Ex, Ey: Ez }; };
+}
+function planeChargeSampler(r) {                // заряд q = 1 на высоте 1 и заряды клеточек плоскости из модели (сечение y = 0)
+  const n = r.X.length, s2 = r.s * r.s;
+  return (x, z) => {
+    let dx = x, dz = z - 1, d2 = dx * dx + dz * dz + 1e-12, d = Math.sqrt(d2), U = 1 / d, Ex = dx / (d2 * d), Ez = dz / (d2 * d);
+    for (let a = 0; a < n; a++) { const q = r.sig[a] * s2; dx = x - r.X[a]; const dy = -r.Y[a]; d2 = dx * dx + dy * dy + z * z + 1e-12; d = Math.sqrt(d2); U += q / d; const f = q / (d2 * d); Ex += f * dx; Ez += f * z; }
+    return { U, Ex, Ey: Ez };
+  };
+}
+
 // ======================= МОДЕЛИ ДЛЯ ВЕБ-СТРАНИЦЫ =======================
 const fmtN = v => {
   if (v === 0) return "0"; if (!isFinite(v)) return String(v);
@@ -651,9 +698,13 @@ MODELS.push({
     const rows = [row("E при N = " + p.N, ex, md)]; for (const N of [4, 10, 100, 1000]) if (N !== p.N) rows.push(row("E при N = " + N, ex, rod.E(p.l, lam, p.x, N)));
     const xs = linspace(0.1, 3, 100), Ns = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048];
     return { rows, note: `Ошибка убывает как 1/N²: вдвое больше кусочков — вчетверо меньше ошибка. Ползунок x показывает, как растёт поле у конца стержня.`,
-      draws: [cv => plotXY(cv, [{ x: xs, y: xs.map(x => rod.exact(p.l, lam, x)), color: "c1", label: "формула" }, { x: linspace(0.1, 3, 24), y: linspace(0.1, 3, 24).map(x => rod.E(p.l, lam, x, p.N)), color: "c2", mode: "circles", label: "модель, N = " + p.N }], { ylog: true, xlabel: "расстояние x от конца стержня", ylabel: "поле E" }),
+      draws: [cv => { const l = p.l, w = l + 2 * Math.max(1.5, 0.6 * l), x0 = -Math.max(1.5, 0.6 * l), hh = 0.375 * w, xr = l + p.x;
+          drawMap(cv, { xmin: x0, xmax: x0 + w, ymin: -hh, ymax: hh, sampler: rodSampler(l, Math.min(p.N, 300)), lvl: [-1.2, 1.5], nContours: 14,
+            streams: { seeds: linspace(0, 1, 10).flatMap(t => [[l * (0.05 + 0.9 * t), 0.04, 1], [l * (0.05 + 0.9 * t), -0.04, 1]]).concat([[-0.05, 0, 1], [l + 0.05, 0, 1]]) },
+            overlay: (ctx, tx, ty) => { const T = themeColors(); ctx.strokeStyle = T.c2; ctx.lineWidth = 4; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(tx(0), ty(0)); ctx.lineTo(tx(l), ty(0)); ctx.stroke(); ctx.lineCap = "butt";
+              ctx.fillStyle = T.fg; ctx.beginPath(); ctx.arc(tx(xr), ty(0), 3.5, 0, 2 * PI); ctx.fill(); overlayLabel(ctx, "x", tx(xr), ty(0) - 9); } }); }, cv => plotXY(cv, [{ x: xs, y: xs.map(x => rod.exact(p.l, lam, x)), color: "c1", label: "формула" }, { x: linspace(0.1, 3, 24), y: linspace(0.1, 3, 24).map(x => rod.E(p.l, lam, x, p.N)), color: "c2", mode: "circles", label: "модель, N = " + p.N }], { ylog: true, xlabel: "расстояние x от конца стержня", ylabel: "поле E" }),
         cv => plotXY(cv, [{ x: Ns, y: Ns.map(N => Math.abs(rod.E(p.l, lam, p.x, N) - ex) / ex), color: "c1", mode: "dots", label: "ошибка" }, { x: Ns, y: Ns.map(N => 0.7 / (N * N)), color: "muted", mode: "dash", label: "∝ 1/N²" }], { xlog: true, ylog: true, xlabel: "число кусочков N", ylabel: "относительная ошибка" })] };
-  }, canv: ["Поле на продолжении стержня", "Сходимость по числу кусочков"]
+  }, canv: ["Карта поля стержня в плоскости, проходящей через него (стержень — красный; цвет — |E|, красные линии — эквипотенциали)", "Поле на продолжении стержня", "Сходимость по числу кусочков"]
 });
 
 // ---------------- Т2. Кольцо ----------------
@@ -671,9 +722,11 @@ MODELS.push({
     const hs = linspace(0.02, 3, 150), hm = linspace(0.05, 3, 22), Ns = []; for (let n = 3; n <= 160; n += 3) Ns.push(n);
     const errs = Ns.map(n => Math.max(1e-16, mag(ring.Efield(p.px, p.pz, n).map((v, i) => v - ref[i])) / mag(ref)));
     return { rows, note: "На оси все заряды кольца дают одинаковый осевой вклад, поэтому даже 3–8 зарядов дают точный ответ (уменьшите N ползунком и проверьте). Вне оси ошибка убывает геометрически с N — тем медленнее, чем ближе точка к кольцу. Эталон для внеосевой точки — сумма по 20000 зарядов.",
-      draws: [cv => plotXY(cv, [{ x: hs, y: hs.map(h => ring.exactEz(h)), color: "c1", label: "формула" }, { x: hm, y: hm.map(h => ring.Ez(h, p.N)), color: "c2", mode: "circles", label: "модель, N = " + p.N }], { xlabel: "расстояние h/R вдоль оси", ylabel: "E (1/4πε₀ = 1)", vlines: [1 / Math.SQRT2] }),
+      draws: [cv => drawMap(cv, { xmin: -2.4, xmax: 2.4, ymin: -1.8, ymax: 1.8, sampler: ringSampler(Math.min(p.N, 240)), lvl: [-1.3, 1.3], nContours: 16,
+          streams: { seeds: [[1, 0], [-1, 0]].flatMap(c => linspace(0, 2 * PI, 9).slice(0, 8).map(a => [c[0] + 0.1 * Math.cos(a), 0.1 * Math.sin(a), 1])).concat([[0, 0.5, 1], [0, -0.5, 1], [0, 1.4, 1], [0, -1.4, 1]]) },
+          overlay: (ctx, tx, ty) => { const T = themeColors(); ctx.fillStyle = T.c2; [-1, 1].forEach(x => { ctx.beginPath(); ctx.arc(tx(x), ty(0), 4, 0, 2 * PI); ctx.fill(); }); ctx.fillStyle = T.fg; ctx.beginPath(); ctx.arc(tx(p.px), ty(p.pz), 3.5, 0, 2 * PI); ctx.fill(); } }), cv => plotXY(cv, [{ x: hs, y: hs.map(h => ring.exactEz(h)), color: "c1", label: "формула" }, { x: hm, y: hm.map(h => ring.Ez(h, p.N)), color: "c2", mode: "circles", label: "модель, N = " + p.N }], { xlabel: "расстояние h/R вдоль оси", ylabel: "E (1/4πε₀ = 1)", vlines: [1 / Math.SQRT2] }),
         cv => plotXY(cv, [{ x: Ns, y: errs, color: "c1", label: "внеосевая точка" }], { ylog: true, xlabel: "число зарядов N", ylabel: "относительная ошибка", ymin: 1e-16, ymax: 10 })] };
-  }, canv: ["Поле на оси кольца", "Ошибка вне оси"]
+  }, canv: ["Карта поля кольца в плоскости, проходящей через ось (красные точки — сечения кольца, чёрная — выбранная точка)", "Поле на оси кольца", "Ошибка вне оси"]
 });
 
 // ---------------- Т3. Энергия ----------------
@@ -690,8 +743,9 @@ MODELS.push({
     const rows = [row("W сферы, Дж", Wa, en.Wsphere * unit), row("W шара, Дж", Wb, en.Wball * unit), row("W сферы, МэВ", Wa / e / 1e6, en.Wsphere * unit / e / 1e6), row("классический радиус электрона, м", re_an, re_num)];
     const rs = linspace(0.02, 5, 60), cur = energy.curve(rs);
     return { rows, note: "Численный интеграл даёт 1/2 и 3/5 (в единицах kQ²/R) с точностью 7 знаков. Ползунки R и Q влияют только на масштаб (энергия ∝ Q²/R). При R = 2,818·10⁻¹⁵ м и Q = e энергия сферы равна mc² — это и есть «классический радиус».",
-      draws: [cv => plotXY(cv, [{ x: rs, y: cur.ball, color: "c1", label: "шар" }, { x: rs, y: cur.sphere, color: "c2", mode: "dash", label: "сфера" }], { xlabel: "радиус r/R", ylabel: "энергия внутри r (kQ²/R)", hlines: [0.5, 0.6], vlines: [1] })] };
-  }, canv: ["Накопленная энергия поля"]
+      draws: [cv => drawMap(cv, { xmin: -2.5, xmax: 2.5, ymin: -2.5, ymax: 2.5, sampler: (x, y) => { const r = Math.hypot(x, y), c = r > 1e-12 ? 1 / r : 0, E = r < 1 ? 0 : 1 / (r * r); return { U: r < 1 ? 1 : 1 / r, Ex: E * x * c, Ey: E * y * c }; }, lvl: [-1.5, 0.2], nContours: 12, streams: { seeds: radialSeedsList([1.05], 12, 0) }, overlay: overlayCircles([{ r: 1, dash: true }]) }),
+        cv => drawMap(cv, { xmin: -2.5, xmax: 2.5, ymin: -2.5, ymax: 2.5, sampler: (x, y) => { const r = Math.hypot(x, y), c = r > 1e-12 ? 1 / r : 0, E = r < 1 ? r : 1 / (r * r); return { U: r < 1 ? (3 - r * r) / 2 : 1 / r, Ex: E * x * c, Ey: E * y * c }; }, lvl: [-1.5, 0.2], nContours: 12, streams: { seeds: radialSeedsList([0.4], 12, 0) }, overlay: overlayCircles([{ r: 1, dash: true }]) }), cv => plotXY(cv, [{ x: rs, y: cur.ball, color: "c1", label: "шар" }, { x: rs, y: cur.sphere, color: "c2", mode: "dash", label: "сфера" }], { xlabel: "радиус r/R", ylabel: "энергия внутри r (kQ²/R)", hlines: [0.5, 0.6], vlines: [1] })] };
+  }, canv: ["Карта поля равномерно заряженной сферы (в единицах kQ/R², R = 1): внутри поля нет", "Карта поля равномерно заряженного шара: внутри поле растёт линейно", "Накопленная энергия поля"]
 });
 
 // ---------------- Т4. Шар и цилиндр ----------------
@@ -712,9 +766,10 @@ MODELS.push({
     const eC = Ns.map(N => err(solve(N, false))), eN = Ns.map(N => err(solve(N, true)));
     const ord = e => Math.log(e[e.length - 2] / e[e.length - 1]) / Math.log(2);
     return { rows, note: `Наибольшая ошибка потенциала при N = ${p.N}: <b>${fmtN(err(s))}</b>. Порядок сходимости (по N = 240→480): интеграл по ячейке <b>${fmtN(ord(eC))}</b>, «плотность в узле» <b>${fmtN(ord(eN))}</b>. Граница заряженной области R лежит между узлами, если R/h не целое — попробуйте R = 1,013.`,
-      draws: [cv => { const rr = linspace(0, p.Rs, 300); plotXY(cv, [{ x: rr, y: rr.map(exact), color: "c1", label: "формула" }, { x: s.r.filter((_, i) => i % Math.max(1, Math.floor(p.N / 40)) === 0), y: s.U.filter((_, i) => i % Math.max(1, Math.floor(p.N / 40)) === 0), color: "c2", mode: "circles", label: "модель" }], { xlabel: "расстояние r от центра", ylabel: "потенциал φ", vlines: [R] }); },
+      draws: [cv => { const Es = gradient1d(s.r, s.U), Rv = p.Rs;
+          drawMap(cv, { xmin: -Rv, xmax: Rv, ymin: -Rv, ymax: Rv, sampler: radialSampler(s.r, s.U, Es), lvl: lvlRange(Es), nContours: 14, streams: { seeds: radialSeedsList([0.5 * R], 12, 0) }, overlay: overlayCircles([{ r: R, dash: true }, { r: p.Rs, color: "muted", w: 2 }]) }); }, cv => { const rr = linspace(0, p.Rs, 300); plotXY(cv, [{ x: rr, y: rr.map(exact), color: "c1", label: "формула" }, { x: s.r.filter((_, i) => i % Math.max(1, Math.floor(p.N / 40)) === 0), y: s.U.filter((_, i) => i % Math.max(1, Math.floor(p.N / 40)) === 0), color: "c2", mode: "circles", label: "модель" }], { xlabel: "расстояние r от центра", ylabel: "потенциал φ", vlines: [R] }); },
         cv => plotXY(cv, [{ x: hs, y: eC, color: "c1", label: "интеграл по ячейке" }, { x: hs, y: eN, color: "c3", label: "плотность в узле" }, { x: hs, y: hs.map(h => 0.03 * (h / hs[0]) ** 2 * 0.5), color: "muted", mode: "dash", label: "∝ h²" }], { xlog: true, ylog: true, xlabel: "шаг сетки h", ylabel: "наибольшая ошибка", legendLeft: true })] };
-  }, canv: ["Потенциал: формула и модель", "Сходимость: два способа считать заряд ячейки"]
+  }, canv: ["Карта поля (сечение через центр; штрих — граница заряженной области, серая окружность — заземлённая оболочка)", "Потенциал: формула и модель", "Сходимость: два способа считать заряд ячейки"]
 });
 
 // ---------------- Т5. Диэлектрический слой ----------------
@@ -736,9 +791,10 @@ MODELS.push({
     const rr = linspace(r0, Math.min(Rout, 3.5 * Rf), 300);
     const Eex = x => x < Rf ? 1 / (p.eps * x * x) : 1 / (x * x), Uex = x => x < Rf ? (1 / p.eps * (1 / x - 1 / Rf) + 1 / Rf) / (1) : 1 / x;
     return { rows, note: `Граница слоя приведена к узлу сетки: R = ${fmtN(Rf)}. Связанные заряды получились в точности такими, как даёт формула: схема консервативна и сохраняет поток D между ячейками, поэтому теорема Гаусса выполняется на сетке точно.`,
-      draws: [cv => plotXY(cv, [{ x: rr, y: rr.map(x => 4 * PI * Eex(x) / (4 * PI)), color: "c1", label: "формула" }, { x: r.filter((_, i) => i % 12 === 0), y: E.filter((_, i) => i % 12 === 0).map(v => v * 4 * PI), color: "c2", mode: "circles", label: "модель" }], { xmin: r0, xmax: Math.min(Rout, 3.5 * Rf), xlabel: "расстояние r", ylabel: "4πε₀E (Q = 1)", vlines: [Rf] }),
+      draws: [cv => { const Rv = Math.min(Rout, 3.5 * Rf);
+          drawMap(cv, { xmin: -Rv, xmax: Rv, ymin: -Rv, ymax: Rv, sampler: radialSampler(r, U, E, { k: 4 * PI, rmin: r0 }), lvl: lvlRange(E.map(v => 4 * PI * v)), nContours: 14, streams: { seeds: radialSeedsList([0.5 * (r0 + Rf)], 12, 0) }, overlay: overlayCircles([{ r: r0 }, { r: Rf, dash: true, color: "c2", w: 2 }]) }); }, cv => plotXY(cv, [{ x: rr, y: rr.map(x => 4 * PI * Eex(x) / (4 * PI)), color: "c1", label: "формула" }, { x: r.filter((_, i) => i % 12 === 0), y: E.filter((_, i) => i % 12 === 0).map(v => v * 4 * PI), color: "c2", mode: "circles", label: "модель" }], { xmin: r0, xmax: Math.min(Rout, 3.5 * Rf), xlabel: "расстояние r", ylabel: "4πε₀E (Q = 1)", vlines: [Rf] }),
         cv => plotXY(cv, [{ x: rr, y: rr.map(x => 4 * PI * (Uex(x)) / (4 * PI)), color: "c1", label: "формула" }, { x: r.filter((_, i) => i % 12 === 0), y: U.filter((_, i) => i % 12 === 0).map(v => v * 4 * PI), color: "c2", mode: "circles", label: "модель" }], { xmin: r0, xmax: Math.min(Rout, 3.5 * Rf), xlabel: "расстояние r", ylabel: "4πε₀φ (Q = 1)", vlines: [Rf] })] };
-  }, canv: ["Напряжённость: скачок в ε раз", "Потенциал"]
+  }, canv: ["Карта поля (серый круг — шар, красная штриховая окружность — внешняя граница диэлектрика; в слое поле в ε раз слабее)", "Напряжённость: скачок в ε раз", "Потенциал"]
 });
 
 // ---------------- Т6. Слоистые диэлектрики ----------------
@@ -757,9 +813,14 @@ MODELS.push({
     for (const xx of [0.25, 0.5, 0.75]) { const i = b.r.findIndex(v => v >= xx - 1e-9); rows.push(row("ρ′(x = " + xx + " d)·d/σ", exRho(b.r[i]), rho[i])); }
     const Uex = x => x < p.h1 ? (p.h1 - x) / p.e1 + p.h2 / p.e2 : (d1 - x) / p.e2, xs = linspace(0, d1, 200);
     return { rows, note: "Ёмкость последовательного соединения слоёв воспроизведена; плотность связанного заряда получена двойным численным дифференцированием потенциала и совпадает с формулой.",
-      draws: [cv => plotXY(cv, [{ x: xs, y: xs.map(Uex), color: "c1", label: "формула" }, { x: a.r.filter((_, i) => i % 16 === 0), y: a.U.filter((_, i) => i % 16 === 0), color: "c2", mode: "circles", label: "модель" }], { xlabel: "координата x", ylabel: "потенциал (σ = 1)", vlines: [p.h1] }),
+      draws: [cv => { const Ea = gradient1d(a.r, a.U);
+          drawMap(cv, { xmin: 0, xmax: d1, ymin: 0, ymax: d1 / 2, sampler: slabSampler(a.r, a.U, Ea), lvl: lvlRange(Ea), nContours: 16, streams: { seeds: linspace(0.08, 0.92, 7).map(t => [0.01 * d1, t * d1 / 2, 1]) },
+            overlay: (ctx, tx, ty) => { const T = themeColors(); ctx.setLineDash([5, 4]); ctx.strokeStyle = T.fg; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.moveTo(tx(p.h1), ty(0)); ctx.lineTo(tx(p.h1), ty(d1 / 2)); ctx.stroke(); ctx.setLineDash([]);
+              overlayLabel(ctx, "ε₁ = " + fmtN(p.e1), tx(p.h1 / 2), ty(d1 / 2) + 16); overlayLabel(ctx, "ε₂ = " + fmtN(p.e2), tx(p.h1 + p.h2 / 2), ty(d1 / 2) + 16); } }); },
+        cv => { const Eb2 = gradient1d(b.r, b.U);
+          drawMap(cv, { xmin: 0, xmax: d, ymin: 0, ymax: d / 2, sampler: slabSampler(b.r, b.U, Eb2), lvl: lvlRange(Eb2), nContours: 16, streams: { seeds: linspace(0.08, 0.92, 7).map(t => [0.01 * d, t * d / 2, 1]) } }); }, cv => plotXY(cv, [{ x: xs, y: xs.map(Uex), color: "c1", label: "формула" }, { x: a.r.filter((_, i) => i % 16 === 0), y: a.U.filter((_, i) => i % 16 === 0), color: "c2", mode: "circles", label: "модель" }], { xlabel: "координата x", ylabel: "потенциал (σ = 1)", vlines: [p.h1] }),
         cv => plotXY(cv, [{ x: linspace(0, 1, 100), y: linspace(0, 1, 100).map(exRho), color: "c1", label: "формула" }, { x: b.r.filter((_, i) => i % 20 === 10), y: rho.filter((_, i) => i % 20 === 10), color: "c2", mode: "circles", label: "модель" }], { xlabel: "x/d", ylabel: "плотность связанного заряда ρ′d/σ" })] };
-  }, canv: ["(а) Потенциал в двухслойном конденсаторе", "(б) Связанный заряд при ε(x)"]
+  }, canv: ["(а) Карта поля в двухслойном конденсаторе (пунктир — граница слоёв; в слое с большей ε поле слабее)", "(б) Карта поля при ε(x) = ε₁(1 + x/d): поле убывает вдоль x", "(а) Потенциал в двухслойном конденсаторе", "(б) Связанный заряд при ε(x)"]
 });
 
 // ---------------- Т7. Концентрические проводники ----------------
@@ -775,9 +836,12 @@ MODELS.push({
     const rr = linspace(0.002, r[2] * 2, 400), an = x => x <= r[0] ? V0a : x <= r[1] ? k * (Qb / x - Qb / r[1] + (Qb + Ql) / r[2]) : x <= r[2] ? V1a : k * (Qb + Ql) / x;
     const En = x => x < r[0] ? 0 : x < r[1] ? k * Qb / (x * x) : x < r[2] ? 0 : k * (Qb + Ql) / (x * x);
     return { rows, note: "Модель не содержит приближений, поэтому совпадает с формулами до ошибок округления: это проверка кода, а не порядка сходимости. Попробуйте отрицательные заряды и разные радиусы: та же программа, другая конфигурация.",
-      draws: [cv => plotXY(cv, [{ x: rr.map(v => v * 100), y: rr.map(an), color: "c1", label: "формулы" }, { x: rr.filter((_, i) => i % 14 === 0).map(v => v * 100), y: rr.filter((_, i) => i % 14 === 0).map(x => sh.phiAt(x)), color: "c2", mode: "circles", label: "матричная модель" }], { xlabel: "расстояние r, см", ylabel: "потенциал φ, В" }),
+      draws: [cv => { const Rv = 1.6 * r[2] * 100, Ev = rr.map(En);
+          drawMap(cv, { xmin: -Rv, xmax: Rv, ymin: -Rv, ymax: Rv, sampler: (x, y) => { const q = Math.hypot(x, y) / 100; if (q < r[0] || (q > r[1] && q < r[2])) return { U: 0, Ex: 0, Ey: 0, hide: true }; const e = En(q), c = q > 1e-12 ? 1 / (100 * q) : 0; return { U: an(q), Ex: e * x * c, Ey: e * y * c }; },
+            lvl: lvlRange(Ev), nContours: 14, streams: { seeds: radialSeedsList([0.5 * (r[0] + r[1]) * 100], 12, 0).concat(radialSeedsList([1.3 * r[2] * 100], 12, 0.5)) },
+            overlay: overlayCircles([{ r: r[0] * 100 }, { r: r[1] * 100 }, { r: r[2] * 100 }]) }); }, cv => plotXY(cv, [{ x: rr.map(v => v * 100), y: rr.map(an), color: "c1", label: "формулы" }, { x: rr.filter((_, i) => i % 14 === 0).map(v => v * 100), y: rr.filter((_, i) => i % 14 === 0).map(x => sh.phiAt(x)), color: "c2", mode: "circles", label: "матричная модель" }], { xlabel: "расстояние r, см", ylabel: "потенциал φ, В" }),
         cv => plotXY(cv, [{ x: rr.map(v => v * 100), y: rr.map(En), color: "c1", label: "E(r)" }], { xlabel: "расстояние r, см", ylabel: "напряжённость E, В/м" })] };
-  }, canv: ["Потенциал", "Напряжённость (внутри металла поля нет)"]
+  }, canv: ["Карта поля (сечение через центр, масштаб в см): поле есть только в зазоре и снаружи, серые области — металл", "Потенциал", "Напряжённость (внутри металла поля нет)"]
 });
 
 // ---------------- Т8. Коаксиал ----------------
@@ -946,13 +1010,15 @@ MODELS.push({
     for (const n of Nl) { const rr = imagePlane(p.L, n); ss.push(rr.s); ee.push(Math.abs(rr.F - rr.Fexact) / Math.abs(rr.Fexact)); }
     const rho = linspace(0, Math.min(p.L, 5), 100);
     return { rows, note: `Полный индуцированный заряд на конечной пластине меньше −q (на бесконечной плоскости ровно −q): недостающая часть «уходит» на далёкие участки. Сравнение ведётся с зарядом, который даёт формула изображений на такой же квадрат. Сторона клеточки s = ${fmtN(r.s)} d.`,
-      draws: [cv => plotXY(cv, [{ x: rho, y: rho.map(x => -r.sigExact(x) * 2 * PI), color: "c1", label: "изображение" }, { x: xr, y: sg, color: "c2", mode: "circles", label: "модель на плоскости" }], { xlabel: "расстояние от основания перпендикуляра ρ/d", ylabel: "−2πd²σ/q", xmax: Math.min(p.L, 5) }),
+      draws: [cv => { const X = Math.min(p.L, 2.4), smp = planeChargeSampler(r);
+          drawMap(cv, { xmin: -X, xmax: X, ymin: 0, ymax: 1.5 * X, sampler: smp, lvl: [-1.5, 0.8], levels: [0.05, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1.2, 1.6, 2.5, 4], streams: { seeds: linspace(0, 2 * PI, 13).slice(0, 12).map(a => [0.08 * Math.cos(a), 1 + 0.08 * Math.sin(a), 1]) },
+            overlay: (ctx, tx, ty) => { const T = themeColors(); ctx.strokeStyle = T.fg; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(tx(-X), ty(0)); ctx.lineTo(tx(X), ty(0)); ctx.stroke(); ctx.fillStyle = T.c2; ctx.beginPath(); ctx.arc(tx(0), ty(1), 4.5, 0, 2 * PI); ctx.fill(); } }); }, cv => plotXY(cv, [{ x: rho, y: rho.map(x => -r.sigExact(x) * 2 * PI), color: "c1", label: "изображение" }, { x: xr, y: sg, color: "c2", mode: "circles", label: "модель на плоскости" }], { xlabel: "расстояние от основания перпендикуляра ρ/d", ylabel: "−2πd²σ/q", xmax: Math.min(p.L, 5) }),
         cv => plotXY(cv, [{ x: ss, y: ee, color: "c1", label: "ошибка силы" }, { x: ss, y: ss.map(s => 0.035 * s * s), color: "muted", mode: "dash", label: "∝ s²" }], { xlog: true, ylog: true, xlabel: "сторона клеточки s/d", ylabel: "ошибка силы" })] };
-  }, canv: ["Плотность индуцированного заряда", "Сходимость: ошибка силы"]
+  }, canv: ["Карта поля над плоскостью, посчитанная по заряду и индуцированным зарядам модели (изображение не использовалось); красная точка — заряд q", "Плотность индуцированного заряда", "Сходимость: ошибка силы"]
 });
 
 // ======================= ИНТЕРФЕЙС =======================
-const SQ = { t08: [0], t09: [0], t10: [0], t11: [0], t13: [0], t14: [0] };
+const SQ = { t03: [0, 1], t04: [0], t05: [0], t07: [0], t08: [0], t09: [0], t10: [0], t11: [0], t13: [0], t14: [0] };
 const state = { cur: null, panels: {} };
 
 function el(tag, attrs = {}, html = "") { const e = document.createElement(tag); for (const k in attrs) { if (k === "class") e.className = attrs[k]; else e.setAttribute(k, attrs[k]); } if (html) e.innerHTML = html; return e; }
