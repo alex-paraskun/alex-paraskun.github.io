@@ -2,6 +2,22 @@
 photos: [photo1.jpg, photo_2026-07-25_13-52-29 (3).jpg]
 items:
 - c:
+    ru: Математика для студентов-медиков, НГУ
+    en: Mathematics for Medical Students, NSU
+  term:
+    ru: 2026-2027, 1 семестр
+    en: 2026-2027, Semester I
+  type: sem
+  h: 72
+- c:
+    ru: Курс "Проектная деятельность в физике", СУНЦ НГУ
+    en: Course "Research Projects in Physics", SESC NSU
+  term:
+    ru: 2026-2027, 1 семестр
+    en: 2026-2027, Semester I
+  type: lec
+  h: 72
+- c:
     ru: Математический анализ, НГУ
     en: Mathematical Analysis, NSU
   term:
