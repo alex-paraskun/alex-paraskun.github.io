@@ -67,6 +67,14 @@ td.ok { color:var(--ok); font-weight:600; } td.mid { color:var(--mid); font-weig
 .note:empty { display:none; }
 .plots { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr)); gap:14px; margin-top:10px; }
 .card { margin:0; width:100%; max-width:720px; }
+.code { margin-top:16px; border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:0 12px 12px; }
+.code summary { cursor:pointer; padding:10px 0; font-weight:600; }
+.codenote { color:var(--muted); font-size:13px; margin:0 0 10px; }
+.codebox { margin-top:10px; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+.codebar { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:4px 8px; background:var(--bg); font-size:12px; color:var(--muted); }
+.codebar .copy { padding:2px 8px; font-size:12px; }
+.codebox pre { margin:0; padding:10px 12px; overflow:auto; max-height:420px; font:12px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; tab-size:2; }
+.code .cm { color:var(--muted); font-style:italic; } .code .kw { color:var(--accent); font-weight:600; } .code .nm { color:var(--c2); }
 canvas { width:100%; display:block; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
 canvas.wide { aspect-ratio:4/3; } canvas.sq { aspect-ratio:1/1; }
 figcaption { font-size:12.5px; color:var(--muted); margin-top:4px; text-align:center; }
@@ -445,6 +453,30 @@ function imagePlane(L, N, q = 1, d = 1) {
   let Qind = 0, Ez = 0;
   for (let a = 0; a < n; a++) { Qind += sig[a] * s * s; Ez += sig[a] * s * s * d / Math.pow(X[a] * X[a] + Y[a] * Y[a] + d * d, 1.5); }
   return { X, Y, sig, s, N, L, Qind, F: q * Ez, Fexact: -q * q / Math.pow(2 * d, 2), sigExact: rho => -q * d / (2 * PI * Math.pow(rho * rho + d * d, 1.5)) };
+}
+
+// ---------- Т16. итерационные методы: релаксация на сетке «крест» ----------
+function relax(n, method, K, snapAt) {         // квадрат 1×1; U = 1 на верхней стороне, U = 0 на остальных; n+1 узлов по стороне
+  const nx = n + 1, U = new Float64Array(nx * nx), hist = new Float64Array(K + 1);
+  const om = method === "sor" ? 2 / (1 + Math.sin(PI / n)) : 1;      // оптимальный параметр верхней релаксации
+  for (let i = 0; i < nx; i++) U[n * nx + i] = 1;
+  const resid = () => {                         // норма невязки уравнения Лапласа во внутренних узлах
+    let s = 0;
+    for (let j = 1; j < n; j++) for (let i = 1; i < n; i++) { const c = j * nx + i, r = U[c + 1] + U[c - 1] + U[c + nx] + U[c - nx] - 4 * U[c]; s += r * r; }
+    return Math.sqrt(s) / n;
+  };
+  let snap = snapAt === 0 ? U.slice() : null; hist[0] = resid();
+  const V = method === "jacobi" ? new Float64Array(U) : null;
+  for (let k = 1; k <= K; k++) {
+    for (let j = 1; j < n; j++) for (let i = 1; i < n; i++) {
+      const c = j * nx + i, avg = 0.25 * (U[c + 1] + U[c - 1] + U[c + nx] + U[c - nx]);   // среднее четырёх соседей
+      if (V) V[c] = avg;                         // Якоби: все новые значения считаются по старым
+      else U[c] += om * (avg - U[c]);            // Гаусс–Зейдель (om = 1) и SOR: сразу используем свежие значения
+    }
+    if (V) U.set(V);
+    hist[k] = resid(); if (k === snapAt) snap = U.slice();
+  }
+  return { U, hist, snap };
 }
 
 if (typeof module !== "undefined") module.exports = { EPS0, PI, rod, ring, energy, solveRadial, gradient1d, shells, solveLinear, solve2d, field2d, energy2d, grid2d, frameMask, coax, cylField, corner, csmSphere, lstsq, fibonacciSphere, plateCap, chargesField, findNulls, superGrid, imagePlane, linspace };
@@ -894,9 +926,14 @@ MODELS.push({
     const ns = [20, 40, 80, 160], errs = ns.map(n => { const cc = corner(n, p.a, 1, p.Lb); return Math.abs(cc.Fx - cc.Fexact) / Math.abs(cc.Fexact); }), hs = ns.map(n => p.Lb / n);
     const E = field2d(c.Utot, c.nx, c.ny, c.h), samp = gridSampler({ nx: c.nx, ny: c.ny, h: c.h, L: 0 }, c.Utot, E.Ex, E.Ey, null), Lm = Math.min(p.Lb, 4);
     return { rows, note: `Положение нити округлено до узла сетки: a = ${fmtN(c.ax)}. Ошибка убывает как h²: сетка не разрешает логарифмическую особенность потенциала, поэтому её выделяют аналитически и сетке оставляют гладкую часть.`,
-      draws: [cv => drawMap(cv, { xmin: 0, xmax: Lm, ymin: 0, ymax: Lm, sampler: samp, lvl: [-1.3, 0.8], levels: [-0.05, -0.02, 0, 0.03, 0.06, 0.1, 0.15, 0.2, 0.3], streams: { seeds: seedLattice(0.05, Lm * 0.95, 0.05, Lm * 0.95, 8), stop: (x, y) => Math.hypot(x - c.ax, y - c.ax) < 0.08 }, overlay: (ctx, tx, ty) => { ctx.fillStyle = "#c0392b"; ctx.beginPath(); ctx.arc(tx(c.ax), ty(c.ax), 4, 0, 6.3); ctx.fill(); } }),
+      draws: [cv => { const a = c.ax, Lm = Math.min(p.Lb, 3.2), chg = [[a, a, 1], [-a, a, -1], [a, -a, -1], [-a, -a, 1]];
+          drawMap(cv, { xmin: -Lm, xmax: Lm, ymin: -Lm, ymax: Lm, sampler: (x, y) => { let U = 0, Ex = 0, Ey = 0; for (const [cx, cy, q] of chg) { const dx = x - cx, dy = y - cy, d2 = dx * dx + dy * dy + 1e-12; U -= q * 0.5 * Math.log(d2); Ex += q * dx / d2; Ey += q * dy / d2; } return { U, Ex, Ey }; },
+            lvl: [-1, 1.2], levels: [-1.2, -0.8, -0.5, -0.25, 0, 0.25, 0.5, 0.8, 1.2], streams: { seeds: chg.flatMap(([cx, cy, q]) => linspace(0, 2 * PI, 9).slice(0, 8).map(t => [cx + 0.1 * Math.cos(t), cy + 0.1 * Math.sin(t), q])), stop: (x, y) => chg.some(([cx, cy]) => Math.hypot(x - cx, y - cy) < 0.06) },
+            overlay: (ctx, tx, ty) => { const T = themeColors(); ctx.fillStyle = T.bg; ctx.globalAlpha = 0.45; ctx.fillRect(tx(-Lm), ty(Lm), tx(0) - tx(-Lm), ty(-Lm) - ty(Lm)); ctx.fillRect(tx(0), ty(0), tx(Lm) - tx(0), ty(-Lm) - ty(0)); ctx.globalAlpha = 1;
+              ctx.strokeStyle = T.fg; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(tx(0), ty(0)); ctx.lineTo(tx(Lm), ty(0)); ctx.moveTo(tx(0), ty(0)); ctx.lineTo(tx(0), ty(Lm)); ctx.stroke();
+              chg.forEach(([cx, cy, q], i) => { ctx.beginPath(); ctx.arc(tx(cx), ty(cy), 5, 0, 2 * PI); if (i === 0) { ctx.fillStyle = T.c2; ctx.fill(); } else { ctx.setLineDash([3, 2]); ctx.strokeStyle = T.c2; ctx.lineWidth = 1.6; ctx.stroke(); ctx.setLineDash([]); } overlayLabel(ctx, q > 0 ? "+λ" : "−λ", tx(cx), ty(cy) - 9); }); } }); }, cv => drawMap(cv, { xmin: 0, xmax: Lm, ymin: 0, ymax: Lm, sampler: samp, lvl: [-1.3, 0.8], levels: [-0.05, -0.02, 0, 0.03, 0.06, 0.1, 0.15, 0.2, 0.3], streams: { seeds: seedLattice(0.05, Lm * 0.95, 0.05, Lm * 0.95, 8), stop: (x, y) => Math.hypot(x - c.ax, y - c.ax) < 0.08 }, overlay: (ctx, tx, ty) => { ctx.fillStyle = "#c0392b"; ctx.beginPath(); ctx.arc(tx(c.ax), ty(c.ax), 4, 0, 6.3); ctx.fill(); } }),
         cv => plotXY(cv, [{ x: hs, y: errs, color: "c1", label: "ошибка силы" }, { x: hs, y: hs.map(h => 0.6 * h * h), color: "muted", mode: "dash", label: "∝ h²" }], { xlog: true, ylog: true, xlabel: "шаг сетки h", ylabel: "относительная ошибка" })] };
-  }, canv: ["Карта полного потенциала U = U_нити + ψ", "Сходимость силы"]
+  }, canv: ["Метод изображений: три фиктивные нити (пунктир) заменяют углы; в рабочем квадранте поле такое же, как в задаче (затемнено то, чего в задаче нет)", "Карта полного потенциала U = U_нити + ψ", "Сходимость силы"]
 });
 
 // ---------------- Т11. Метод фиктивных зарядов ----------------
@@ -912,9 +949,15 @@ MODELS.push({
     const samp = (x, z) => { const inside = Math.hypot(x, z) < 1; const e = inside ? [0, 0, 0] : r.fieldAt([x, 0, z]); return { U: 0, Ex: e[0], Ey: e[2], hide: inside }; };
     const th = linspace(0.01, PI, 120);
     return { rows, note: "Как влияет расположение источников: чем ближе фиктивные заряды к поверхности (радиус → 1), тем хуже обусловлена система, и увеличение числа зарядов перестаёт помогать (правая кривая на нижнем графике). Оптимально — на расстоянии порядка расстояния между источниками.",
-      draws: [cv => drawMap(cv, { xmin: -2.6, xmax: 2.6, ymin: -2.6, ymax: p.L + 1.6, sampler: samp, lvl: [-1.2, 1], nContours: 0, streams: { seeds: linspace(0, 2 * PI, 14).slice(0, 13).map(t => [0.12 * Math.cos(t), p.L + 0.12 * Math.sin(t), 1]).concat(seedLattice(-2.4, 2.4, -2.4, p.L + 1.4, 7)), stop: (x, z) => Math.hypot(x, z - p.L) < 0.07 }, overlay: (ctx, tx, ty, sc) => { ctx.fillStyle = "#c0392b"; ctx.beginPath(); ctx.arc(tx(0), ty(p.L), 4, 0, 6.3); ctx.fill(); ctx.strokeStyle = "#888"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(tx(0), ty(0), sc, 0, 6.3); ctx.stroke(); ctx.fillStyle = "#e67e22"; r.src.forEach(s => { if (Math.abs(s[1]) < 0.35) { ctx.beginPath(); ctx.arc(tx(s[0]), ty(s[2]), 1.8, 0, 6.3); ctx.fill(); } }); } }),
+      draws: [cv => { const Qm = Math.max(...r.Q.map(Math.abs)), Rb = 1;
+          drawMap(cv, { xmin: -2.6, xmax: 2.6, ymin: -2.6, ymax: p.L + 1.6, sampler: (x, z) => { const e = r.fieldAt([x, 0, z]); return { U: 0, Ex: e[0], Ey: e[2] }; }, lvl: [-2.2, 1], nContours: 0,
+            streams: { seeds: linspace(0, 2 * PI, 13).slice(0, 12).map(t => [0.12 * Math.cos(t), p.L + 0.12 * Math.sin(t), 1]), stop: (x, z) => Math.hypot(x, z - p.L) < 0.07 || Math.hypot(x, z) < 1 },
+            overlay: (ctx, tx, ty, sc) => { const T = themeColors(); ctx.fillStyle = T.bg; ctx.globalAlpha = 0.5; ctx.beginPath(); ctx.arc(tx(0), ty(0), sc * Rb, 0, 2 * PI); ctx.fill(); ctx.globalAlpha = 1; ctx.strokeStyle = T.fg; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(tx(0), ty(0), sc * Rb, 0, 2 * PI); ctx.stroke();
+              ctx.globalAlpha = 0.6; r.src.forEach((sv, i) => { ctx.fillStyle = r.Q[i] < 0 ? T.c1 : T.c2; ctx.beginPath(); ctx.arc(tx(sv[0]), ty(sv[2]), 1.5 + 6 * Math.sqrt(Math.abs(r.Q[i]) / Qm), 0, 2 * PI); ctx.fill(); }); ctx.globalAlpha = 1;
+              ctx.fillStyle = T.fg; ctx.beginPath(); ctx.arc(tx(0), ty(p.L), 4.5, 0, 2 * PI); ctx.fill(); overlayLabel(ctx, "q", tx(0), ty(p.L) - 9);
+              ctx.setLineDash([3, 2]); ctx.strokeStyle = T.fg; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.arc(tx(0), ty(Rb * Rb / p.L), 6, 0, 2 * PI); ctx.stroke(); ctx.setLineDash([]); overlayLabel(ctx, "q′ (точное изображение)", tx(0) + 1.25 * sc, ty(Rb * Rb / p.L) + 4); } }); }, cv => drawMap(cv, { xmin: -2.6, xmax: 2.6, ymin: -2.6, ymax: p.L + 1.6, sampler: samp, lvl: [-1.2, 1], nContours: 0, streams: { seeds: linspace(0, 2 * PI, 14).slice(0, 13).map(t => [0.12 * Math.cos(t), p.L + 0.12 * Math.sin(t), 1]).concat(seedLattice(-2.4, 2.4, -2.4, p.L + 1.4, 7)), stop: (x, z) => Math.hypot(x, z - p.L) < 0.07 }, overlay: (ctx, tx, ty, sc) => { ctx.fillStyle = "#c0392b"; ctx.beginPath(); ctx.arc(tx(0), ty(p.L), 4, 0, 6.3); ctx.fill(); ctx.strokeStyle = "#888"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(tx(0), ty(0), sc, 0, 6.3); ctx.stroke(); ctx.fillStyle = "#e67e22"; r.src.forEach(s => { if (Math.abs(s[1]) < 0.35) { ctx.beginPath(); ctx.arc(tx(s[0]), ty(s[2]), 1.8, 0, 6.3); ctx.fill(); } }); } }),
         cv => plotXY(cv, [{ x: nl, y: curves[0], color: "c1", label: "0,5 R" }, { x: nl, y: curves[1], color: "c2", label: "0,8 R" }, { x: nl, y: curves[2], color: "c3", label: "0,95 R" }], { ylog: true, xlabel: "число фиктивных зарядов", ylabel: "ошибка силы", ymin: 1e-6, ymax: 1 })] };
-  }, canv: ["Силовые линии в плоскости сечения (оранжевые точки — фиктивные заряды)", "Ошибка силы и положение источников"]
+  }, canv: ["Метод фиктивных зарядов: q и заряды, подобранные внутри шара (площадь кружка ∝ |Q|, синие — отрицательные). Вне шара их суммарное поле совпадает с настоящим, а внутри (затемнено) оно фиктивное; пунктир — единственное точное изображение q′", "Силовые линии в плоскости сечения (оранжевые точки — фиктивные заряды)", "Ошибка силы и положение источников"]
 });
 
 // ---------------- Т12. Плоский конденсатор ----------------
@@ -1012,16 +1055,83 @@ MODELS.push({
     for (const n of Nl) { const rr = imagePlane(p.L, n); ss.push(rr.s); ee.push(Math.abs(rr.F - rr.Fexact) / Math.abs(rr.Fexact)); }
     const rho = linspace(0, Math.min(p.L, 5), 100);
     return { rows, note: `Полный индуцированный заряд на конечной пластине меньше −q (на бесконечной плоскости ровно −q): недостающая часть «уходит» на далёкие участки. Сравнение ведётся с зарядом, который даёт формула изображений на такой же квадрат. Сторона клеточки s = ${fmtN(r.s)} d.`,
-      draws: [cv => { const X = Math.min(p.L, 2.4), smp = planeChargeSampler(r);
+      draws: [cv => { const Lm = 3;
+          drawMap(cv, { xmin: -Lm, xmax: Lm, ymin: -0.75 * 2 * Lm / 2, ymax: 0.75 * 2 * Lm / 2, sampler: (x, z) => { let U = 0, Ex = 0, Ez = 0; for (const [cz, q] of [[1, 1], [-1, -1]]) { const dz = z - cz, d2 = x * x + dz * dz + 1e-12, d = Math.sqrt(d2); U += q / d; Ex += q * x / (d2 * d); Ez += q * dz / (d2 * d); } return { U, Ex, Ey: Ez }; },
+            lvl: [-1.5, 1], levels: [-1.5, -0.8, -0.4, -0.2, 0, 0.2, 0.4, 0.8, 1.5], streams: { seeds: linspace(0, 2 * PI, 13).slice(0, 12).flatMap(t => [[0.1 * Math.cos(t), 1 + 0.1 * Math.sin(t), 1]]), stop: (x, z) => Math.hypot(x, z - 1) < 0.06 || Math.hypot(x, z + 1) < 0.06 },
+            overlay: (ctx, tx, ty) => { const T = themeColors(); ctx.fillStyle = T.bg; ctx.globalAlpha = 0.5; ctx.fillRect(tx(-Lm), ty(0), tx(Lm) - tx(-Lm), ty(-Lm) - ty(0)); ctx.globalAlpha = 1;
+              ctx.strokeStyle = T.fg; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(tx(-Lm), ty(0)); ctx.lineTo(tx(Lm), ty(0)); ctx.stroke();
+              ctx.fillStyle = T.c2; ctx.beginPath(); ctx.arc(tx(0), ty(1), 5, 0, 2 * PI); ctx.fill(); overlayLabel(ctx, "q", tx(0) + 14, ty(1) + 4);
+              ctx.setLineDash([3, 2]); ctx.strokeStyle = T.c2; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.arc(tx(0), ty(-1), 5, 0, 2 * PI); ctx.stroke(); ctx.setLineDash([]); overlayLabel(ctx, "−q (изображение)", tx(0) + 62, ty(-1) + 4); } }); }, cv => { const X = Math.min(p.L, 2.4), smp = planeChargeSampler(r);
           drawMap(cv, { xmin: -X, xmax: X, ymin: 0, ymax: 1.5 * X, sampler: smp, lvl: [-1.5, 0.8], levels: [0.05, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1.2, 1.6, 2.5, 4], streams: { seeds: linspace(0, 2 * PI, 13).slice(0, 12).map(a => [0.08 * Math.cos(a), 1 + 0.08 * Math.sin(a), 1]) },
             overlay: (ctx, tx, ty) => { const T = themeColors(); ctx.strokeStyle = T.fg; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(tx(-X), ty(0)); ctx.lineTo(tx(X), ty(0)); ctx.stroke(); ctx.fillStyle = T.c2; ctx.beginPath(); ctx.arc(tx(0), ty(1), 4.5, 0, 2 * PI); ctx.fill(); } }); }, cv => plotXY(cv, [{ x: rho, y: rho.map(x => -r.sigExact(x) * 2 * PI), color: "c1", label: "изображение" }, { x: xr, y: sg, color: "c2", mode: "circles", label: "модель на плоскости" }], { xlabel: "расстояние от основания перпендикуляра ρ/d", ylabel: "−2πd²σ/q", xmax: Math.min(p.L, 5) }),
         cv => plotXY(cv, [{ x: ss, y: ee, color: "c1", label: "ошибка силы" }, { x: ss, y: ss.map(s => 0.035 * s * s), color: "muted", mode: "dash", label: "∝ s²" }], { xlog: true, ylog: true, xlabel: "сторона клеточки s/d", ylabel: "ошибка силы" })] };
-  }, canv: ["Карта поля над плоскостью, посчитанная по заряду и индуцированным зарядам модели (изображение не использовалось); красная точка — заряд q", "Плотность индуцированного заряда", "Сходимость: ошибка силы"]
+  }, canv: ["Метод изображений: заряд −q под плоскостью (пунктир) воспроизводит поле над ней; нижняя половина затемнена — в задаче её нет", "Карта поля над плоскостью, посчитанная по заряду и индуцированным зарядам модели (изображение не использовалось); красная точка — заряд q", "Плотность индуцированного заряда", "Сходимость: ошибка силы"]
+});
+
+// ---------------- Т16. Релаксация по шагам ----------------
+MODELS.push({
+  id: "t16", tab: "Релаксация по шагам", title: "Как работает численный метод: итерации на сетке «крест»", chapter: "гл. 3, §3.5",
+  desc: `<p><b>Условие.</b> Квадрат \\(1\\times1\\), потенциал на верхней стороне равен 1, на остальных — 0. Найти \\(\\varphi\\) внутри, решая уравнение Лапласа на сетке.</p>
+  <p><b>Идея метода.</b> Разностная схема «крест» означает, что потенциал в узле равен среднему четырёх соседей: \\(\\displaystyle U_{i,j}=\\tfrac14\\,(U_{i+1,j}+U_{i-1,j}+U_{i,j+1}+U_{i,j-1})\\). Это уравнение решают итерациями: начинают с нуля и много раз заменяют значения в узлах средними соседних. Метод Якоби берёт только старые значения, Гаусс–Зейдель сразу использует новые, SOR добавляет «перелёт» с параметром \\(\\omega\\). Двигайте ползунок \\(k\\) и смотрите, как «растекается» потенциал; ниже показан код программы.</p>`,
+  params: [P("n", "Узлов по стороне n", 8, 48, 2, 24, { int: true }), { k: "method", label: "Метод", type: "select", opts: [["jacobi", "Якоби"], ["gs", "Гаусс–Зейдель"], ["sor", "SOR (ω оптимальное)"]], val: "gs" }, P("k", "Число итераций k", 1, 2000, 1, 40, { log: true, int: true })],
+  run(p) {
+    const n = p.n, K = 2000, k = Math.min(p.k, K), names = { jacobi: "Якоби", gs: "Гаусс–Зейдель", sor: "SOR" };
+    const res = {}; for (const m of ["jacobi", "gs", "sor"]) res[m] = relax(n, m, K, m === p.method ? k : null);
+    const cur = res[p.method], ref = relax(n, "sor", 4 * n, null).U, nx = n + 1, c = (n / 2) * nx + n / 2;
+    const rows = [row("U в центре: " + names[p.method] + ", k = " + k + " / решение сетки", ref[c], cur.snap[c]), row("U в центре: решение сетки / точное значение 1/4", 0.25, ref[c])];
+    const E = field2d(cur.snap, nx, nx, 1 / n), samp = gridSampler({ nx, ny: nx, h: 1 / n, L: 0 }, cur.snap, E.Ex, E.Ey, null);
+    const it = Array.from({ length: K + 1 }, (_, i) => i).filter(i => i > 0), ser = m => it.map(i => Math.max(1e-16, res[m].hist[i]));
+    const need = m => { const h = res[m].hist; for (let i = 1; i <= K; i++) if (h[i] < 1e-8 * h[0]) return i; return null; };
+    const fmtNeed = m => need(m) === null ? "&gt; " + K : need(m);
+    return { rows, note: `Итераций до падения невязки в 10⁸ раз при n = ${n}: Якоби — <b>${fmtNeed("jacobi")}</b>, Гаусс–Зейдель — <b>${fmtNeed("gs")}</b>, SOR — <b>${fmtNeed("sor")}</b>. Якоби и Гаусс–Зейдель тратят порядка n² итераций, SOR с оптимальным ω — порядка n: на мелких сетках разница огромна.`,
+      draws: [cv => drawMap(cv, { xmin: 0, xmax: 1, ymin: 0, ymax: 1, sampler: samp, colorBy: "U", ulim: 1, levels: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], overlay: (ctx, tx, ty) => { if (n > 30) return; const T = themeColors(); ctx.fillStyle = T.fg; ctx.globalAlpha = 0.5; for (let j = 0; j <= n; j++) for (let i = 0; i <= n; i++) { ctx.beginPath(); ctx.arc(tx(i / n), ty(j / n), 1.5, 0, 2 * PI); ctx.fill(); } ctx.globalAlpha = 1; } }),
+        cv => plotXY(cv, [{ x: it, y: ser("jacobi"), color: "c1", label: "Якоби" }, { x: it, y: ser("gs"), color: "c3", label: "Гаусс–Зейдель" }, { x: it, y: ser("sor"), color: "c2", label: "SOR" }], { xlog: true, ylog: true, xlabel: "число итераций", ylabel: "невязка", vlines: [k] })] };
+  }, canv: ["Потенциал после k итераций (красный — 1, белый — 0; точки — узлы сетки, линии — эквипотенциали)", "Невязка в зависимости от числа итераций (вертикальная линия — выбранное k)"]
 });
 
 // ======================= ИНТЕРФЕЙС =======================
-const SQ = { t03: [0, 1], t04: [0], t05: [0], t07: [0], t08: [0], t09: [0], t10: [0], t11: [0], t13: [0], t14: [0] };
+const SQ = { t03: [0, 1], t04: [0], t05: [0], t07: [0], t08: [0], t09: [0], t10: [0, 1], t11: [0, 1], t16: [0], t13: [0], t14: [0] };
 const state = { cur: null, panels: {} };
+
+const CODE = {
+  t01: () => [["rod.E — сумма полей N точечных зарядов, на которые разрезан стержень", rod.E]],
+  t02: () => [["ring.Efield — поле кольца как суммы полей N точечных зарядов", ring.Efield]],
+  t03: () => [["energy.integ — составная квадратура Гаусса", energy.integ], ["energy.compute — энергия поля сферы и шара", energy.compute]],
+  t04: () => [["solveRadial — схема «взвешенного среднего» для радиальной задачи (прогонка)", solveRadial], ["gradient1d — поле как производная потенциала", gradient1d]],
+  t05: () => [["solveRadial — консервативная схема с разрывной ε", solveRadial], ["gradient1d — поле как производная потенциала", gradient1d]],
+  t06: () => [["solveRadial — та же схема при m = 0 (плоская задача)", solveRadial], ["gradient1d", gradient1d]],
+  t07: () => [["shells — система линейных уравнений для концентрических проводников", shells]],
+  t08: () => [["coax — сетка «крест» с замороженными узлами проводников", coax], ["solve2d — метод сопряжённых градиентов для уравнения Пуассона", solve2d]],
+  t09: () => [["cylField — цилиндр в однородном поле; граничное условие на внешней рамке", cylField], ["solve2d — метод сопряжённых градиентов", solve2d]],
+  t10: () => [["corner — вычитание особенности: сеткой считается только гладкая часть", corner]],
+  t11: () => [["csmSphere — метод фиктивных зарядов", csmSphere], ["lstsq — метод наименьших квадратов через QR-разложение", lstsq]],
+  t12: () => [["plateCap — плоский конденсатор на сетке", plateCap]],
+  t13: () => [["chargesField — суперпозиция полей точечных зарядов", chargesField], ["findNulls — нули поля методом Ньютона", findNulls]],
+  t14: () => [["superGrid — решение на сетке для набора источников", superGrid]],
+  t15: () => [["quadInt — интеграл от 1/r по прямоугольнику", quadInt], ["cholSolve — разложение Холецкого", cholSolve], ["imagePlane — метод граничных элементов для плоскости", imagePlane]],
+  t16: () => [["relax — итерации Якоби, Гаусса–Зейделя и SOR на сетке «крест»", relax]]
+};
+function highlightJS(src) {
+  const esc = src.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return esc.replace(/(\/\/[^\n]*)|\b(function|const|let|for|if|else|return|break|continue|while|new|true|false)\b|(\b\d+\.?\d*(?:e[+-]?\d+)?\b)/g, (m, c, k, n) => c ? `<span class="cm">${c}</span>` : k ? `<span class="kw">${k}</span>` : `<span class="nm">${n}</span>`);
+}
+function dedent(src) {
+  const lines = src.split("\n"); let min = Infinity;
+  for (let i = 1; i < lines.length; i++) { const m = lines[i].match(/^(\s*)\S/); if (m) min = Math.min(min, m[1].length); }
+  return isFinite(min) && min > 0 ? lines.map((l, i) => i ? l.slice(Math.min(min, (l.match(/^\s*/)[0]).length)) : l).join("\n") : src;
+}
+function buildCode(m) {
+  const items = CODE[m.id] ? CODE[m.id]() : []; if (!items.length) return null;
+  const det = el("details", { class: "code" }), sum = el("summary", {}, "Код программы (JavaScript): так этот метод реализован на странице");
+  det.appendChild(sum);
+  det.appendChild(el("p", { class: "codenote" }, "Это тот самый код, который выполняется в браузере: он показан автоматически, поэтому не расходится с расчётом."));
+  items.forEach(([title, fn]) => {
+    const text = dedent(fn.toString()), box = el("div", { class: "codebox" }), bar = el("div", { class: "codebar" }, `<span>${title}</span>`), btn = el("button", { type: "button", class: "btn copy" }, "Копировать");
+    btn.addEventListener("click", () => { if (navigator.clipboard) navigator.clipboard.writeText(text).then(() => { btn.textContent = "Скопировано"; setTimeout(() => btn.textContent = "Копировать", 1500); }); });
+    bar.appendChild(btn); box.appendChild(bar); box.appendChild(el("pre", {}, `<code>${highlightJS(text)}</code>`)); det.appendChild(box);
+  });
+  return det;
+}
 
 function el(tag, attrs = {}, html = "") { const e = document.createElement(tag); for (const k in attrs) { if (k === "class") e.className = attrs[k]; else e.setAttribute(k, attrs[k]); } if (html) e.innerHTML = html; return e; }
 
@@ -1076,6 +1186,7 @@ function buildPanel(m) {
   const plots = el("div", { class: "plots" }); const canvases = [];
   (m.canv || []).forEach((cap, i) => { const card = el("figure", { class: "card" }); const cv = el("canvas"); cv.className = (SQ[m.id] || []).includes(i) ? "sq" : "wide"; card.appendChild(cv); card.appendChild(el("figcaption", {}, cap)); plots.appendChild(card); canvases.push(cv); });
   root.appendChild(plots);
+  const codeBlock = buildCode(m); if (codeBlock) root.appendChild(codeBlock);
   const api = { m, vals, root, status, tbl, note, canvases, last: null, timer: null, dirty: false, btnRun };
   function schedule(force) {
     if (m.heavy && !force) { status.textContent = "Параметры изменены — нажмите «Рассчитать»."; status.classList.add("warn"); return; }
