@@ -72,10 +72,11 @@ canvas.wide { aspect-ratio:4/3; } canvas.sq { aspect-ratio:1/1; }
 figcaption { font-size:12.5px; color:var(--muted); margin-top:4px; text-align:center; }
 footer { max-width:1100px; margin:0 auto; padding:0 16px 30px; color:var(--muted); font-size:13px; }
 footer p { max-width:90ch; margin:6px 0; }
+.backlink { display:inline-block; margin-top:14px; padding:6px 14px; border-radius:6px; background:var(--panel); color:var(--fg); border:1px solid var(--line); font-size:13px; text-decoration:none; }
+.backlink:hover { border-color:var(--accent); }
 </style>
 </head>
 <body>
-<a href="{{ '/' | relative_url }}" style="position:fixed;top:8px;left:8px;z-index:1000;padding:4px 10px;border-radius:6px;background:var(--panel);color:var(--fg);border:1px solid var(--line);font:13px/1.4 system-ui,sans-serif;text-decoration:none">← Профиль</a>
 <header>
   <div class="titlerow">
     <h1>Распределения потенциала и напряженности поля в различных системах</h1>
@@ -88,6 +89,7 @@ footer p { max-width:90ch; margin:6px 0; }
 <footer>
   <p>Рассмотренные задачи взяты из главы 6 сборника «Задачи по физике» (под ред. О. Я. Савченко, 1981) или составлены автором пособия (суперпозиция, метод изображений). Схема «крест» на сетке решается методом сопряжённых градиентов; радиальные задачи — прогонкой; метод фиктивных зарядов — МНК через QR-разложение; граничные элементы — разложением Холецкого.</p>
   
+  <a class="backlink" href="{{ '/' | relative_url }}">← Профиль</a>
 </footer>
 <script>
 // ======================= ЯДРО: численные модели (чистые функции, без DOM) =======================
