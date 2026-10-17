@@ -196,3 +196,17 @@ footer .copy{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-si
 .student-card .yr{font-size:.82rem;font-weight:600;color:var(--blue);margin-bottom:6px}
 .student-card p{margin:0 0 4px;font-size:.92rem}
 .student-card .sup{color:var(--muted);font-size:.86rem}
+
+.year-h{margin:28px 0 14px;font:600 1.15rem var(--serif,inherit);color:var(--blue)}
+.courses{margin-bottom:8px}
+.course{display:flex;flex-direction:column;gap:10px}
+.course h3{margin:0}
+.course-docs{margin:0;font-size:.9rem;color:var(--muted)}
+.materials{border-top:1px solid var(--line);padding-top:10px;margin-top:auto}
+.materials summary{cursor:pointer;font-weight:600;font-size:.92rem}
+.materials .cnt{color:var(--muted);font-weight:500}
+.mat-empty{margin:10px 0 0;color:var(--muted);font-size:.9rem}
+.mat-list{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.mat-list li{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;font-size:.92rem}
+.mat-list .ico{flex:none;min-width:38px;text-align:center;font:700 .68rem var(--sans,inherit);padding:3px 6px;border-radius:6px;background:var(--blue);color:#fff}
+.mat-date,.mat-note{color:var(--muted);font-size:.82rem}
