@@ -25,7 +25,7 @@
     var state={area:'all',level:'all'};
     var cards=[].slice.call(box.querySelectorAll('.topic')),empty=document.getElementById('empty');
     function apply(){var n=0;cards.forEach(function(c){
-      var ok=(state.area==='all'||c.dataset.area===state.area)&&(state.level==='all'||c.dataset.level.split(' ').indexOf(state.level)>-1);
+      var ok=(state.area==='all'||c.dataset.area===state.area)&&(state.level==='all'||!c.dataset.level||c.dataset.level.split(' ').indexOf(state.level)>-1);
       c.hidden=!ok;if(ok)n++});empty.style.display=n?'none':'block'}
     document.querySelectorAll('.chip').forEach(function(ch){ch.addEventListener('click',function(){
       var g=ch.dataset.group;state[g]=ch.dataset.val;
