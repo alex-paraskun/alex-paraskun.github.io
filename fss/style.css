@@ -228,3 +228,9 @@ footer .copy{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-si
 .event .date b{overflow-wrap:anywhere}
 .event .date.word b{font-size:.82rem;letter-spacing:0}
 .event > .news-img{grid-column:1/-1;max-width:760px;margin-top:0}
+
+.news-row{display:flex;gap:28px;align-items:flex-start}
+.news-text{flex:1;min-width:0}
+.news-row .news-img{flex:none;width:300px;max-width:42%;margin:0;padding:6px;box-sizing:border-box;background:var(--card,#fff);border:1px solid var(--line);border-radius:18px;box-shadow:0 6px 18px rgba(10,35,66,.12);object-fit:contain}
+@media(max-width:700px){.news-row{flex-direction:column;gap:16px}.news-row .news-img{width:100%;max-width:420px}}
+@media(max-width:700px){.event:has(.news-row){grid-template-columns:1fr;gap:14px}.event:has(.news-row) .date{width:92px}}
