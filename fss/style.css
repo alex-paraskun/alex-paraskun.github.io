@@ -210,3 +210,9 @@ footer .copy{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-si
 .mat-list li{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;font-size:.92rem}
 .mat-list .ico{flex:none;min-width:38px;text-align:center;font:700 .68rem var(--sans,inherit);padding:3px 6px;border-radius:6px;background:var(--blue);color:#fff}
 .mat-date,.mat-note{color:var(--muted);font-size:.82rem}
+.topic ul.tl{margin:0 0 10px;padding-left:18px;font-size:.93rem}
+.topic ul.tl li{margin-bottom:4px}
+.topic p{font-size:.93rem}
+.topic .meta a{word-break:break-all}
+.topic .body{font-size:.93rem;color:var(--muted);margin:0 0 10px;line-height:1.55}
+.topic .body b{color:var(--ink)}
