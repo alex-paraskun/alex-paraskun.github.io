@@ -187,3 +187,12 @@ footer .copy{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-si
 .rv{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+.students-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.students-list .note{grid-column:1/-1}
+.student-card{display:flex;gap:16px;align-items:flex-start}
+.student-card .av{flex:none;width:52px;height:52px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font:600 1rem var(--sans)}
+.student-card h3{margin:0 0 4px}
+.student-card .yr{font-size:.82rem;font-weight:600;color:var(--blue);margin-bottom:6px}
+.student-card p{margin:0 0 4px;font-size:.92rem}
+.student-card .sup{color:var(--muted);font-size:.86rem}
