@@ -227,3 +227,4 @@ footer .copy{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-si
 .news-img{display:block;width:100%;max-width:520px;height:auto;margin-top:14px;border-radius:12px;box-shadow:0 6px 18px rgba(10,35,66,.14);cursor:zoom-in}
 .event .date b{overflow-wrap:anywhere}
 .event .date.word b{font-size:.82rem;letter-spacing:0}
+.event > .news-img{grid-column:1/-1;max-width:760px;margin-top:0}
