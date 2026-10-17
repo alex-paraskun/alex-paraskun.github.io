@@ -216,3 +216,10 @@ footer .copy{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-si
 .topic .meta a{word-break:break-all}
 .topic .body{font-size:.93rem;color:var(--muted);margin:0 0 10px;line-height:1.55}
 .topic .body b{color:var(--ink)}
+
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.gallery figure{margin:0}
+.gallery .g-main{grid-column:1/-1}
+.gallery img{display:block;width:100%;height:auto;border-radius:var(--radius);box-shadow:var(--shadow);aspect-ratio:16/9;object-fit:cover}
+.gallery figcaption{margin-top:8px;font-size:.9rem;color:var(--muted)}
+@media(max-width:640px){.gallery{grid-template-columns:1fr}}
