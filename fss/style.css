@@ -150,6 +150,7 @@ a.card{display:block;color:inherit;text-decoration:none}
 .topic{display:flex;flex-direction:column}
 .topic .meta{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);font-size:.86rem;color:var(--muted);display:flex;flex-direction:column;gap:6px}
 .topic[hidden]{display:none}
+.topic-img{display:block;width:calc(100% + 52px);max-width:none;height:auto;aspect-ratio:400/180;margin:-26px -26px 18px;border-radius:var(--radius) var(--radius) 0 0;object-fit:cover}
 .empty{display:none;text-align:center;color:var(--muted);padding:30px}
 
 /* events */
