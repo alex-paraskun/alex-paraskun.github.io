@@ -35,7 +35,7 @@
   }
 
   // просмотр фотографий галереи в полном размере
-  document.querySelectorAll('.gallery img').forEach(function(im){
+  document.querySelectorAll('.gallery img, .news-img').forEach(function(im){
     im.addEventListener('click',function(){
       var o=document.createElement('div');o.className='lightbox';
       var big=document.createElement('img');big.src=im.src;big.alt=im.alt;o.appendChild(big);
