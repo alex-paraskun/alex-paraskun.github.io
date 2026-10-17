@@ -33,4 +33,15 @@
     // поиск по хэшу: topics.html#gasdyn
     var h=location.hash.slice(1);if(h){var c=document.querySelector('.chip[data-val="'+h+'"]');if(c)c.click()}
   }
+
+  // просмотр фотографий галереи в полном размере
+  document.querySelectorAll('.gallery img').forEach(function(im){
+    im.addEventListener('click',function(){
+      var o=document.createElement('div');o.className='lightbox';
+      var big=document.createElement('img');big.src=im.src;big.alt=im.alt;o.appendChild(big);
+      function close(){o.remove();document.removeEventListener('keydown',key)}
+      function key(e){if(e.key==='Escape')close()}
+      o.addEventListener('click',close);document.addEventListener('keydown',key);document.body.appendChild(o);
+    });
+  });
 })();
