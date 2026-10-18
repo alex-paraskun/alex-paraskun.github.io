@@ -28,6 +28,14 @@ courses:
       ru: Учебно-методическое пособие, СУНЦ НГУ, 2026 (36 с.)
       en: Textbook, SESC NSU, 2026 (36 pp.)
   - title:
+      ru: Основные законы магнетизма. Электромагнитная индукция
+      en: Basic laws of magnetism. Electromagnetic induction
+    href: files/teaching/physics/magnetism-induction.pdf
+    type: pdf
+    note:
+      ru: Учебно-методическое пособие, СУНЦ НГУ, 2026 (34 с.). Параскун А. Г., Котельникова М. С., Чигарев М. П.
+      en: Textbook, SESC NSU, 2026 (34 pp.). Paraskun A. G., Kotelnikova M. S., Chigarev M. P.
+  - title:
       ru: Электростатика на компьютере — 16 интерактивных моделей
       en: Electrostatics on the computer — 16 interactive models
     href: electrostatics.html
