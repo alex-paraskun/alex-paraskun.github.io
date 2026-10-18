@@ -1,22 +1,30 @@
 # Материалы по преподавательской деятельности. Правьте здесь — GitHub Pages пересоберёт сайт сам.
 #
 # Как добавить материал к курсу:
-#  1) положите файл в files/teaching/<код-курса>/  (например files/teaching/em/lecture-01.pdf)
+#  1) положите файл в files/teaching/<код-курса>/  (например files/teaching/physics/lecture-01.pdf)
 #  2) допишите блок в список materials нужного курса:
 #       - title: {ru: "Лекция 1. Электростатика", en: "Lecture 1. Electrostatics"}
-#         href: files/teaching/em/lecture-01.pdf      # путь к файлу (без / в начале) или внешняя ссылка https://...
+#         href: files/teaching/physics/lecture-01.pdf      # путь к файлу (без / в начале) или внешняя ссылка https://...
 #         type: pdf                                    # pdf | slides | code | data | video | web | link
 #         note: {ru: "2025-2026", en: "2025-2026"}     # необязательно
 #
 courses:
-- id: em
+- id: physics
   title:
-    ru: Физика (Электричество и магнетизм), СУНЦ НГУ
-    en: Physics (Electricity and Magnetism), SESC NSU
+    ru: Физика, СУНЦ НГУ
+    en: Physics, SESC NSU
   term:
     ru: 2025-2026, 1-2 семестры
     en: 2025-2026, Semester I and II
   materials:
+  - title:
+      ru: Обработка и анализ результатов физических измерений
+      en: Processing and analysis of physical measurement results
+    href: files/teaching/physics/measurement-analysis.pdf
+    type: pdf
+    note:
+      ru: Учебно-методическое пособие, СУНЦ НГУ, 2026 (36 с.)
+      en: Textbook, SESC NSU, 2026 (36 pp.)
   - title:
       ru: Электростатика на компьютере — 16 интерактивных моделей
       en: Electrostatics on the computer — 16 interactive models
