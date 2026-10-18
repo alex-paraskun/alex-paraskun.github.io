@@ -109,6 +109,10 @@ courses:
         note:
           ru: Конспект семинара по математике
           en: Seminar notes in mathematics
+    - title:
+        ru: Математический анализ
+        en: Mathematical Analysis
+      materials:
       - title:
           ru: "Семинар №9. Функции и предел функции"
           en: "Seminar 9. Functions and the limit of a function"
@@ -117,10 +121,6 @@ courses:
         note:
           ru: Конспект семинара по математике
           en: Seminar notes in mathematics
-    - title:
-        ru: Математический анализ
-        en: Mathematical Analysis
-      materials:
       - title:
           ru: "Семинар №10. Пределы. Замечательные пределы"
           en: "Seminar 10. Limits. The remarkable limits"
