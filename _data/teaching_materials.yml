@@ -1,0 +1,63 @@
+# Материалы по преподавательской деятельности. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+#
+# Как добавить материал к курсу:
+#  1) положите файл в files/teaching/<код-курса>/  (например files/teaching/em/lecture-01.pdf)
+#  2) допишите блок в список materials нужного курса:
+#       - title: {ru: "Лекция 1. Электростатика", en: "Lecture 1. Electrostatics"}
+#         href: files/teaching/em/lecture-01.pdf      # путь к файлу (без / в начале) или внешняя ссылка https://...
+#         type: pdf                                    # pdf | slides | code | data | video | web | link
+#         note: {ru: "2025-2026", en: "2025-2026"}     # необязательно
+#
+courses:
+- id: em
+  title:
+    ru: Физика (Электричество и магнетизм), СУНЦ НГУ
+    en: Physics (Electricity and Magnetism), SESC NSU
+  term:
+    ru: 2025-2026, 1-2 семестры
+    en: 2025-2026, Semester I and II
+  materials:
+  - title:
+      ru: Электростатика на компьютере — 16 интерактивных моделей
+      en: Electrostatics on the computer — 16 interactive models
+    href: electrostatics.html
+    type: web
+    note:
+      ru: Модели из учебного пособия «Численные методы решения задач электростатики», с кодом на Python
+      en: Models from the textbook "Numerical methods for electrostatics problems", with Python code
+
+- id: lab
+  title:
+    ru: Лабораторный практикум, кафедра физики СУНЦ НГУ
+    en: Physics lab (Mechanics; Electromagnetism and Optics; Thermodynamics), SESC NSU
+  term:
+    ru: 2024-2025, 2025-2026, 1-2 семестры
+    en: 2024-2025, 2025-2026, Semester I and II
+  materials: []
+
+- id: calc
+  title:
+    ru: Математический анализ, НГУ
+    en: Mathematical Analysis, NSU
+  term:
+    ru: 2025-2026, 1-2 семестры
+    en: 2025-2026, Semester I and II
+  materials: []
+
+- id: projects
+  title:
+    ru: Курс «Проектная деятельность в физике», СУНЦ НГУ
+    en: Course "Research Projects in Physics", SESC NSU
+  term:
+    ru: 2026-2027, 1 семестр
+    en: 2026-2027, Semester I
+  materials: []
+
+- id: med-math
+  title:
+    ru: Математика для студентов-медиков, НГУ
+    en: Mathematics for Medical Students, NSU
+  term:
+    ru: 2026-2027, 1 семестр
+    en: 2026-2027, Semester I
+  materials: []

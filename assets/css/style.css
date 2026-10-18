@@ -208,3 +208,20 @@ footer a{color:var(--arc);text-decoration:none;font-family:"IBM Plex Mono",monos
   .teach-wrap{grid-template-columns:1fr}
   .teach-photos{position:static}
 }
+
+/* страница материалов к курсам */
+#tm-list{display:flex;flex-direction:column;gap:22px}
+.tm-course{background:#fff;border:1px solid var(--line,#d9e2e7);border-radius:14px;padding:26px 30px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:26px 40px;box-shadow:0 6px 22px rgba(10,35,66,.06)}
+.tm-head h2{font-size:1.35rem;margin:8px 0 8px;line-height:1.2}
+.tm-term{color:var(--muted);font-size:.95rem}
+.tm-files .flabel{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--arc-deep);margin-bottom:10px}
+.tm-files a{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--graphite);padding:11px 0;border-top:1px solid var(--line,#d9e2e7)}
+.tm-files a:first-of-type{border-top:0}
+.tm-files a:hover{color:var(--arc-deep)}
+.tm-ic{flex:none;min-width:42px;text-align:center;font:600 .68rem "IBM Plex Mono",monospace;padding:4px 6px;border-radius:6px;background:var(--arc-deep,#0e8aa3);color:#fff}
+.tm-t{flex:1;display:flex;flex-direction:column;gap:2px;font-weight:500}
+.tm-note{font-weight:400;font-size:.88rem;color:var(--muted)}
+.tm-files .ar{opacity:.6}
+.tm-empty{margin:0;color:var(--muted);font-size:.95rem;align-self:center}
+@media(max-width:800px){.tm-course{grid-template-columns:1fr;padding:22px 20px}}
+.tools{flex-wrap:wrap}
