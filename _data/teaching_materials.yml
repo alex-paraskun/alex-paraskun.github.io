@@ -13,9 +13,6 @@ courses:
   title:
     ru: Физика, СУНЦ НГУ
     en: Physics, SESC NSU
-  term:
-    ru: 2025-2026, 1-2 семестры
-    en: 2025-2026, Semester I and II
   materials:
   - title:
       ru: Обработка и анализ результатов физических измерений
@@ -38,9 +35,6 @@ courses:
   title:
     ru: Математика для студентов-медиков, НГУ
     en: Mathematics for Medical Students, NSU
-  term:
-    ru: 2026-2027, 1 семестр
-    en: 2026-2027, Semester I
   materials:
   - title:
       ru: "Семинар №1. Комплексные числа"
