@@ -114,3 +114,27 @@ courses:
     note:
       ru: Конспект семинара по математике
       en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №11. Бесконечно малые и бесконечно большие величины. Сравнение. Эквивалентные величины"
+      en: "Seminar 11. Infinitesimal and infinite quantities. Comparison. Equivalent quantities"
+    href: files/teaching/med-math/seminar-11.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №12. Непрерывность функций"
+      en: "Seminar 12. Continuity of functions"
+    href: files/teaching/med-math/seminar-12.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №13. Дифференциальное исчисление: производные, таблица дифференциалов"
+      en: "Seminar 13. Differential calculus: derivatives, table of differentials"
+    href: files/teaching/med-math/seminar-13.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
