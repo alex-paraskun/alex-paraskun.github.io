@@ -26,33 +26,6 @@ courses:
       ru: Модели из учебного пособия «Численные методы решения задач электростатики», с кодом на Python
       en: Models from the textbook "Numerical methods for electrostatics problems", with Python code
 
-- id: lab
-  title:
-    ru: Лабораторный практикум, кафедра физики СУНЦ НГУ
-    en: Physics lab (Mechanics; Electromagnetism and Optics; Thermodynamics), SESC NSU
-  term:
-    ru: 2024-2025, 2025-2026, 1-2 семестры
-    en: 2024-2025, 2025-2026, Semester I and II
-  materials: []
-
-- id: calc
-  title:
-    ru: Математический анализ, НГУ
-    en: Mathematical Analysis, NSU
-  term:
-    ru: 2025-2026, 1-2 семестры
-    en: 2025-2026, Semester I and II
-  materials: []
-
-- id: projects
-  title:
-    ru: Курс «Проектная деятельность в физике», СУНЦ НГУ
-    en: Course "Research Projects in Physics", SESC NSU
-  term:
-    ru: 2026-2027, 1 семестр
-    en: 2026-2027, Semester I
-  materials: []
-
 - id: med-math
   title:
     ru: Математика для студентов-медиков, НГУ
@@ -60,4 +33,44 @@ courses:
   term:
     ru: 2026-2027, 1 семестр
     en: 2026-2027, Semester I
-  materials: []
+  materials:
+  - title:
+      ru: "Семинар №1. Комплексные числа"
+      en: "Seminar 1. Complex numbers"
+    href: files/teaching/med-math/seminar-01.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №2. Многочлены"
+      en: "Seminar 2. Polynomials"
+    href: files/teaching/med-math/seminar-02.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №3. Матрицы: действия и определители"
+      en: "Seminar 3. Matrices: operations and determinants"
+    href: files/teaching/med-math/seminar-03.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №4. Обратная матрица"
+      en: "Seminar 4. The inverse matrix"
+    href: files/teaching/med-math/seminar-04.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №5. n-мерные векторные пространства"
+      en: "Seminar 5. n-dimensional vector spaces"
+    href: files/teaching/med-math/seminar-05.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
