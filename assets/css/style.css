@@ -225,3 +225,14 @@ footer a{color:var(--arc);text-decoration:none;font-family:"IBM Plex Mono",monos
 .tm-empty{margin:0;color:var(--muted);font-size:.95rem;align-self:center}
 @media(max-width:800px){.tm-course{grid-template-columns:1fr;padding:22px 20px}}
 .tools{flex-wrap:wrap}
+
+.tm-groups{display:flex;flex-direction:column;gap:12px}
+.tm-group{border:1px solid var(--line,#d9e2e7);border-radius:12px;background:#fbfcfd;overflow:hidden}
+.tm-group summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;cursor:pointer;font-weight:600;list-style:none}
+.tm-group summary::-webkit-details-marker{display:none}
+.tm-group summary::before{content:"▸";margin-right:10px;color:var(--arc-deep,#0e8aa3);transition:transform .2s}
+.tm-group[open] summary::before{transform:rotate(90deg)}
+.tm-group .tm-gt{flex:1}
+.tm-cnt{flex:none;font:600 .78rem "IBM Plex Mono",monospace;padding:2px 9px;border-radius:999px;background:var(--arc-deep,#0e8aa3);color:#fff}
+.tm-group .tm-files{padding:0 18px 8px}
+.tm-group .tm-files a:first-of-type{border-top:1px solid var(--line,#d9e2e7)}

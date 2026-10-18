@@ -8,6 +8,11 @@
 #         type: pdf                                    # pdf | slides | code | data | video | web | link
 #         note: {ru: "2025-2026", en: "2025-2026"}     # необязательно
 #
+#  Если материалов много, их можно собрать в разворачивающиеся блоки: вместо materials укажите
+#     groups:
+#     - title: {ru: "Алгебра", en: "Algebra"}
+#       materials: [ ...те же записи... ]
+#
 courses:
 - id: physics
   title:
@@ -35,108 +40,116 @@ courses:
   title:
     ru: Математика для студентов-медиков, НГУ
     en: Mathematics for Medical Students, NSU
-  materials:
-  - title:
-      ru: "Семинар №1. Комплексные числа"
-      en: "Seminar 1. Complex numbers"
-    href: files/teaching/med-math/seminar-01.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №2. Многочлены"
-      en: "Seminar 2. Polynomials"
-    href: files/teaching/med-math/seminar-02.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №3. Матрицы: действия и определители"
-      en: "Seminar 3. Matrices: operations and determinants"
-    href: files/teaching/med-math/seminar-03.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №4. Обратная матрица"
-      en: "Seminar 4. The inverse matrix"
-    href: files/teaching/med-math/seminar-04.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №5. n-мерные векторные пространства"
-      en: "Seminar 5. n-dimensional vector spaces"
-    href: files/teaching/med-math/seminar-05.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №6. Скалярное и векторное произведения"
-      en: "Seminar 6. Dot and cross products"
-    href: files/teaching/med-math/seminar-06.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №7. Системы линейных уравнений"
-      en: "Seminar 7. Systems of linear equations"
-    href: files/teaching/med-math/seminar-07.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №8. Собственные числа и собственные векторы"
-      en: "Seminar 8. Eigenvalues and eigenvectors"
-    href: files/teaching/med-math/seminar-08.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №9. Функции и предел функции"
-      en: "Seminar 9. Functions and the limit of a function"
-    href: files/teaching/med-math/seminar-09.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №10. Пределы. Замечательные пределы"
-      en: "Seminar 10. Limits. The remarkable limits"
-    href: files/teaching/med-math/seminar-10.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №11. Бесконечно малые и бесконечно большие величины. Сравнение. Эквивалентные величины"
-      en: "Seminar 11. Infinitesimal and infinite quantities. Comparison. Equivalent quantities"
-    href: files/teaching/med-math/seminar-11.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №12. Непрерывность функций"
-      en: "Seminar 12. Continuity of functions"
-    href: files/teaching/med-math/seminar-12.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
-  - title:
-      ru: "Семинар №13. Дифференциальное исчисление: производные, таблица дифференциалов"
-      en: "Seminar 13. Differential calculus: derivatives, table of differentials"
-    href: files/teaching/med-math/seminar-13.pdf
-    type: pdf
-    note:
-      ru: Конспект семинара по математике
-      en: Seminar notes in mathematics
+  groups:
+    - title:
+        ru: Алгебра
+        en: Algebra
+      materials:
+      - title:
+          ru: "Семинар №1. Комплексные числа"
+          en: "Seminar 1. Complex numbers"
+        href: files/teaching/med-math/seminar-01.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №2. Многочлены"
+          en: "Seminar 2. Polynomials"
+        href: files/teaching/med-math/seminar-02.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №3. Матрицы: действия и определители"
+          en: "Seminar 3. Matrices: operations and determinants"
+        href: files/teaching/med-math/seminar-03.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №4. Обратная матрица"
+          en: "Seminar 4. The inverse matrix"
+        href: files/teaching/med-math/seminar-04.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №5. n-мерные векторные пространства"
+          en: "Seminar 5. n-dimensional vector spaces"
+        href: files/teaching/med-math/seminar-05.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №6. Скалярное и векторное произведения"
+          en: "Seminar 6. Dot and cross products"
+        href: files/teaching/med-math/seminar-06.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №7. Системы линейных уравнений"
+          en: "Seminar 7. Systems of linear equations"
+        href: files/teaching/med-math/seminar-07.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №8. Собственные числа и собственные векторы"
+          en: "Seminar 8. Eigenvalues and eigenvectors"
+        href: files/teaching/med-math/seminar-08.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №9. Функции и предел функции"
+          en: "Seminar 9. Functions and the limit of a function"
+        href: files/teaching/med-math/seminar-09.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+    - title:
+        ru: Математический анализ
+        en: Mathematical Analysis
+      materials:
+      - title:
+          ru: "Семинар №10. Пределы. Замечательные пределы"
+          en: "Seminar 10. Limits. The remarkable limits"
+        href: files/teaching/med-math/seminar-10.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №11. Бесконечно малые и бесконечно большие величины. Сравнение. Эквивалентные величины"
+          en: "Seminar 11. Infinitesimal and infinite quantities. Comparison. Equivalent quantities"
+        href: files/teaching/med-math/seminar-11.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №12. Непрерывность функций"
+          en: "Seminar 12. Continuity of functions"
+        href: files/teaching/med-math/seminar-12.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №13. Дифференциальное исчисление: производные, таблица дифференциалов"
+          en: "Seminar 13. Differential calculus: derivatives, table of differentials"
+        href: files/teaching/med-math/seminar-13.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
