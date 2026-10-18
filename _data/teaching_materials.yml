@@ -74,3 +74,43 @@ courses:
     note:
       ru: Конспект семинара по математике
       en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №6. Скалярное и векторное произведения"
+      en: "Seminar 6. Dot and cross products"
+    href: files/teaching/med-math/seminar-06.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №7. Системы линейных уравнений"
+      en: "Seminar 7. Systems of linear equations"
+    href: files/teaching/med-math/seminar-07.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №8. Собственные числа и собственные векторы"
+      en: "Seminar 8. Eigenvalues and eigenvectors"
+    href: files/teaching/med-math/seminar-08.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №9. Функции и предел функции"
+      en: "Seminar 9. Functions and the limit of a function"
+    href: files/teaching/med-math/seminar-09.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
+  - title:
+      ru: "Семинар №10. Пределы. Замечательные пределы"
+      en: "Seminar 10. Limits. The remarkable limits"
+    href: files/teaching/med-math/seminar-10.pdf
+    type: pdf
+    note:
+      ru: Конспект семинара по математике
+      en: Seminar notes in mathematics
