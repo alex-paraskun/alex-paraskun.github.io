@@ -251,3 +251,8 @@ footer .copy{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-si
 .src{margin:28px 0 0;font-size:.84rem;color:var(--muted)}
 .card.ach p,.head-card p{line-height:1.55}
 .split .card > p + p{margin-top:12px}
+/* рамки портретов: музейная двойная рамка с золотым кантом */
+.head-card .frame{position:relative;width:230px;padding:12px;background:#fff;border:2px solid var(--ink,#16202c);border-radius:3px;box-shadow:0 0 0 5px #f3efe4,0 0 0 6px #b8923a,0 16px 30px rgba(10,35,66,.22)}
+.head-card .frame::after{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.7);pointer-events:none}
+.head-card .frame img{border-radius:0;aspect-ratio:4/5}
+.head-card .frame{margin-bottom:26px}
