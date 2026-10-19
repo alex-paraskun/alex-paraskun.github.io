@@ -49,13 +49,21 @@ courses:
       en: Research projects
     materials:
     - title:
-        ru: Основы проектной деятельности в физике
-        en: Fundamentals of research projects in physics
+        ru: Структура проектной деятельности
+        en: Structure of a research project
       href: files/teaching/physics/project-basics.pdf
       type: pdf
       note:
-        ru: "Семинар: структура проектной деятельности, мини-исследование «Период качания маятника»"
-        en: "Seminar: structure of a research project, mini-study \"Period of a pendulum\""
+        ru: "Основы проектной деятельности в физике. Мини-исследование «Период качания маятника»"
+        en: "Fundamentals of research projects in physics. Mini-study \"Period of a pendulum\""
+    - title:
+        ru: Поиск литературы и работа с источниками
+        en: Literature search and working with sources
+      href: files/teaching/physics/project-literature.pdf
+      type: pdf
+      note:
+        ru: "Основы проектной деятельности в физике. Занятия 3–4 (12 с.)"
+        en: "Fundamentals of research projects in physics. Sessions 3–4 (12 pp.)"
 
 - id: med-math
   title:
