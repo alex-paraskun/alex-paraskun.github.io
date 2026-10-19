@@ -36,16 +36,13 @@ function render() {
   var fn = $('#foot-name'); if (fn) fn.textContent = name;
   var list = (DATA.TEACHING_MATERIALS && DATA.TEACHING_MATERIALS.courses) || [];
   $('#tm-list').innerHTML = list.map(function (c, i) {
-    var body;
-    if (c.groups && c.groups.length) {
-      body = '<div class="tm-groups">' + c.groups.map(function (g) {
-        var list = (g.materials || []).map(matHTML).join('');
-        return '<details class="tm-group"><summary><span class="tm-gt">' + g.title[LANG] + '</span><span class="tm-cnt">' + (g.materials || []).length + '</span></summary><div class="tm-files">' + list + '</div></details>';
-      }).join('') + '</div>';
-    } else {
-      var mats = (c.materials || []).map(matHTML).join('');
-      body = mats ? '<div class="tm-files"><div class="flabel">' + T.materials + '</div>' + mats + '</div>' : '<p class="tm-empty">' + T.empty + '</p>';
-    }
+    var mats = (c.materials || []).map(matHTML).join('');
+    var flat = mats ? '<div class="tm-files"><div class="flabel">' + T.materials + '</div>' + mats + '</div>' : '';
+    var grp = (c.groups && c.groups.length) ? '<div class="tm-groups">' + c.groups.map(function (g) {
+      var list = (g.materials || []).map(matHTML).join('');
+      return '<details class="tm-group"><summary><span class="tm-gt">' + g.title[LANG] + '</span><span class="tm-cnt">' + (g.materials || []).length + '</span></summary><div class="tm-files">' + list + '</div></details>';
+    }).join('') + '</div>' : '';
+    var body = (flat || grp) ? '<div class="tm-body">' + flat + grp + '</div>' : '<p class="tm-empty">' + T.empty + '</p>';
     return '<article class="tm-course" id="' + (c.id || '') + '"><div class="tm-head"><div class="proj-idx">' + String(i + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0') + '</div>' +
       '<h2>' + c.title[LANG] + '</h2>' + (c.term ? '<div class="tm-term">' + c.term[LANG] + '</div>' : '') + '</div>' + body + '</article>';
   }).join('');

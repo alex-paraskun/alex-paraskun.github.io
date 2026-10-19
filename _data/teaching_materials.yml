@@ -43,6 +43,19 @@ courses:
     note:
       ru: Модели из учебного пособия «Численные методы решения задач электростатики», с кодом на Python
       en: Models from the textbook "Numerical methods for electrostatics problems", with Python code
+  groups:
+  - title:
+      ru: Проектная деятельность
+      en: Research projects
+    materials:
+    - title:
+        ru: Основы проектной деятельности в физике
+        en: Fundamentals of research projects in physics
+      href: files/teaching/physics/project-basics.pdf
+      type: pdf
+      note:
+        ru: "Семинар: структура проектной деятельности, мини-исследование «Период качания маятника»"
+        en: "Seminar: structure of a research project, mini-study \"Period of a pendulum\""
 
 - id: med-math
   title:
