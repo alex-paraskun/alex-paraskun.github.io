@@ -26,7 +26,7 @@ function matHTML(m) {
   var href = safeHref(m.href); if (!href) return '';
   var ext = /^https?:/i.test(href) ? ' target="_blank" rel="noopener"' : '';
   var note = (m.note && m.note[LANG]) ? '<span class="tm-note">' + m.note[LANG] + '</span>' : '';
-  return '<a href="' + href + '"' + ext + '><span class="tm-ic">' + (TYPE_ICON[m.type] || 'FILE') + '</span><span class="tm-t"><span>' + m.title[LANG] + '</span>' + note + '</span><span class="ar">→</span></a>';
+  return '<a href="' + href + '"' + ext + '><span class="tm-ic tm-ic-' + (TYPE_ICON[m.type] ? m.type : 'file') + '">' + (TYPE_ICON[m.type] || 'FILE') + '</span><span class="tm-t"><span>' + m.title[LANG] + '</span>' + note + '</span><span class="ar">→</span></a>';
 }
 function render() {
   var T = I18N[LANG];

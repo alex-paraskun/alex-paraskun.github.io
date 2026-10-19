@@ -236,3 +236,5 @@ footer a{color:var(--arc);text-decoration:none;font-family:"IBM Plex Mono",monos
 .tm-cnt{flex:none;font:600 .78rem "IBM Plex Mono",monospace;padding:2px 9px;border-radius:999px;background:var(--arc-deep,#0e8aa3);color:#fff}
 .tm-group .tm-files{padding:0 18px 8px}
 .tm-group .tm-files a:first-of-type{border-top:1px solid var(--line,#d9e2e7)}
+.tm-ic.tm-ic-pdf{background:#d93025}
+.tm-files a:hover .tm-ic.tm-ic-pdf{background:#b3261e}
