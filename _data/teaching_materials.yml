@@ -36,8 +36,8 @@ courses:
       ru: Учебно-методическое пособие, СУНЦ НГУ, 2026 (34 с.). Параскун А. Г., Котельникова М. С., Чигарев М. П.
       en: Textbook, SESC NSU, 2026 (34 pp.). Paraskun A. G., Kotelnikova M. S., Chigarev M. P.
   - title:
-      ru: Электростатика на компьютере — 16 интерактивных моделей
-      en: Electrostatics on the computer — 16 interactive models
+      ru: Электростатика на компьютере
+      en: Electrostatics on the computer
     href: electrostatics.html
     type: web
     note:
