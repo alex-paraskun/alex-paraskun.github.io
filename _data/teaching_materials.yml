@@ -182,3 +182,11 @@ courses:
         note:
           ru: Конспект семинара по математике
           en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №14. Практикум: производные и дифференциалы"
+          en: "Seminar 14. Practice: derivatives and differentials"
+        href: files/teaching/med-math/seminar-14.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
