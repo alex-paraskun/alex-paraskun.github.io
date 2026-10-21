@@ -5,7 +5,7 @@ var I18N = {
     edu_h: 'Образование', qual_h: 'Квалификационные работы', aff_h: 'Аффилиации',
     art_h: 'Статьи в журналах', proc_h: 'Статьи в сборниках', abs_h: 'Тезисы докладов', book_h: 'Книги',
     conf_h: 'Доклады на конференциях', misc_h: 'Выступления в СМИ', teach_h: 'Преподавание курсов',
-    awards_h: 'Награды и членства', award_label: 'Награда', membership_label: 'Членство',
+    awards_h: 'Награды и членства', patents_h: 'Патенты', pat_show: 'Показать свидетельство', pat_hide: 'Скрыть свидетельство', pat_open: 'Открыть в полном размере', pat_no: '№', pat_app: 'Заявка', pat_filed: 'поступила', pat_reg: 'Дата регистрации', pat_holder: 'Правообладатель', pat_authors: 'Автор', award_label: 'Награда', membership_label: 'Членство',
     activity_h: 'Деятельность', rev_h: 'Экспертные заключения', abs_show: 'Аннотация', abs_hide: 'Свернуть',
     foot_org: 'Институт гидродинамики им. М. А. Лаврентьева СО РАН · НГУ',
     foot_note: 'Данные профиля по состоянию на 2026 г.',
@@ -18,7 +18,7 @@ var I18N = {
     edu_h: 'Education', qual_h: 'Qualification works', aff_h: 'Affiliations',
     art_h: 'Journal articles', proc_h: 'Proceedings papers', abs_h: 'Conference abstracts', book_h: 'Books',
     conf_h: 'Conference reports', misc_h: 'Media appearances', teach_h: 'Teaching',
-    awards_h: 'Awards & memberships', award_label: 'Award', membership_label: 'Membership',
+    awards_h: 'Awards & memberships', patents_h: 'Patents', pat_show: 'Show certificate', pat_hide: 'Hide certificate', pat_open: 'Open full size', pat_no: 'No.', pat_app: 'Application', pat_filed: 'filed', pat_reg: 'Registered', pat_holder: 'Holder', pat_authors: 'Author', award_label: 'Award', membership_label: 'Membership',
     activity_h: 'Activity', rev_h: 'Peer reviews', abs_show: 'Abstract', abs_hide: 'Collapse',
     foot_org: 'Lavrentyev Institute of Hydrodynamics SB RAS · Novosibirsk State University',
     foot_note: 'Profile data as of 2026.',
@@ -129,6 +129,14 @@ function render() {
   return '<li><span class="idx">' + String(i + 1).padStart(2, '0') + '</span>' +
     '<div><div class="t">' + a.title[LANG] + '</div><div class="m">' + meta + '</div></div></li>';
 }).join('');
+  $('#patents-list').innerHTML = (DATA.PATENTS || []).map(function (p, i) {
+    var img = IMG(p.image), id = 'pat-' + i;
+    var meta = T.pat_no + ' ' + p.number + (p.application ? ' · ' + T.pat_app + ' ' + T.pat_no + ' ' + p.application + (p.filed ? ' (' + T.pat_filed + ' ' + p.filed[LANG] + ')' : '') : '') + (p.registered ? ' · ' + T.pat_reg + ': ' + p.registered[LANG] : '');
+    var detail = (p.holder ? '<div class="m">' + T.pat_holder + ': ' + p.holder[LANG] + '</div>' : '') + (p.authors ? '<div class="m">' + T.pat_authors + ': ' + markMe(p.authors[LANG]) + '</div>' : '');
+    var btn = p.image ? '<button type="button" class="pat-btn" aria-expanded="false" aria-controls="' + id + '" onclick="togglePat(this)">' + T.pat_show + '</button>' : '';
+    var fig = p.image ? '<div class="pat-img" id="' + id + '" hidden><a href="' + img + '" target="_blank" rel="noopener"><img src="' + img + '" alt="' + p.title[LANG].replace(/"/g, '&quot;') + '" loading="lazy"></a><a class="pat-open" href="' + img + '" target="_blank" rel="noopener">' + T.pat_open + ' ↗</a></div>' : '';
+    return '<li><span class="idx">' + String(i + 1).padStart(2, '0') + '</span><div class="pat-body"><div class="m pat-kind">' + p.kind[LANG] + '</div><div class="t">' + p.title[LANG] + '</div><div class="m">' + meta + '</div>' + detail + btn + fig + '</div></li>';
+  }).join('');
   $('#media-list').innerHTML = (DATA.MEDIA || []).map(function (m, i) {
     var title = m.href
       ? '<a class="t" href="' + m.href + '" target="_blank" rel="noopener">' + m.t[LANG] + '</a>'
@@ -155,11 +163,11 @@ function render() {
       '<p class="act-text">' + firstCap + '</p></div></div>';
   }).join('');
 
-  $('#rev-list').innerHTML = (DATA.REVIEWS || []).map(function (r, i) { return '<li class="pub"><div class="pub-n">' + (i + 1) + '</div><div class="pub-body"><div class="pub-title" style="font-size:1rem">' + r.t[LANG] + '</div><div class="pub-venue" style="margin-top:6px">' + r.j + '</div></div></li>'; }).join('');
+  var revList = $('#rev-list'); if (revList) revList.innerHTML = (DATA.REVIEWS || []).map(function (r, i) { return '<li class="pub"><div class="pub-n">' + (i + 1) + '</div><div class="pub-body"><div class="pub-title" style="font-size:1rem">' + r.t[LANG] + '</div><div class="pub-venue" style="margin-top:6px">' + r.j + '</div></div></li>'; }).join('');
 
   var setc = function (id, arr) { var el = document.getElementById(id); if (el) el.textContent = '[' + (arr || []).length + ']'; };
   setc('art-c', DATA.ARTICLES); setc('proc-c', DATA.PROC); setc('abs-c', DATA.ABSTRACTS); setc('book-c', DATA.BOOKS);
-  setc('conf-c', DATA.CONF); setc('teach-c', TE.items); setc('rev-c', DATA.REVIEWS);
+  setc('conf-c', DATA.CONF); setc('patents-c', DATA.PATENTS); setc('teach-c', TE.items); setc('rev-c', DATA.REVIEWS);
   $$('.morebtn').forEach(function (b) { var w = document.getElementById(b.dataset.target); b.textContent = w.classList.contains('collapsed') ? T.more : T.less; });
 
   initCarousels();

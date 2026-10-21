@@ -239,3 +239,13 @@ footer a{color:var(--arc);text-decoration:none;font-family:"IBM Plex Mono",monos
 .tm-ic.tm-ic-pdf{background:#d93025}
 .tm-files a:hover .tm-ic.tm-ic-pdf{background:#b3261e}
 .tm-body{display:flex;flex-direction:column;gap:14px}
+
+/* патенты и свидетельства */
+.patlist .pat-body{flex:1;min-width:0}
+.patlist .pat-kind{text-transform:uppercase;font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.08em;color:var(--arc-deep);margin:0 0 4px}
+.pat-btn{margin-top:14px;font:600 .9rem "IBM Plex Sans",sans-serif;padding:8px 16px;border-radius:8px;border:1px solid var(--arc-deep);background:transparent;color:var(--arc-deep);cursor:pointer;transition:.15s}
+.pat-btn:hover,.pat-btn[aria-expanded="true"]{background:var(--arc-deep);color:#fff}
+.pat-img{margin-top:18px}
+.pat-img[hidden]{display:none}
+.pat-img img{display:block;width:100%;max-width:460px;height:auto;border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 26px rgba(10,35,66,.18)}
+.pat-open{display:inline-block;margin-top:8px;font-size:.86rem;color:var(--arc-deep)}

@@ -83,3 +83,11 @@ function applyI18n() {
   $$('.langswitch button').forEach(function (b) { b.classList.toggle('active', b.dataset.lang === LANG); });
 }
 function boot() { try { var s = localStorage.getItem('site_lang'); if (s) LANG = s; } catch (e) {} render(); }
+
+function togglePat(btn) {
+  var box = document.getElementById(btn.getAttribute('aria-controls'));
+  var open = box.hasAttribute('hidden');
+  if (open) box.removeAttribute('hidden'); else box.setAttribute('hidden', '');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  btn.textContent = open ? I18N[LANG].pat_hide : I18N[LANG].pat_show;
+}

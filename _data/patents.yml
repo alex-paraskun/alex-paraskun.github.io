@@ -1,0 +1,23 @@
+# Патенты и свидетельства. Правьте здесь — GitHub Pages пересоберёт сайт сам.
+# Чтобы добавить документ: положите скан в images/ и допишите блок ниже (поле image — имя файла).
+- kind:
+    ru: Свидетельство о государственной регистрации программы для ЭВМ
+    en: Certificate of state registration of a computer program
+  title:
+    ru: Калькулятор длительности рентгеновской вспышки и динамики анодного тока импульсной рентгеновской трубки
+    en: Calculator of X-ray flash duration and anode current dynamics of a pulsed X-ray tube
+  number: "2026691864"
+  holder:
+    ru: Федеральное государственное бюджетное учреждение науки Институт гидродинамики им. М.А. Лаврентьева Сибирского отделения Российской академии наук
+    en: Lavrentyev Institute of Hydrodynamics, Siberian Branch of the Russian Academy of Sciences
+  authors:
+    ru: Параскун А.Г.
+    en: Paraskun A.G.
+  application: "2026687297"
+  filed:
+    ru: 08.09.2026
+    en: 08 Sep 2026
+  registered:
+    ru: 19.10.2026
+    en: 19 Oct 2026
+  image: patent_2026691864.jpg
