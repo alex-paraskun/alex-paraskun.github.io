@@ -534,6 +534,31 @@ function relax(n, method, K, snapAt) {         // квадрат 1×1; U = 1 н�
 
 if (typeof module !== "undefined") module.exports = { EPS0, PI, rod, ring, energy, solveRadial, gradient1d, shells, solveLinear, solve2d, field2d, energy2d, grid2d, frameMask, coax, cylField, corner, csmSphere, lstsq, fibonacciSphere, plateCap, chargesField, findNulls, superGrid, imagePlane, linspace };
 
+// --- модель «пластина в конденсаторе»: ядро (без DOM) ---
+function plateScene(nd, mode, eps, tq, iL) {          // nd — узлов на зазор d (d = 1, пластины U = ±0.5)
+  const h = 1 / nd, Wx = 4.5, Hy = 3, nx = Math.round(2 * Wx / h) + 1, ny = Math.round(2 * Hy / h) + 1, N = nx * ny;
+  const jm = (ny - 1) / 2, jt = jm + nd / 2, jb = jm - nd / 2;
+  const i0 = Math.round((-2 + Wx) / h), i1 = Math.round((2 + Wx) / h), iR = Math.round((3.5 + Wx) / h);
+  const fixed = frameMask(nx, ny), Uf = new Float64Array(N), epsA = new Float64Array(N).fill(1);
+  for (let i = i0; i <= i1; i++) { fixed[jt * nx + i] = 1; Uf[jt * nx + i] = 0.5; fixed[jb * nx + i] = 1; Uf[jb * nx + i] = -0.5; }
+  const k = Math.max(1, Math.round(tq * nd / 2));
+  if (mode === "diel") { for (let j = jb; j <= jt; j++) for (let i = iL; i <= iR; i++) epsA[j * nx + i] = eps; }
+  else { for (let j = jm - k; j <= jm + k; j++) for (let i = iL; i <= iR; i++) { fixed[j * nx + i] = 1; Uf[j * nx + i] = 0; } }
+  const sol = solve2d(nx, ny, h, fixed, Uf, mode === "diel" ? epsA : null, null, 1e-9, 5000);
+  const W = energy2d(sol.U, nx, ny, mode === "diel" ? epsA : null);
+  return { h, nx, ny, i0, i1, iR, iL, jm, jt, jb, k, tEff: 2 * k * h, U: sol.U, fixed, epsA, C: 2 * W, iters: sol.iters, x: i => -Wx + h * i, y: j => -Hy + h * j };
+}
+function plateForce(nd, mode, eps, tq, iL, d = 2) {   // сила втягивания F = (1/2) U^2 dC/dx по смещению края пластины
+  const i0 = Math.round((-2 + 4.5) * nd), i1 = Math.round((2 + 4.5) * nd), h = 1 / nd;
+  const lo = Math.max(iL - d, i0), hi = Math.min(iL + d, i1);
+  const Clo = plateScene(nd, mode, eps, tq, lo).C, Chi = plateScene(nd, mode, eps, tq, hi).C;
+  return 0.5 * (Clo - Chi) / ((hi - lo) * h);
+}
+function plateIdeal(mode, eps, tEff, sLen) {          // идеальные формулы без краевых полей: прирост ёмкости и сила (d = 1, ε0 = 1, U = 1)
+  const g = mode === "diel" ? (eps - 1) : (1 / (1 - tEff) - 1);
+  return { dC: g * sLen, F: 0.5 * g };
+}
+
 // ======================= ГРАФИКА: графики и карты на canvas =======================
 function themeColors() {
   const cs = getComputedStyle(document.documentElement), g = n => cs.getPropertyValue(n).trim();
@@ -1140,6 +1165,56 @@ MODELS.push({
       draws: [cv => drawMap(cv, { xmin: 0, xmax: 1, ymin: 0, ymax: 1, sampler: samp, colorBy: "U", ulim: 1, levels: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], overlay: (ctx, tx, ty) => { if (n > 30) return; const T = themeColors(); ctx.fillStyle = T.fg; ctx.globalAlpha = 0.5; for (let j = 0; j <= n; j++) for (let i = 0; i <= n; i++) { ctx.beginPath(); ctx.arc(tx(i / n), ty(j / n), 1.5, 0, 2 * PI); ctx.fill(); } ctx.globalAlpha = 1; } }),
         cv => plotXY(cv, [{ x: it, y: ser("jacobi"), color: "c1", label: "Якоби" }, { x: it, y: ser("gs"), color: "c3", label: "Гаусс–Зейдель" }, { x: it, y: ser("sor"), color: "c2", label: "SOR" }], { xlog: true, ylog: true, xlabel: "число итераций", ylabel: "невязка", vlines: [k] })] };
   }, canv: ["Потенциал после k итераций (красный — 1, белый — 0; точки — узлы сетки, линии — эквипотенциали)", "Невязка в зависимости от числа итераций (вертикальная линия — выбранное k)"]
+});
+
+const T17 = { cache: null, timer: null, api: null };
+const t17key = p => p.mode + "|" + p.eps + "|" + p.tq;
+function t17curve(p) {                                   // кривые F(s) и C(s) по 9 положениям; результат кэшируется
+  const key = t17key(p); if (T17.cache && T17.cache.key === key) return T17.cache;
+  const nd = 8, i1 = Math.round((2 + 4.5) * nd), Lp = 4 * nd, ss = linspace(0, 1, 9), F = [], C = [];
+  let tEff = 0;
+  for (const s of ss) { const iL = Math.round(i1 - s * Lp), sc = plateScene(nd, p.mode, +p.eps, +p.tq, iL); tEff = sc.tEff; C.push(sc.C); F.push(plateForce(nd, p.mode, +p.eps, +p.tq, iL)); }
+  return (T17.cache = { key, s: ss, F, C, tEff });
+}
+function t17interp(xs, ys, x) { if (x <= xs[0]) return ys[0]; for (let i = 1; i < xs.length; i++) if (x <= xs[i]) return ys[i - 1] + (ys[i] - ys[i - 1]) * (x - xs[i - 1]) / (xs[i] - xs[i - 1]); return ys[ys.length - 1]; }
+function t17anim(p, api) {                               // «отпустить»: пластина разгоняется силой F(s) (условная масса m = 2)
+  clearInterval(T17.timer);
+  const rng = api.root.querySelectorAll("input[type=range]")[0], cur = t17curve(p), m = 2, Lp = 4;
+  let s = +p.s >= 0.97 ? 0 : +p.s, v = 0, t0 = performance.now();
+  rng.addEventListener("pointerdown", () => clearInterval(T17.timer), { once: true });
+  T17.timer = setInterval(() => {
+    const now = performance.now(), dt = Math.min(0.1, (now - t0) / 1000); t0 = now;
+    v += t17interp(cur.s, cur.F, s) / m * dt; s += v * dt / Lp;
+    if (s >= 1) { s = 1; clearInterval(T17.timer); }
+    rng.value = s.toFixed(3); rng.dispatchEvent(new Event("input"));
+  }, 90);
+}
+MODELS.push({
+  id: "t17", tab: "Пластина в конденсаторе", title: "Конденсатор втягивает диэлектрик или металлическую пластину: поле и сила", chapter: "гл. 14, §14.4 (дополнение)",
+  desc: `<p><b>Условие.</b> Плоский конденсатор подключён к источнику напряжения \\(U\\). В зазор \\(d\\) вдвигают диэлектрик (проницаемость \\(\\varepsilon\\)) или изолированную металлическую пластину толщиной \\(t\\). Как изменяется картина поля и какая сила втягивает пластину?</p>
+  <p><b>Аналитика</b> (без краевых полей, на единицу длины, обкладки длины \\(L\\), вдвинуто \\(x\\)): диэлектрик \\(\\displaystyle C=\\frac{\\varepsilon_0}{d}\\,[L-x+\\varepsilon x]\\), металл \\(\\displaystyle C=\\frac{\\varepsilon_0}{d}\\left[L-x+\\frac{d\\,x}{d-t}\\right]\\); при постоянном напряжении сила \\(\\displaystyle F=\\frac{U^2}{2}\\frac{dC}{dx}\\), то есть \\(\\displaystyle F=\\frac{(\\varepsilon-1)\\varepsilon_0U^2}{2d}\\) и \\(\\displaystyle F=\\frac{\\varepsilon_0U^2}{2}\\Big(\\frac1{d-t}-\\frac1d\\Big)\\).  <b>Модель.</b> Сечение на сетке (схема «крест», метод сопряжённых градиентов), \\(\\varepsilon_0=d=U=1\\). Сила — по виртуальной работе: \\(C=2W/U^2\\), \\(F=\\tfrac12U^2\\,\\Delta C/\\Delta x\\) при сдвиге края пластины на узел. Изолированная металлическая пластина посередине зазора по симметрии имеет потенциал 0.</p>`,
+  params: [{ k: "mode", label: "Что вносим", type: "select", opts: [["diel", "диэлектрик"], ["metal", "металлическая пластина"]], val: "diel" }, P("s", "Вдвинуто (доля длины обкладок)", 0, 1, 0.01, 0.5), P("eps", "Проницаемость ε (диэлектрик)", 1.5, 20, 0.5, 4), P("tq", "Толщина металла (доля зазора)", 0.25, 0.75, 0.25, 0.5)],
+  actions: [{ label: "Отпустить: пластину втянет", fn(p) { if (T17.api) t17anim(p, T17.api); } }],
+  init(api) { T17.api = api; },
+  run(p) {
+    const nd = 8, mode = p.mode, eps = +p.eps, tq = +p.tq, s = +p.s, i1 = Math.round((2 + 4.5) * nd), Lp = 4 * nd, iL = Math.round(i1 - s * Lp);
+    const sc = plateScene(nd, mode, eps, tq, iL), F = plateForce(nd, mode, eps, tq, iL), cur = t17curve(p), id = plateIdeal(mode, eps, cur.tEff, s * 4);
+    const rows = [row("прирост ёмкости ΔC = C(x) − C(0), на ед. длины", id.dC, sc.C - cur.C[0]), row("сила втягивания F, на ед. длины (U = 1)", id.F, F)];
+    const E = field2d(sc.U, sc.nx, sc.ny, sc.h), h = sc.h, x0 = -4.5, y0 = -3, xl = sc.x(iL), kk = sc.k;
+    const bil = (A, x, y) => { const fx = (x - x0) / h, fy = (y - y0) / h, i = Math.min(sc.nx - 2, Math.max(0, Math.floor(fx))), j = Math.min(sc.ny - 2, Math.max(0, Math.floor(fy))), tx = Math.min(1, Math.max(0, fx - i)), ty = Math.min(1, Math.max(0, fy - j)), c = j * sc.nx + i; return (A[c] * (1 - tx) + A[c + 1] * tx) * (1 - ty) + (A[c + sc.nx] * (1 - tx) + A[c + sc.nx + 1] * tx) * ty; };
+    const inMetal = (x, y) => mode === "metal" && x >= xl - 1e-9 && x <= 3.5 && Math.abs(y) <= kk * h + 1e-9;
+    const samp = (x, y) => ({ U: bil(sc.U, x, y), Ex: bil(E.Ex, x, y), Ey: bil(E.Ey, x, y), hide: inMetal(x, y) });
+    const seeds = linspace(-1.9, 1.9, 19).map(x => [x, 0.4, 1]).concat(mode === "metal" ? linspace(-1.9, 1.9, 19).map(x => [x, -kk * h - 0.04, 1]) : []).concat([-3, -2.5, -2.2, 2.2, 2.5, 3].map(x => [x, 0.75, 1])).concat([-3, -2.5, -2.2, 2.2, 2.5, 3].map(x => [x, -0.75, -1]));
+    const ss = cur.s, idF = ss.map(() => id.F), idC = ss.map(t => plateIdeal(mode, eps, cur.tEff, t * 4).dC);
+    return { rows, note: "Двигайте ползунок «Вдвинуто»: при постоянном напряжении сила почти не зависит от глубины (ёмкость растёт линейно), а у самых краёв заметны отклонения из-за краевых полей. Линии поля в диэлектрике «преломляются» на границе, у металла они заканчиваются на поверхности и начинаются вновь с другой стороны. Нажмите «Отпустить» — пластина разгоняется силой F(x).",
+      draws: [cv => drawMap(cv, { xmin: -3.6, xmax: 3.6, ymin: -2.4, ymax: 2.4, sampler: samp, lvl: [-1.6, 1], nContours: 14, streams: { seeds, stop: (x, y) => Math.abs(x) <= 2.03 && y < -0.44 && y > -0.58 },
+          overlay: (ctx, tx, ty) => { const T = themeColors(); ctx.lineCap = "butt"; ctx.strokeStyle = T.fg; ctx.lineWidth = 4; [[0.5, "+U/2"], [-0.5, "−U/2"]].forEach(([yy, lab]) => { ctx.beginPath(); ctx.moveTo(tx(-2), ty(yy)); ctx.lineTo(tx(2), ty(yy)); ctx.stroke(); ctx.fillStyle = T.fg; ctx.font = "12px system-ui, sans-serif"; ctx.textAlign = "center"; ctx.fillText(lab, tx(-2.45), ty(yy) + 4); });
+            if (mode === "diel") { ctx.fillStyle = T.c2; ctx.globalAlpha = 0.14; ctx.fillRect(tx(xl), ty(0.5), tx(3.5) - tx(xl), ty(-0.5) - ty(0.5)); ctx.globalAlpha = 1; ctx.setLineDash([5, 4]); ctx.strokeStyle = T.c2; ctx.lineWidth = 1.6; ctx.strokeRect(tx(xl), ty(0.5), tx(3.5) - tx(xl), ty(-0.5) - ty(0.5)); ctx.setLineDash([]); ctx.fillStyle = T.c2; ctx.fillText("ε = " + fmtN(eps), tx(Math.max(xl, 2) + 0.7), ty(0.5) - 8); }
+            else { ctx.strokeStyle = T.c2; ctx.lineWidth = 2; ctx.strokeRect(tx(xl), ty(kk * h), tx(3.5) - tx(xl), ty(-kk * h) - ty(kk * h)); ctx.fillStyle = T.c2; ctx.fillText("металл", tx(Math.max(xl, 2) + 0.7), ty(kk * h) - 8); }
+            const len = Math.min(120, 30 + 40 * F), ay = ty(-1.25); ctx.strokeStyle = T.c3; ctx.fillStyle = T.c3; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(tx(3.55), ay); ctx.lineTo(tx(3.55) - len, ay); ctx.stroke(); ctx.beginPath(); ctx.moveTo(tx(3.55) - len - 9, ay); ctx.lineTo(tx(3.55) - len, ay - 5); ctx.lineTo(tx(3.55) - len, ay + 5); ctx.closePath(); ctx.fill(); ctx.textAlign = "right"; ctx.fillText("сила F = " + F.toFixed(2).replace(".", ","), tx(3.55), ay - 9); } }),
+        cv => plotXY(cv, [{ x: ss, y: idF, color: "c1", label: "формула (без краёв)" }, { x: ss, y: cur.F, color: "c2", mode: "circles", label: "модель" }], { xlabel: "вдвинуто, доля длины обкладок", ylabel: "сила F (на ед. длины)", vlines: [s], ymin: 0, ymax: 1.15 * Math.max(id.F, ...cur.F) }),
+        cv => plotXY(cv, [{ x: ss, y: idC, color: "c1", label: "формула" }, { x: ss, y: cur.C.map(c => c - cur.C[0]), color: "c2", mode: "circles", label: "модель" }], { xlabel: "вдвинуто, доля длины обкладок", ylabel: "ΔC = C(x) − C(0)", vlines: [s] })] };
+  }, canv: ["Поле в конденсаторе: цвет — |E|, красные линии — эквипотенциали, чёрные — силовые линии; зелёная стрелка — сила на пластину", "Сила втягивания в зависимости от глубины", "Ёмкость в зависимости от глубины"]
 });
 
 // ======================= ИНТЕРФЕЙС =======================
