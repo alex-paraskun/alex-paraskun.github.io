@@ -190,3 +190,11 @@ courses:
         note:
           ru: Конспект семинара по математике
           en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №15. Логарифмическая производная. Неявно заданные функции"
+          en: "Seminar 15. Logarithmic derivative. Implicitly defined functions"
+        href: files/teaching/med-math/seminar-15.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
