@@ -198,3 +198,11 @@ courses:
         note:
           ru: Конспект семинара по математике
           en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №16. Формула Тейлора"
+          en: "Seminar 16. Taylor's formula"
+        href: files/teaching/med-math/seminar-16.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
