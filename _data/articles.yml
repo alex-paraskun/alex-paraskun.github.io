@@ -1,5 +1,19 @@
 # Данные для страницы. Правьте здесь — GitHub Pages пересоберёт сайт сам.
 - t:
+    ru: Simultaneous reconstruction of emission spectra and anode current dynamics in nanosecond x-ray tubes using attenuation curves
+    en: Simultaneous reconstruction of emission spectra and anode current dynamics in nanosecond x-ray tubes using attenuation curves
+  v:
+    ru: Review of Scientific Instruments. 2026. V. 97, N 11. Art. 115201.
+    en: Review of Scientific Instruments. 2026. V. 97, N 11. Art. 115201.
+  au:
+    ru: Параскун А.
+    en: Paraskun A.
+  doi: 10.1063/5.0349535
+  db:
+  - WOS
+  - Scopus
+  - OpenAlex
+- t:
     ru: Effect of Starlike Grooves on Anode Surfaces in Pulsed X-Ray Sources
     en: Effect of Starlike Grooves on Anode Surfaces in Pulsed X-Ray Sources
   v:
