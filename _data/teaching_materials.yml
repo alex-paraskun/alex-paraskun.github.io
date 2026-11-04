@@ -214,3 +214,19 @@ courses:
         note:
           ru: Конспект семинара по математике
           en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №18. Исследование функций и построение графиков"
+          en: "Seminar 18. Function analysis and graph sketching"
+        href: files/teaching/med-math/seminar-18.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №19. Подготовка к контрольной работе"
+          en: "Seminar 19. Test preparation"
+        href: files/teaching/med-math/seminar-19.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
