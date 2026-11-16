@@ -230,3 +230,23 @@ courses:
         note:
           ru: Конспект семинара по математике
           en: Seminar notes in mathematics
+    - title:
+        ru: Интегрирование
+        en: Integration
+      materials:
+      - title:
+          ru: "Семинар №20. Неопределённый интеграл. Таблица интегралов"
+          en: "Seminar 20. Indefinite integral. Table of integrals"
+        href: files/teaching/med-math/seminar-20.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
+      - title:
+          ru: "Семинар №21. Интегрирование по частям. Рациональные дроби"
+          en: "Seminar 21. Integration by parts. Rational fractions"
+        href: files/teaching/med-math/seminar-21.pdf
+        type: pdf
+        note:
+          ru: Конспект семинара по математике
+          en: Seminar notes in mathematics
