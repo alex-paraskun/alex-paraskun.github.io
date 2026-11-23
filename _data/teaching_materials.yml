@@ -250,34 +250,18 @@ courses:
         note:
           ru: Конспект семинара по математике
           en: Seminar notes in mathematics
+
       - title:
           ru: "Семинар №22. Интегралы от иррациональных и тригонометрических функций"
           en: "Seminar 22. Integrals of irrational and trigonometric functions"
-        href: files/teaching/med-math/seminar-22.pdf
-        type: pdf
-        note:
-          ru: Конспект семинара по математике
-          en: Seminar notes in mathematics
-      - title:
-          ru: "Семинар №23. Определённый интеграл и его свойства"
-          en: "Seminar 23. Definite integral and its properties"
-        href: files/teaching/med-math/seminar-23.pdf
-        type: pdf
-        note:
-          ru: Конспект семинара по математике
-          en: Seminar notes in mathematics
-
-      - title:
-          ru: "Семинар №22. Интегралы от иррациональных и тригонометрических функций — с примерами"
-          en: "Seminar 22. Integrals of irrational and trigonometric functions — with examples"
         href: files/teaching/med-math/seminar-22-with-examples.pdf
         type: pdf
         note:
           ru: Расширенная версия с разобранными примерами (3 с.)
           en: Extended version with worked examples (3 pp.)
       - title:
-          ru: "Семинар №23. Определённый интеграл и его свойства — с примерами"
-          en: "Seminar 23. Definite integral and its properties — with examples"
+          ru: "Семинар №23. Определённый интеграл и его свойства"
+          en: "Seminar 23. Definite integral and its properties"
         href: files/teaching/med-math/seminar-23-with-examples.pdf
         type: pdf
         note:
